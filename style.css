@@ -1,115 +1,60 @@
-/* --- 1. RESET & BASE --- */
+/* --- RESET & BASE --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-body {
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-}
-
-/* --- 2. HERO SECTION (NOIR) --- */
+/* --- HERO (NOIR) --- */
 .hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    position: relative;
-    color: white;
+    height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center;
+    padding: 20px; position: relative; color: white;
 }
-
-/* Vidéo de fond */
 .video-container {
     position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
     z-index: -1; overflow: hidden;
 }
-video {
-    width: 100%; height: 100%; object-fit: cover; opacity: 0.8;
-}
+video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
 .overlay {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
 }
-
-/* Contenu Hero */
 .badge {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 8px 16px; border-radius: 50px;
-    font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;
-    margin-bottom: 24px; backdrop-filter: blur(10px); color: #e0e0e0;
+    background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 24px; backdrop-filter: blur(10px); color: #e0e0e0;
 }
-
-h1 {
-    font-size: 3.5rem; font-weight: 600; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1.5px;
-}
-
-p.subtitle {
-    font-size: 1.25rem; color: #cccccc; max-width: 600px; margin-bottom: 40px; font-weight: 300; line-height: 1.6;
-}
-
-/* Bouton Hero */
+h1 { font-size: 3.5rem; font-weight: 600; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1.5px; }
+p.subtitle { font-size: 1.25rem; color: #cccccc; max-width: 600px; margin-bottom: 40px; font-weight: 300; }
 .btn-primary {
     background-color: white; color: black; padding: 16px 32px; border-radius: 8px;
-    text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s ease;
-    border: 1px solid white; display: inline-block;
+    text-decoration: none; font-weight: 600; border: 1px solid white; transition: all 0.3s ease;
 }
-.btn-primary:hover {
-    background-color: transparent; color: white; transform: translateY(-2px);
-}
+.btn-primary:hover { background-color: transparent; color: white; transform: translateY(-2px); }
 
-/* --- 3. SECTION RENTABILITÉ (GRIS CLAIR) --- */
+/* --- SECTION RENTABILITÉ (GRIS) --- */
 .profit-section {
-    background-color: #f5f5f5; /* Contraste fort avec le header noir */
-    color: #333;
-    padding: 100px 20px;
-    text-align: center;
-    position: relative;
-    z-index: 2; /* Passe par dessus la vidéo fixe */
+    background-color: #f5f5f5; color: #333; padding: 100px 20px;
+    text-align: center; position: relative; z-index: 2;
 }
-
 .container { max-width: 900px; margin: 0 auto; }
-
-/* Slogan */
-.slogan-block h2 {
-    font-size: 2.5rem; color: #111; margin-bottom: 20px; line-height: 1.2; letter-spacing: -1px;
-}
-.slogan-subtitle {
-    font-size: 1.2rem; color: #555; max-width: 700px; margin: 0 auto 50px auto; line-height: 1.5;
-}
-
-/* Carte Calculateur */
+.slogan-block h2 { font-size: 2.5rem; color: #111; margin-bottom: 20px; line-height: 1.2; }
+.slogan-subtitle { font-size: 1.2rem; color: #555; max-width: 700px; margin: 0 auto 50px auto; }
 .calculator-card {
     background: white; padding: 50px; border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08); /* Ombre douce moderne */
-    max-width: 700px; margin: 0 auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08); max-width: 700px; margin: 0 auto;
 }
-
 .calculator-card h3 { font-size: 1.5rem; margin-bottom: 30px; color: #222; }
-
-/* Input Prix */
 .price-input-wrapper {
     font-size: 2.2rem; font-weight: 700; margin: 15px 0 25px 0; color: #222;
     display: inline-block; padding: 10px 20px; border-radius: 12px;
     background: #f9f9f9; border: 1px solid #eee;
 }
-
-/* Le Slider */
 input[type=range] {
     width: 100%; max-width: 450px; height: 8px; background: #ddd;
     border-radius: 5px; outline: none; accent-color: #4CAF50; cursor: pointer;
 }
-
-/* Résultat */
 .result-block { margin-top: 40px; padding-top: 30px; border-top: 1px solid #eee; }
-.result-block p { font-size: 1.3rem; font-weight: 600; line-height: 1.4; }
+.result-block p { font-size: 1.3rem; font-weight: 600; }
 .big-green { color: #4CAF50; font-size: 2.2rem; font-weight: 800; }
-.result-block small { display: block; margin-top: 15px; color: #999; font-size: 0.8rem; }
+.result-block small { display: block; margin-top: 15px; color: #999; font-size: 0.8rem; transition: color 0.3s ease; }
 
-/* Mobile */
-@media (max-width: 768px) {
-    h1 { font-size: 2.5rem; }
-    .slogan-block h2 { font-size: 1.8rem; }
-    .calculator-card { padding: 30px 20px; }
-}
+@media (max-width: 768px) { h1 { font-size: 2.5rem; } }
