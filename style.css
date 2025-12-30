@@ -1,0 +1,116 @@
+/* --- 1. IMPORT DES POLICES --- */
+/* On garde ça propre ici ou dans le HTML, mais le CSS gère le style */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+/* --- 2. RESET & BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #050505; /* Noir profond */
+    color: white;
+    overflow-x: hidden; /* Empêche le scroll horizontal */
+}
+
+/* --- 3. VIDÉO DE FOND --- */
+.video-container {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100vh;
+    z-index: -1; /* Derrière tout */
+    overflow: hidden;
+}
+
+video {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; /* Remplit l'écran sans déformer */
+    opacity: 0.8; /* Assombrit légèrement la vidéo brute */
+}
+
+/* Le voile noir pour que le texte soit lisible */
+.overlay {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    /* Dégradé subtil du haut vers le bas */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+}
+
+/* --- 4. LE HERO (CENTRE DE LA PAGE) --- */
+.hero {
+    height: 100vh; /* Pleine hauteur */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 1; /* Devant la vidéo */
+}
+
+/* Le petit badge "Tech" */
+.badge {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px); /* Effet verre dépoli */
+    color: #e0e0e0;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -1.5px; /* Style très moderne serré */
+}
+
+p.subtitle {
+    font-size: 1.25rem;
+    color: #cccccc;
+    max-width: 600px;
+    margin-bottom: 40px;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* --- 5. BOUTONS --- */
+.btn-primary {
+    background-color: white;
+    color: black;
+    padding: 16px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid white;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background-color: transparent; /* Devient transparent */
+    color: white; /* Texte devient blanc */
+    transform: translateY(-2px); /* Monte un petit peu */
+}
+
+/* --- 6. MOBILE --- */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    .hero { padding: 15px; }
+}
