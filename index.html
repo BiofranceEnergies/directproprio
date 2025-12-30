@@ -3,38 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DirectProprio - Vente Immobilière Directe</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #111;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-        }
-        h1 { font-size: 3em; margin-bottom: 0.2em; }
-        p { font-size: 1.2em; color: #aaa; }
-        .loader {
-            border: 4px solid #333;
-            border-top: 4px solid #3498db;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 2s linear infinite;
-            margin-top: 20px;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    </style>
+    <title>Maison Sabouret - Vente Directe</title>
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>DirectProprio</h1>
-    <p>Site officiel en cours de construction.</p>
-    <p>Bientôt disponible en Dordogne.</p>
-    <div class="loader"></div>
+
+    <div class="video-container">
+        <video autoplay loop muted playsinline>
+            <source src="assets/video/Maison%20sabouret%202.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <div class="overlay"></div>
+    </div>
+
+    <div class="hero">
+        <div class="badge">0% Commission • Direct Propriétaire</div>
+        
+        <h1>Une propriété d'exception<br>en Périgord.</h1>
+        
+        <p class="subtitle">
+            Le calme absolu. Une rénovation authentique.<br>
+            Découvrez cette opportunité rare sans intermédiaire.
+        </p>
+
+        <a href="mailto:contact@cioo.io" class="btn-primary">
+            Demander le dossier complet
+        </a>
+    </div>
+
 </body>
 </html>
