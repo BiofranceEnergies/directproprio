@@ -12,21 +12,20 @@ const manualInput = document.getElementById('manual-price');
 const savingsDisplay = document.getElementById('savings-display');
 const legalText = document.getElementById('legal-text'); 
 
-// FONCTION UTILITAIRE : Ajoute les espaces (ex: 10000 -> "10 000")
+// --- FONCTIONS UTILITAIRES ---
 function formatMoney(amount) {
+    // Ajoute les espaces (ex: 10000 -> "10 000")
     return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
-// FONCTION UTILITAIRE : Enlève les espaces pour le calcul (ex: "10 000" -> 10000)
-function cleanMoney(amountStr) {
-    return parseInt(amountStr.toString().replace(/\s/g, '')) || 0;
+function cleanNumber(str) {
+    // Enlève tout ce qui n'est pas un chiffre
+    return parseInt(str.replace(/\D/g, ''), 10) || 0;
 }
 
-// 3. LA FONCTION DE CALCUL
-// 3. LA FONCTION DE CALCUL
-function calculateSavings(rawValue) {
-    // On nettoie la valeur
-    let propertyPrice = parseInt(rawValue);
+// --- LA FONCTION DE CALCUL ---
+function calculateSavings(price) {
+    let propertyPrice = parseInt(price);
     if (isNaN(propertyPrice)) propertyPrice = 0;
 
     let agencyFees = 0;
@@ -44,44 +43,59 @@ function calculateSavings(rawValue) {
 
     // Calcul final
     let savings = agencyFees - MY_SERVICE_PRICE;
-    
-    // CORRECTION ICI : On arrondit pour éviter le 0.000000001
-    savings = Math.round(savings);
-
+    savings = Math.round(savings); // On arrondit pour éviter les virgules
     if (savings < 0) savings = 0;
 
     // Affichage résultat
     savingsDisplay.textContent = formatMoney(savings);
 }
 
-// 4. LES ÉCOUTEURS
+// --- LES ÉCOUTEURS (NOUVELLE LOGIQUE) ---
 
-// Quand on bouge le SLIDER
+// 1. LE SLIDER (Quand on le bouge)
 slider.addEventListener('input', function() {
-    // On met à jour le champ texte avec les espaces
-    manualInput.value = formatMoney(slider.value); 
-    calculateSavings(slider.value);
+    // Met à jour le champ texte avec espaces
+    manualInput.value = formatMoney(this.value);
+    calculateSavings(this.value);
 });
 
-// Quand on tape dans le CHAMP TEXTE
+// 2. LE CHAMP TEXTE (Quand on tape dedans)
 manualInput.addEventListener('input', function() {
-    // 1. On récupère ce que l'utilisateur tape, mais on ne garde que les chiffres
-    let rawNumbers = this.value.replace(/\D/g, ''); 
+    // On laisse l'utilisateur taper librement, on récupère juste le chiffre brut pour le calcul
+    let rawVal = this.value.replace(/\D/g, ''); 
     
-    // 2. Si c'est vide, on gère
-    if (rawNumbers === "") rawNumbers = "0";
+    // Si c'est vide, on calcule sur 0 mais on laisse le champ vide
+    if (rawVal === "") {
+        calculateSavings(0);
+        return;
+    }
 
-    // 3. On met à jour le slider avec le vrai nombre (sans espaces)
-    slider.value = rawNumbers;
-
-    // 4. On remet la valeur formatée dans le champ (avec espaces)
-    this.value = formatMoney(rawNumbers);
-
-    // 5. On lance le calcul
-    calculateSavings(rawNumbers);
+    // Sinon on lance le calcul
+    let intVal = parseInt(rawVal, 10);
+    calculateSavings(intVal);
+    
+    // On ne touche PAS à this.value ici pour ne pas bloquer l'effacement
 });
 
-// 5. LANCEMENT AU DÉMARRAGE
-// On initialise l'affichage correct
+// 3. QUAND ON CLIQUE DEDANS (FOCUS)
+manualInput.addEventListener('focus', function() {
+    // On enlève les espaces pour faciliter la modification
+    let rawVal = this.value.replace(/\D/g, '');
+    if (rawVal === "0") rawVal = ""; // Si c'est 0, on vide pour taper direct
+    this.value = rawVal;
+});
+
+// 4. QUAND ON CLIQUE AILLEURS (BLUR)
+manualInput.addEventListener('blur', function() {
+    // C'est fini, on remet les jolis espaces et on met à jour le slider
+    let rawVal = this.value.replace(/\D/g, '');
+    let intVal = parseInt(rawVal, 10) || 0;
+    
+    this.value = formatMoney(intVal); // Remet les espaces
+    slider.value = intVal; // Synchronise le slider
+    calculateSavings(intVal); // Recalcule une dernière fois
+});
+
+// INITIALISATION
 manualInput.value = formatMoney(slider.value);
 calculateSavings(slider.value);
