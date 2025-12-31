@@ -43,10 +43,45 @@ p.subtitle { font-size: 1.25rem; color: #cccccc; max-width: 600px; margin-bottom
     box-shadow: 0 20px 40px rgba(0,0,0,0.08); max-width: 950px; margin: 0 auto;
 }
 .calculator-card h3 { font-size: 1.5rem; margin-bottom: 30px; color: #222; }
+/* --- CE QU'IL FAUT METTRE À LA PLACE --- */
 .price-input-wrapper {
-    font-size: 2.2rem; font-weight: 700; margin: 15px 0 25px 0; color: #222;
-    display: inline-block; padding: 10px 20px; border-radius: 12px;
-    background: #f9f9f9; border: 1px solid #eee;
+    /* On réduit la marge et on utilise flex pour aligner le chiffre et le € */
+    margin: 10px 0 20px 0; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 10px 20px;
+    border-radius: 12px;
+}
+
+/* Le style du champ de saisie (plus petit et sans bordure moche) */
+#manual-price {
+    font-size: 1.5rem; /* Taille réduite (avant c'était l'équivalent de 2.2rem) */
+    font-weight: 700;
+    color: #222;
+    background: transparent;
+    border: none;
+    width: 140px; 
+    text-align: right; 
+    font-family: 'Inter', sans-serif;
+    outline: none;
+}
+
+/* Le style du symbole € */
+.currency {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #222;
+    margin-left: 5px;
+}
+
+/* Petite astuce pour cacher les flèches haut/bas automatiques des navigateurs */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
 }
 input[type=range] {
     width: 100%; max-width: 450px; height: 8px; background: #ddd;
