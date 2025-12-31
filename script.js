@@ -23,8 +23,9 @@ function cleanMoney(amountStr) {
 }
 
 // 3. LA FONCTION DE CALCUL
+// 3. LA FONCTION DE CALCUL
 function calculateSavings(rawValue) {
-    // On nettoie la valeur (on enlève les espaces s'il y en a) pour avoir un vrai nombre
+    // On nettoie la valeur
     let propertyPrice = parseInt(rawValue);
     if (isNaN(propertyPrice)) propertyPrice = 0;
 
@@ -43,6 +44,10 @@ function calculateSavings(rawValue) {
 
     // Calcul final
     let savings = agencyFees - MY_SERVICE_PRICE;
+    
+    // CORRECTION ICI : On arrondit pour éviter le 0.000000001
+    savings = Math.round(savings);
+
     if (savings < 0) savings = 0;
 
     // Affichage résultat
