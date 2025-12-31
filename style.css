@@ -58,12 +58,12 @@ p.subtitle { font-size: 1.25rem; color: #cccccc; max-width: 600px; margin-bottom
 
 /* Le style du champ de saisie (plus petit et sans bordure moche) */
 #manual-price {
-    font-size: 1.5rem; /* Taille réduite (avant c'était l'équivalent de 2.2rem) */
+    font-size: 1.5rem; 
     font-weight: 700;
     color: #222;
     background: transparent;
     border: none;
-    width: 140px; 
+    width: 160px; /* J'ai élargi un peu (de 140 à 160) pour laisser la place aux espaces */
     text-align: right; 
     font-family: 'Inter', sans-serif;
     outline: none;
