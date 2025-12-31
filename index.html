@@ -41,13 +41,16 @@
             <div class="calculator-card">
                 <h3>Épargnez gros en sauvant la commission.<br>Faites le calcul :</h3>
                 
-                <div class="calc-controls">
-                    <label>Prix de votre propriété</label>
-                    <div class="price-input-wrapper">
-                        <span id="property-price-display">300 000</span> €
-                    </div>
-                    <input type="range" id="price-slider" min="50000" max="1000000" step="5000" value="300000">
-                </div>
+               <div class="calc-controls">
+    <label>Prix de votre propriété</label>
+    
+    <div class="price-input-wrapper">
+        <input type="number" id="manual-price" value="300000" min="50000" max="1000000" step="1000">
+        <span class="currency">€</span>
+    </div>
+
+    <input type="range" id="price-slider" min="50000" max="1000000" step="1000" value="300000">
+</div>
 
                 <div class="result-block">
                     <p>Et puis, que feriez-vous avec <span class="big-green" id="savings-display">0</span> €* dans vos poches&nbsp;?</p>
