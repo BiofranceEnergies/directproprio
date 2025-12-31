@@ -58,3 +58,52 @@ input[type=range] {
 .result-block small { display: block; margin-top: 15px; color: #999; font-size: 0.8rem; transition: color 0.3s ease; }
 
 @media (max-width: 768px) { h1 { font-size: 2.5rem; } }
+/* --- IDENTITÉ (LOGO TEXTE) --- */
+.brand-header {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    z-index: 10; /* Pour être au-dessus de la vidéo */
+    color: white;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espace entre le nom et la description */
+}
+
+.brand-name {
+    font-weight: 800; /* Très gras */
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+}
+
+.brand-sep {
+    font-weight: 100;
+    font-size: 1.5rem;
+    opacity: 0.5;
+}
+
+.brand-tagline {
+    font-weight: 300; /* Fin */
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+}
+
+/* Version Mobile : on empile le texte pour que ça rentre */
+@media (max-width: 768px) {
+    .brand-header {
+        left: 20px;
+        top: 20px;
+        flex-direction: column; /* L'un sous l'autre */
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .brand-sep {
+        display: none; /* On cache la barre verticale */
+    }
+    .brand-tagline {
+        font-size: 0.8rem;
+    }
+}
