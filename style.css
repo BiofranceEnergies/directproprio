@@ -26,16 +26,16 @@ body {
    2. HERO SPLIT (DESIGN "LAME FINE" & ALIGNÉ)
    ========================================= */
 .hero-split {
-    height: 100vh; /* Prend exactement la hauteur de l'écran */
+    height: 100vh; 
     width: 100%;
     display: flex;
-    flex-direction: column; /* Empile : Vidéo en haut / Bande en bas */
+    flex-direction: column; 
     background-color: var(--band-bg);
 }
 
 /* --- A. ZONE VIDÉO (Prend tout l'espace restant) --- */
 .video-zone {
-    flex: 1; /* La vidéo prend toute la place disponible (environ 85%) */
+    flex: 1; 
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -44,7 +44,7 @@ body {
 .video-zone video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Remplit sans déformer */
+    object-fit: cover; 
     display: block;
 }
 
@@ -66,18 +66,14 @@ body {
 .brand-tagline { font-weight: 300; font-size: 0.9rem; letter-spacing: 0.5px; opacity: 0.9; }
 
 
-/* --- B. BANDEAU D'INFORMATION (CORRIGÉ) --- */
+/* --- B. BANDEAU D'INFORMATION (CORRIGÉ V2) --- */
 .info-band {
     background-color: var(--band-bg);
     color: var(--band-text);
     width: 100%;
-    
-    /* Hauteur automatique selon le contenu */
     flex: 0 0 auto; 
-    
     display: flex;
     justify-content: center;
-    
     border-top: 1px solid #222; 
     padding: 0 40px;
     z-index: 5;
@@ -88,11 +84,7 @@ body {
     max-width: 1400px;
     display: flex;
     justify-content: space-between;
-    
-    /* IMPORTANT : On aligne tout en HAUT (flex-start) */
-    /* Cela nous permet de pousser manuellement les éléments pour les aligner */
-    align-items: flex-start; 
-    
+    align-items: flex-start; /* Important : alignement haut pour gérer les décalages */
     padding: 20px 0; 
     gap: 20px;
 }
@@ -101,7 +93,7 @@ body {
 .title-block { 
     text-align: left; 
     min-width: 250px;
-    /* Le bloc titre commence tout en haut, rien à changer */
+    /* Ce bloc sert de référence, il commence en haut */
 }
 
 .badge-mini {
@@ -110,15 +102,15 @@ body {
     font-size: 0.65rem; 
     text-transform: uppercase; 
     letter-spacing: 2px; 
-    margin-bottom: 6px; /* Espace sous le badge */
+    margin-bottom: 6px; 
     font-weight: 600;
-    line-height: 1;
+    line-height: 1.2;
 }
 
 .info-band h1 {
     font-size: 1.6rem; 
     margin: 0; 
-    line-height: 1; 
+    line-height: 1.1; 
     font-weight: 600; 
     letter-spacing: -0.5px;
     color: #fff;
@@ -128,10 +120,10 @@ body {
 .details-block {
     text-align: center;
     
-    /* --- CORRECTION D'ALIGNEMENT --- */
-    /* On pousse ce bloc vers le bas pour qu'il s'aligne avec le Titre */
-    /* 0.65rem (badge) + 6px (marge) ≈ 18px */
-    padding-top: 18px; 
+    /* --- CORRECTION D'ALIGNEMENT RENFORCÉE --- */
+    /* On pousse "Sarlat..." bien plus bas pour qu'il s'aligne avec "Le Domaine..." */
+    /* Avant : 18px -> Maintenant : 28px */
+    padding-top: 28px; 
 }
 
 .details-block p {
@@ -139,26 +131,23 @@ body {
     color: #bbb; 
     font-weight: 400; 
     margin: 0;
-    line-height: 1; /* Même hauteur de ligne que le titre */
+    line-height: 1.1; /* Même line-height que le titre */
 }
 
 /* 3. Bloc Action (Droite) */
 .action-block {
     text-align: right;
     
-    /* On descend légèrement le bouton pour le centrer visuellement */
-    padding-top: 8px; 
+    /* On ajuste aussi le bouton pour qu'il ne flotte pas trop haut */
+    padding-top: 12px; 
 }
 
 .btn-solid {
     display: inline-block;
     background-color: white; 
     color: black;
-    
-    /* Bouton compact */
     padding: 10px 24px; 
     border-radius: 2px; 
-    
     text-decoration: none; 
     font-weight: 700; 
     text-transform: uppercase;
@@ -185,14 +174,11 @@ body {
    4. RESPONSIVE (MOBILE & TABLETTE)
    ========================================= */
 @media (max-width: 900px) {
-    /* Sur mobile, on repasse en mode empilé */
-    .info-band { 
-        padding: 20px; 
-    }
+    .info-band { padding: 20px; }
     
     .info-content {
         flex-direction: column; 
-        align-items: flex-start; /* Tout aligné à gauche */
+        align-items: flex-start; 
         gap: 15px;
     }
     
@@ -201,15 +187,13 @@ body {
         text-align: left;
     }
     
-    /* On annule le décalage sur mobile car ils sont l'un sous l'autre */
+    /* Sur mobile, on annule les décalages "bureau" */
     .details-block { 
         padding-top: 0; 
-        margin-top: -5px; /* On remonte visuellement les détails sous le titre */
+        margin-top: -5px; 
     }
     
-    .action-block {
-        padding-top: 10px;
-    }
+    .action-block { padding-top: 10px; }
     
     .info-band h1 { font-size: 1.4rem; }
     
@@ -221,7 +205,6 @@ body {
         margin-top: 5px;
     }
     
-    /* Logo Mobile */
     .brand-header { 
         left: 20px; top: 20px; 
         flex-direction: column; 
