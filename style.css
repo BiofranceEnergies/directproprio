@@ -1,66 +1,181 @@
-/* --- RESET & BASE --- */
+/* --- 1. RESET & VARIABLES --- */
 :root {
     --bg-color: #ffffff;
     --text-main: #111111;
     --text-light: #555555;
-    --accent-color: #000000; /* Noir pur pour le luxe */
-    --overlay-dark: rgba(0,0,0,0.4);
+    --accent-color: #000000;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; overflow-x: hidden; background-color: var(--bg-color); color: var(--text-main); }
 
-/* --- HERO (NOIR) --- */
+body { 
+    font-family: 'Inter', sans-serif; 
+    overflow-x: hidden; 
+    background-color: var(--bg-color); 
+    color: var(--text-main); 
+}
+
+/* --- 2. HERO SECTION (STYLE CINÉMA) --- */
 .hero {
-    height: 100vh; display: flex; flex-direction: column;
-    justify-content: center; align-items: center; text-align: center;
-    padding: 20px; position: relative; color: white;
+    height: 100vh; 
+    display: flex; 
+    flex-direction: column;
+    /* C'est ICI le changement : on pousse tout vers le bas */
+    justify-content: flex-end; 
+    align-items: center; 
+    text-align: center;
+    /* On laisse de l'espace en bas pour ne pas coller au bord de l'écran */
+    padding-bottom: 80px; 
+    position: relative; 
+    color: white;
 }
+
+/* Le conteneur vidéo (Fond) */
 .video-container {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-    z-index: -1; overflow: hidden;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100vh;
+    z-index: -1; /* Derrière tout le reste */
+    overflow: hidden;
 }
-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; } /* Opacité augmentée pour mieux voir le bien */
+
+video { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+/* Le filtre magique : Transparent en haut, Sombre en bas */
 .overlay {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6)); /* Dégradé plus subtil */
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    /* Dégradé vertical : 
+       - 0% à 50% : Transparent (on voit le ciel)
+       - 100% : Noir (pour lire le texte en bas) */
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 30%, transparent 100%);
+    z-index: 0;
 }
 
-/* Identité Visuelle en haut à gauche */
-.brand-header {
-    position: absolute; top: 30px; left: 40px; z-index: 10;
-    color: white; font-family: 'Inter', sans-serif;
-    display: flex; align-items: center; gap: 15px;
+/* --- 3. CONTENU TEXTE (TITRE & SOUS-TITRE) --- */
+.hero-content {
+    z-index: 2; /* Au-dessus de l'overlay */
+    max-width: 900px; 
+    width: 100%;
+    padding: 0 20px; /* Marge de sécurité sur mobile */
+    animation: fadeIn 1.5s ease-out; 
 }
-.brand-name { font-weight: 800; font-size: 1.5rem; text-transform: uppercase; letter-spacing: -0.5px; }
-.brand-sep { font-weight: 100; font-size: 1.5rem; opacity: 0.5; }
-.brand-tagline { font-weight: 300; font-size: 0.95rem; letter-spacing: 0.5px; opacity: 0.9; }
 
-/* Contenu Central Hero */
-.hero-content { z-index: 2; max-width: 900px; animation: fadeIn 1.5s ease-out; }
-
+/* Le petit badge "Nouveauté" */
 .badge {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 6px 14px; border-radius: 50px; font-size: 0.8rem; text-transform: uppercase;
-    letter-spacing: 2px; margin-bottom: 20px; backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.15); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 6px 14px; 
+    border-radius: 50px; 
+    font-size: 0.75rem; 
+    text-transform: uppercase;
+    letter-spacing: 2px; 
+    margin-bottom: 15px; 
+    backdrop-filter: blur(4px);
+    color: #eee;
 }
 
-h1 { font-size: 4rem; font-weight: 700; line-height: 1.1; margin-bottom: 15px; letter-spacing: -1px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-p.subtitle { font-size: 1.4rem; color: #f0f0f0; margin-bottom: 40px; font-weight: 300; letter-spacing: 0.5px; }
+/* Le titre du bien */
+h1 { 
+    font-size: 3.5rem; /* Grand mais élégant */
+    font-weight: 700; 
+    line-height: 1.1; 
+    margin-bottom: 10px; 
+    letter-spacing: -1px; 
+    /* Ombre portée pour garantir la lecture même si le sol est clair */
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5); 
+}
 
+/* Les infos (Sarlat • 240m2...) */
+p.subtitle { 
+    font-size: 1.2rem; 
+    color: #f0f0f0; 
+    margin-bottom: 30px; 
+    font-weight: 300; 
+    letter-spacing: 0.5px; 
+    text-shadow: 0 1px 10px rgba(0,0,0,0.5);
+}
+
+/* --- 4. BOUTON (STYLE VERRE / GHOST) --- */
 .btn-primary {
-    background-color: white; color: black; padding: 14px 30px; border-radius: 50px;
-    text-decoration: none; font-weight: 600; border: 1px solid white; transition: all 0.3s ease;
-    text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.1); /* Très transparent */
+    backdrop-filter: blur(10px); /* Effet flou derrière le bouton */
+    color: white; 
+    padding: 14px 32px; 
+    border-radius: 50px;
+    text-decoration: none; 
+    font-weight: 500; 
+    border: 1px solid rgba(255, 255, 255, 0.5); 
+    transition: all 0.3s ease;
+    text-transform: uppercase; 
+    font-size: 0.85rem; 
+    letter-spacing: 1px;
 }
-.btn-primary:hover { background-color: transparent; color: white; padding: 14px 40px; /* Petit effet d'étirement sympa */ }
 
-/* Mobile */
+.btn-primary:hover { 
+    background-color: white; 
+    color: black; 
+    transform: translateY(-2px);
+    border-color: white;
+}
+
+/* --- 5. EN-TÊTE MARQUE (LOGO) --- */
+.brand-header {
+    position: absolute; 
+    top: 30px; 
+    left: 40px; 
+    z-index: 10;
+    color: white; 
+    display: flex; 
+    align-items: center; 
+    gap: 15px;
+    /* Ombre légère pour être lisible si le ciel est clair */
+    text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+}
+
+.brand-name { font-weight: 800; font-size: 1.3rem; text-transform: uppercase; letter-spacing: -0.5px; }
+.brand-sep { font-weight: 100; font-size: 1.3rem; opacity: 0.6; }
+.brand-tagline { font-weight: 300; font-size: 0.9rem; letter-spacing: 0.5px; opacity: 0.9; }
+
+/* --- 6. PLACEHOLDERS POUR LES FUTURES SECTIONS --- */
+/* (Ces classes sont prêtes pour quand on ajoutera le contenu HTML) */
+.intro-property, .video-experience, .details-grid, .location-contact {
+    background: white;
+    position: relative;
+    z-index: 2; /* Pour passer par-dessus la vidéo fixe quand on scrolle */
+    padding: 20px;
+    min-height: 200px; /* Juste pour voir qu'elles existent */
+}
+
+/* --- 7. RESPONSIVE (MOBILE) --- */
 @media (max-width: 768px) {
-    h1 { font-size: 2.5rem; }
-    .brand-header { left: 20px; top: 20px; flex-direction: column; align-items: flex-start; gap: 5px; }
+    .hero { padding-bottom: 60px; justify-content: flex-end; }
+    
+    h1 { font-size: 2.2rem; } /* Plus petit sur mobile */
+    
+    .brand-header { 
+        left: 20px; top: 20px; 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 5px; 
+    }
     .brand-sep { display: none; }
+    .brand-tagline { font-size: 0.75rem; }
 }
 
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+/* Animation d'apparition douce */
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
