@@ -375,14 +375,21 @@ body {
 /* LISTE TEXTE (SCROLL HORIZONTAL) */
 .chapter-scroller.text-only-mode {
     display: flex;
-    gap: 15px;
+    gap: 20px; /* Espace un peu plus large entre les cartes */
     overflow-x: auto;
-    padding-bottom: 20px;
-    padding-left: 5px; /* Marge de sécurité pour l'ombre */
-    padding-right: 5px;
-    scrollbar-width: none;
+    
+    /* CORRECTION ICI : On ajoute du padding généreux autour */
+    /* Haut: 0 | Droite: 25px | Bas: 30px | Gauche: 25px */
+    padding: 0 25px 30px 25px; 
+    
+    /* Pour que le scroll commence bien au bord sur mobile */
+    scroll-padding-left: 25px;
+    
+    scrollbar-width: none; /* Cache scrollbar Firefox */
+    -ms-overflow-style: none;  /* Cache scrollbar IE/Edge */
 }
-.chapter-scroller::-webkit-scrollbar { display: none; }
+/* Cache scrollbar Chrome/Safari */
+.chapter-scroller.text-only-mode::-webkit-scrollbar { display: none; }
 
 /* LA CARTE TEXTE (Bouton Rectangulaire) */
 .chapter-card {
