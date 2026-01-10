@@ -213,3 +213,142 @@ body {
     }
     .brand-sep { display: none; }
 }
+/* =========================================
+   SECTION 2 : INTRO SAAS / BENTO GRID
+   ========================================= */
+.intro-property {
+    background-color: #ffffff;
+    /* On laisse beaucoup d'espace en haut et en bas pour le côté "Luxe/Tech" */
+    padding: 120px 40px; 
+    position: relative;
+    z-index: 2;
+}
+
+.container-saas {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 100px; /* Grand écart entre le texte et la grille */
+}
+
+/* --- COLONNE GAUCHE : TEXTE --- */
+.story-block {
+    flex: 1; 
+    max-width: 480px;
+    position: sticky; 
+    top: 40px; /* Petit bonus : le texte reste accroché si on scrolle */
+}
+
+/* Le petit badge style "Tech" */
+.tag-tech {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #111;
+    background: #f4f4f5; /* Gris très pâle */
+    padding: 8px 14px;
+    border-radius: 6px;
+    margin-bottom: 30px;
+}
+
+.story-block h2 {
+    font-size: 3.5rem; /* Très gros titre */
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -2px; /* Signature visuelle SaaS 2025/2026 */
+    color: #111;
+    margin-bottom: 30px;
+}
+
+.lead-text {
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: #222;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+.sub-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666; 
+    font-weight: 400;
+}
+
+/* --- COLONNE DROITE : BENTO GRID --- */
+.features-bento {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Grille 2 colonnes */
+    gap: 24px; 
+}
+
+/* Les cartes "Style Linear" */
+.bento-card {
+    background: #ffffff;
+    border: 1px solid #e5e5e5; /* Bordure grise ultra-fine par défaut */
+    padding: 35px 30px;
+    border-radius: 12px; 
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Interaction : La bordure devient noire au survol */
+.bento-card:hover {
+    border-color: #000000; 
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+.icon-box {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.bento-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+.bento-card p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 1024px) {
+    .container-saas { gap: 50px; }
+    .story-block h2 { font-size: 2.8rem; }
+}
+
+@media (max-width: 900px) {
+    .intro-property { padding: 60px 20px; }
+    
+    .container-saas {
+        flex-direction: column; /* On empile tout */
+    }
+    
+    .story-block { 
+        max-width: 100%; 
+        position: static; /* On enlève le sticky sur mobile */
+        margin-bottom: 40px;
+    }
+    
+    .story-block h2 { font-size: 2.5rem; }
+    
+    /* Sur mobile, une seule colonne pour les cartes */
+    .features-bento { 
+        width: 100%;
+        grid-template-columns: 1fr; 
+    }
+}
