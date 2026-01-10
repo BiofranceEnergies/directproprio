@@ -337,103 +337,128 @@ body {
     .features-grid-simple { grid-template-columns: 1fr; gap: 10px; }
 }
 /* =========================================
-   SECTION 3 : LECTEUR VIDÉO "MASTERCLASS"
+   SECTION 3 : LECTEUR VIDÉO (STYLE TEXTE / SPOTIFY)
    ========================================= */
 
 .video-experience {
-    background-color: #f5f5f5; /* Gris très léger pour délimiter la zone cinéma */
-    padding: 100px 20px;
+    background-color: #f9f9f9; 
+    padding: 80px 20px;
 }
 
 .container-player {
-    max-width: 1100px; /* Largeur confortable */
+    max-width: 1000px;
     margin: 0 auto;
 }
 
-/* Titre de section */
 .section-title {
     text-align: center;
     margin-bottom: 40px;
 }
-.section-title h2 { font-size: 2rem; margin-bottom: 10px; color: #111; }
-.section-title p { color: #666; }
+.section-title h2 { font-size: 2rem; margin-bottom: 5px; color: #111; }
+.section-title p { color: #888; font-size: 1rem; }
 
-/* 1. LECTEUR PRINCIPAL */
+/* LECTEUR PRINCIPAL */
 .main-player-wrapper {
     width: 100%;
-    aspect-ratio: 16 / 9; /* Force le format Cinéma */
+    aspect-ratio: 16 / 9;
     background: black;
-    border-radius: 12px;
+    border-radius: 8px; /* Rayon plus petit, plus pro */
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15); /* Belle ombre portée */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     margin-bottom: 30px;
 }
 
 .main-player-wrapper video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100%; height: 100%; object-fit: cover;
 }
 
-/* 2. SLIDER HORIZONTAL (CHAPITRES) */
-.chapter-scroller {
+/* LISTE TEXTE (SCROLL HORIZONTAL) */
+.chapter-scroller.text-only-mode {
     display: flex;
-    gap: 20px;
-    overflow-x: auto; /* Permet le scroll horizontal */
-    padding-bottom: 20px; /* Espace pour la barre de scroll */
-    scrollbar-width: none; /* Cache la barre de scroll (Firefox) */
-    -ms-overflow-style: none;  /* Cache la barre de scroll (IE) */
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    padding-left: 5px; /* Marge de sécurité pour l'ombre */
+    padding-right: 5px;
+    scrollbar-width: none;
 }
-/* Cache la barre de scroll (Chrome/Safari) */
 .chapter-scroller::-webkit-scrollbar { display: none; }
 
-/* Carte Chapitre */
+/* LA CARTE TEXTE (Bouton Rectangulaire) */
 .chapter-card {
-    flex: 0 0 280px; /* Largeur fixe d'une carte */
-    cursor: pointer;
-    transition: all 0.3s ease;
-    opacity: 0.6; /* Un peu transparent quand inactif */
-}
-
-.chapter-card:hover { opacity: 1; }
-
-/* État Actif (La vidéo en cours) */
-.chapter-card.active {
-    opacity: 1;
-}
-.chapter-card.active .thumbnail-wrapper {
-    border: 2px solid #00bfbf; /* Bordure Cyan active */
-    transform: scale(1.02);
-}
-
-/* Vignette */
-.thumbnail-wrapper {
-    width: 100%;
-    aspect-ratio: 16 / 9;
+    flex: 0 0 260px; /* Largeur fixe */
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
     border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 12px;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-    position: relative;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
 }
 
-/* Fausse image (Placeholder) */
-.fake-thumb {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 1.5rem;
+/* Interaction */
+.chapter-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-color: #ccc;
 }
 
-/* Infos Texte */
-.chapter-info { display: flex; align-items: baseline; gap: 10px; }
+/* ETAT ACTIF (Cyan) */
+.chapter-card.active {
+    background: #ffffff;
+    border: 2px solid #00bfbf; /* Bordure Cyan */
+    box-shadow: 0 5px 20px rgba(0,191,191,0.15);
+}
 
+/* Contenu Intérieur */
+.card-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+
+/* Le Numéro (Gros) */
 .chapter-num {
-    font-size: 0.8rem; font-weight: 700; color: #00bfbf; opacity: 0.8;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #e0e0e0; /* Gris clair par défaut */
+    line-height: 1;
 }
+.chapter-card.active .chapter-num {
+    color: #00bfbf; /* Devient cyan quand actif */
+}
+
+/* Le Texte */
+.text-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .chapter-card h3 {
-    font-size: 1rem; color: #222; margin: 0; flex: 1;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 4px;
+    line-height: 1.2;
 }
+
 .duration {
-    font-size: 0.8rem; color: #888;
+    font-size: 0.75rem;
+    color: #888;
+    font-weight: 500;
+}
+
+/* Petite flèche Play discrète à droite */
+.play-icon {
+    font-size: 0.8rem;
+    color: #00bfbf;
+    opacity: 0; /* Invisible par défaut */
+    transition: opacity 0.2s;
+}
+.chapter-card.active .play-icon {
+    opacity: 1; /* Visible quand actif */
 }
