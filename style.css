@@ -372,28 +372,30 @@ body {
     width: 100%; height: 100%; object-fit: cover;
 }
 
-/* LISTE TEXTE (SCROLL HORIZONTAL) */
-.chapter-scroller.text-only-mode {
-    display: flex;
-    gap: 20px; /* Espace un peu plus large entre les cartes */
-    overflow-x: auto;
-    
-    /* CORRECTION ICI : On ajoute du padding généreux autour */
-    /* Haut: 0 | Droite: 25px | Bas: 30px | Gauche: 25px */
-    padding: 0 25px 30px 25px; 
-    
-    /* Pour que le scroll commence bien au bord sur mobile */
-    scroll-padding-left: 25px;
-    
-    scrollbar-width: none; /* Cache scrollbar Firefox */
-    -ms-overflow-style: none;  /* Cache scrollbar IE/Edge */
-}
-/* Cache scrollbar Chrome/Safari */
-.chapter-scroller.text-only-mode::-webkit-scrollbar { display: none; }
+/* =========================================
+   MODE "GRILLE FLUIDE" (AUTO-ADAPTATIF)
+   ========================================= */
 
-/* LA CARTE TEXTE (Bouton Rectangulaire) */
+.chapter-scroller.text-only-mode {
+    display: flex;          /* On utilise Flexbox pour gérer le flux */
+    flex-wrap: wrap;        /* MAGIE : Si ça dépasse, ça passe à la ligne ! */
+    justify-content: center; /* On centre tout (très élégant si tu as 5 items sur une ligne de 4) */
+    gap: 15px;              /* Espace entre les boutons */
+    width: 100%;
+    padding: 0;
+}
+
+/* LA CARTE (Bouton) */
 .chapter-card {
-    flex: 0 0 260px; /* Largeur fixe */
+    /* Largeur : On définit une base confortable */
+    flex: 1 1 220px; /* "Grow, Shrink, Basis" */
+    /* Traduction : 
+       - Je veux faire 220px de large idéalement.
+       - Je peux grandir pour remplir le vide.
+       - Je peux rétrécir un peu si besoin.
+    */
+    max-width: 300px; /* On évite qu'un bouton devienne géant s'il est tout seul */
+    
     background: #ffffff;
     border: 1px solid #e5e5e5;
     border-radius: 8px;
@@ -404,68 +406,52 @@ body {
     align-items: center;
 }
 
-/* Interaction */
+/* ... Le reste (Interaction, Active, Textes) ne change pas ... */
+/* Je te remets juste le reste pour être sûr que tu as tout */
+
 .chapter-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     border-color: #ccc;
+    z-index: 2;
 }
 
-/* ETAT ACTIF (Cyan) */
 .chapter-card.active {
     background: #ffffff;
-    border: 2px solid #00bfbf; /* Bordure Cyan */
+    border: 2px solid #00bfbf;
     box-shadow: 0 5px 20px rgba(0,191,191,0.15);
+    z-index: 1;
 }
 
-/* Contenu Intérieur */
 .card-content {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    gap: 15px;
+    display: flex; align-items: center; width: 100%; gap: 15px;
 }
 
-/* Le Numéro (Gros) */
 .chapter-num {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #e0e0e0; /* Gris clair par défaut */
-    line-height: 1;
+    font-size: 1.5rem; font-weight: 800; color: #e0e0e0; line-height: 1; flex-shrink: 0;
 }
-.chapter-card.active .chapter-num {
-    color: #00bfbf; /* Devient cyan quand actif */
-}
+.chapter-card.active .chapter-num { color: #00bfbf; }
 
-/* Le Texte */
 .text-group {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex: 1; display: flex; flex-direction: column; justify-content: center; overflow: hidden;
 }
 
 .chapter-card h3 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 4px;
-    line-height: 1.2;
+    font-size: 0.95rem; font-weight: 700; color: #222; margin-bottom: 4px; line-height: 1.2;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
-.duration {
-    font-size: 0.75rem;
-    color: #888;
-    font-weight: 500;
-}
+.duration { font-size: 0.75rem; color: #888; font-weight: 500; }
 
-/* Petite flèche Play discrète à droite */
 .play-icon {
-    font-size: 0.8rem;
-    color: #00bfbf;
-    opacity: 0; /* Invisible par défaut */
-    transition: opacity 0.2s;
+    font-size: 0.8rem; color: #00bfbf; opacity: 0; transition: opacity 0.2s; flex-shrink: 0;
 }
-.chapter-card.active .play-icon {
-    opacity: 1; /* Visible quand actif */
+.chapter-card.active .play-icon { opacity: 1; }
+
+/* AJUSTEMENT MOBILE */
+@media (max-width: 600px) {
+    .chapter-card {
+        flex: 1 1 100%; /* Sur mobile, chaque bouton prend toute la largeur */
+        max-width: 100%;
+    }
 }
