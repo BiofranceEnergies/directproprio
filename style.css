@@ -68,56 +68,60 @@ body {
 .brand-tagline { font-weight: 300; font-size: 0.9rem; letter-spacing: 0.5px; opacity: 0.9; }
 
 
-/* --- B. BANDEAU D'INFORMATION (BAS) --- */
+/* --- B. BANDEAU D'INFORMATION (AFFINÉ) --- */
 .info-band {
     background-color: var(--band-bg);
     color: var(--band-text);
     width: 100%;
+    
+    /* CHANGEMENT 1 : On passe de 20vh à "auto" avec une hauteur min plus petite */
     height: auto;
-    min-height: 20vh; /* Prend environ 20% de l'écran */
+    min-height: 120px; /* Juste assez pour être lisible, mais pas imposant */
     
     display: flex;
-    align-items: center; /* Centre verticalement */
+    align-items: center; 
     justify-content: center;
     
-    border-top: 1px solid #333; /* Séparation subtile avec la vidéo */
-    padding: 0 40px;
+    border-top: 1px solid #222; /* Ligne encore plus discrète */
+    padding: 0 40px; /* On garde la largeur sur les côtés */
     z-index: 5;
 }
 
-/* Conteneur flexible pour aligner Titre - Infos - Bouton */
+/* Conteneur compact */
 .info-content {
     width: 100%;
-    max-width: 1400px; /* Largeur max pour les grands écrans */
+    max-width: 1400px;
     display: flex;
-    justify-content: space-between; /* Écarte les éléments */
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap; 
     gap: 20px;
-    padding: 25px 0;
+    
+    /* CHANGEMENT 2 : On réduit drastiquement les marges internes */
+    padding: 15px 0; 
 }
 
 /* 1. Bloc Titre (Gauche) */
 .title-block { 
     text-align: left; 
-    flex: 1; /* Prend de la place si besoin */
-    min-width: 250px;
+    flex: 1; 
+    min-width: 200px;
 }
 
 .badge-mini {
     display: inline-block; 
-    color: #999; 
-    font-size: 0.7rem; 
+    color: #888; 
+    font-size: 0.65rem; /* Un poil plus petit */
     text-transform: uppercase; 
     letter-spacing: 2px; 
-    margin-bottom: 8px;
+    margin-bottom: 4px; /* Rapproché du titre */
     font-weight: 600;
 }
 
 .info-band h1 {
-    font-size: 2rem; 
+    font-size: 1.6rem; /* Plus fin (était 2rem) pour ne pas forcer la hauteur */
     margin: 0; 
-    line-height: 1.1; 
+    line-height: 1; 
     font-weight: 600; 
     letter-spacing: -0.5px;
     color: #fff;
@@ -125,67 +129,55 @@ body {
 
 /* 2. Bloc Détails (Milieu) */
 .details-block {
-    flex: 1;
+    flex: 2; /* Prend plus de place pour bien centrer */
     text-align: center;
-    border-left: 1px solid #333; /* Petites séparations verticales */
-    border-right: 1px solid #333;
-    padding: 0 20px;
+    /* On retire les bordures verticales qui alourdissaient visuellement sur une bande fine */
+    border: none; 
+    padding: 0 10px;
 }
 
 .details-block p {
-    font-size: 1.1rem; 
-    color: #ccc; 
-    font-weight: 300; 
+    font-size: 1rem; /* Texte plus fin */
+    color: #bbb; 
+    font-weight: 400; 
     margin: 0;
 }
 
 /* 3. Bloc Action (Droite) */
 .action-block {
-    flex: 0 0 auto; /* Ne rétrécit pas */
+    flex: 0 0 auto; 
     text-align: right;
 }
 
-/* Bouton "Solide" (Contraste fort sur le noir) */
 .btn-solid {
     display: inline-block;
     background-color: white; 
     color: black;
-    padding: 14px 32px; 
-    border-radius: 4px; /* Coins légèrement arrondis */
+    /* Bouton un peu plus compact */
+    padding: 10px 24px; 
+    border-radius: 2px; /* Plus carré, plus "archi" */
     
     text-decoration: none; 
     font-weight: 700; 
     text-transform: uppercase;
-    font-size: 0.85rem; 
+    font-size: 0.75rem; 
     letter-spacing: 1px; 
     transition: all 0.3s ease;
 }
 
 .btn-solid:hover {
-    background-color: #e0e0e0; 
-    transform: translateY(-2px);
+    background-color: #ddd; 
+    transform: translateY(-1px);
 }
 
-/* =========================================
-   3. SECTIONS SUIVANTES (PLACEHOLDERS)
-   ========================================= */
-.intro-property, .video-experience, .details-grid, .location-contact {
-    background: white;
-    position: relative;
-    padding: 60px 20px;
-}
-
-/* =========================================
-   4. RESPONSIVE (MOBILE & TABLETTE)
-   ========================================= */
+/* Ajustement Mobile pour la bande fine */
 @media (max-width: 900px) {
-    /* La vidéo prend moins de hauteur sur mobile pour laisser place au texte */
-    .video-zone { min-height: 55vh; }
-    
-    .info-band { 
-        padding: 20px; 
-        align-items: flex-start;
-    }
+    .info-band { padding: 20px; }
+    .info-content { gap: 15px; }
+    .info-band h1 { font-size: 1.4rem; }
+    .details-block { text-align: left; flex: 100%; margin-top: -10px; } /* On remonte les détails sous le titre */
+    .btn-solid { width: 100%; text-align: center; padding: 14px; margin-top: 5px;}
+}
     
     .info-content {
         flex-direction: column; /* On empile tout verticalement */
