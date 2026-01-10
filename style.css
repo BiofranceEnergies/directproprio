@@ -8,9 +8,9 @@
     --brand-font: 'Inter', sans-serif;
     
     /* Couleurs du thème "Galerie" */
-    --band-bg: #111111; /* Noir mat pour le bandeau */
+    --band-bg: #111111; /* Noir mat */
     --band-text: #ffffff;
-    --accent-color: #ffffff; /* Pour les boutons/badges */
+    --accent-color: #ffffff; 
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,19 +23,19 @@ body {
 }
 
 /* =========================================
-   2. HERO SPLIT (DESIGN GALERIE)
+   2. HERO SPLIT (DESIGN "LAME FINE")
    ========================================= */
 .hero-split {
-    height: 100vh; /* Prend tout l'écran */
+    height: 100vh; /* Prend exactement la hauteur de l'écran */
     width: 100%;
     display: flex;
-    flex-direction: column; /* Empile la vidéo (haut) et la bande (bas) */
+    flex-direction: column; /* Empile : Vidéo en haut / Bande en bas */
     background-color: var(--band-bg);
 }
 
-/* --- A. ZONE VIDÉO (HAUT) --- */
+/* --- A. ZONE VIDÉO (Prend tout l'espace restant) --- */
 .video-zone {
-    flex: 1; /* Prend tout l'espace restant (environ 75-80%) */
+    flex: 1; /* C'est la clé : la vidéo prend toute la place disponible */
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -44,12 +44,11 @@ body {
 .video-zone video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Remplit la zone sans déformer l'image */
+    object-fit: cover; /* Remplit sans déformer */
     display: block;
-    /* Pas de filtre ici : la vidéo est brute et lumineuse */
 }
 
-/* Logo de la marque (Posé sur la vidéo) */
+/* Logo (Posé sur la vidéo) */
 .brand-header {
     position: absolute; 
     top: 30px; 
@@ -59,7 +58,6 @@ body {
     display: flex; 
     align-items: center; 
     gap: 15px;
-    /* Une petite ombre pour que le logo reste lisible si le ciel est blanc */
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
@@ -74,16 +72,15 @@ body {
     color: var(--band-text);
     width: 100%;
     
-    /* CHANGEMENT 1 : On passe de 20vh à "auto" avec une hauteur min plus petite */
-    height: auto;
-    min-height: 120px; /* Juste assez pour être lisible, mais pas imposant */
+    /* On ne fixe pas de hauteur, elle s'adapte au contenu qui est petit */
+    flex: 0 0 auto; 
     
     display: flex;
     align-items: center; 
     justify-content: center;
     
-    border-top: 1px solid #222; /* Ligne encore plus discrète */
-    padding: 0 40px; /* On garde la largeur sur les côtés */
+    border-top: 1px solid #222; /* Ligne très discrète */
+    padding: 0 40px;
     z-index: 5;
 }
 
@@ -94,32 +91,30 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; 
-    gap: 20px;
     
-    /* CHANGEMENT 2 : On réduit drastiquement les marges internes */
+    /* Padding réduit pour un bandeau fin */
     padding: 15px 0; 
+    gap: 20px;
 }
 
 /* 1. Bloc Titre (Gauche) */
 .title-block { 
     text-align: left; 
-    flex: 1; 
     min-width: 200px;
 }
 
 .badge-mini {
     display: inline-block; 
     color: #888; 
-    font-size: 0.65rem; /* Un poil plus petit */
+    font-size: 0.65rem; 
     text-transform: uppercase; 
     letter-spacing: 2px; 
-    margin-bottom: 4px; /* Rapproché du titre */
+    margin-bottom: 2px;
     font-weight: 600;
 }
 
 .info-band h1 {
-    font-size: 1.6rem; /* Plus fin (était 2rem) pour ne pas forcer la hauteur */
+    font-size: 1.5rem; /* Taille raisonnable pour ne pas élargir la bande */
     margin: 0; 
     line-height: 1; 
     font-weight: 600; 
@@ -129,15 +124,11 @@ body {
 
 /* 2. Bloc Détails (Milieu) */
 .details-block {
-    flex: 2; /* Prend plus de place pour bien centrer */
     text-align: center;
-    /* On retire les bordures verticales qui alourdissaient visuellement sur une bande fine */
-    border: none; 
-    padding: 0 10px;
 }
 
 .details-block p {
-    font-size: 1rem; /* Texte plus fin */
+    font-size: 1rem; 
     color: #bbb; 
     font-weight: 400; 
     margin: 0;
@@ -145,7 +136,6 @@ body {
 
 /* 3. Bloc Action (Droite) */
 .action-block {
-    flex: 0 0 auto; 
     text-align: right;
 }
 
@@ -153,9 +143,10 @@ body {
     display: inline-block;
     background-color: white; 
     color: black;
-    /* Bouton un peu plus compact */
+    
+    /* Bouton compact */
     padding: 10px 24px; 
-    border-radius: 2px; /* Plus carré, plus "archi" */
+    border-radius: 2px; 
     
     text-decoration: none; 
     font-weight: 700; 
@@ -170,43 +161,48 @@ body {
     transform: translateY(-1px);
 }
 
-/* Ajustement Mobile pour la bande fine */
-@media (max-width: 900px) {
-    .info-band { padding: 20px; }
-    .info-content { gap: 15px; }
-    .info-band h1 { font-size: 1.4rem; }
-    .details-block { text-align: left; flex: 100%; margin-top: -10px; } /* On remonte les détails sous le titre */
-    .btn-solid { width: 100%; text-align: center; padding: 14px; margin-top: 5px;}
+/* =========================================
+   3. SECTIONS SUIVANTES (PLACEHOLDERS)
+   ========================================= */
+.intro-property, .video-experience, .details-grid, .location-contact {
+    background: white;
+    position: relative;
+    padding: 60px 20px;
 }
-    
-    .info-content {
-        flex-direction: column; /* On empile tout verticalement */
-        align-items: flex-start;
-        justify-content: center;
-        gap: 25px;
-        padding: 10px 0;
+
+/* =========================================
+   4. RESPONSIVE (MOBILE & TABLETTE)
+   ========================================= */
+@media (max-width: 900px) {
+    /* Sur mobile, on repasse en mode empilé */
+    .info-band { 
+        padding: 20px; 
     }
     
-    /* On réinitialise les bordures et largeurs */
+    .info-content {
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
     .title-block, .details-block, .action-block {
         width: 100%;
         text-align: left;
-        border: none;
-        padding: 0;
     }
     
-    .info-band h1 { font-size: 1.8rem; }
-    .details-block p { font-size: 1rem; color: #999; }
+    .details-block { margin-top: -5px; } /* Remonte les infos sous le titre */
     
-    /* Bouton pleine largeur sur mobile */
+    .info-band h1 { font-size: 1.4rem; }
+    
     .btn-solid { 
         display: block; 
         width: 100%; 
         text-align: center; 
-        padding: 16px;
+        padding: 14px;
+        margin-top: 5px;
     }
     
-    /* Header Marque Mobile */
+    /* Logo Mobile */
     .brand-header { 
         left: 20px; top: 20px; 
         flex-direction: column; 
