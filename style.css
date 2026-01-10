@@ -5,212 +5,216 @@
     --bg-color: #ffffff;
     --text-main: #111111;
     --text-light: #555555;
-    --accent-color: #000000;
-    --font-main: 'Inter', sans-serif;
+    --brand-font: 'Inter', sans-serif;
+    
+    /* Couleurs du thème "Galerie" */
+    --band-bg: #111111; /* Noir mat pour le bandeau */
+    --band-text: #ffffff;
+    --accent-color: #ffffff; /* Pour les boutons/badges */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body { 
-    font-family: var(--font-main); 
+    font-family: var(--brand-font); 
     overflow-x: hidden; 
     background-color: var(--bg-color); 
     color: var(--text-main); 
 }
 
 /* =========================================
-   2. HERO SECTION (STYLE MAGAZINE / ARCHI)
+   2. HERO SPLIT (DESIGN GALERIE)
    ========================================= */
-.hero {
-    height: 100vh; 
+.hero-split {
+    height: 100vh; /* Prend tout l'écran */
     width: 100%;
-    display: flex; 
-    flex-direction: column;
-    
-    /* C'est ici la magie : On aligne tout en BAS et à GAUCHE */
-    justify-content: flex-end; 
-    align-items: flex-start; 
-    text-align: left;
-    
-    /* Marges pour ne pas coller aux bords */
-    padding-bottom: 80px; 
-    padding-left: 60px; /* Décale le texte du bord gauche */
-    
-    position: relative; 
-    color: white;
+    display: flex;
+    flex-direction: column; /* Empile la vidéo (haut) et la bande (bas) */
+    background-color: var(--band-bg);
 }
 
-/* --- LE FOND VIDÉO --- */
-.video-container {
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100vh;
-    z-index: -1; /* Tout au fond */
+/* --- A. ZONE VIDÉO (HAUT) --- */
+.video-zone {
+    flex: 1; /* Prend tout l'espace restant (environ 75-80%) */
+    width: 100%;
+    position: relative;
     overflow: hidden;
 }
 
-video { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-}
-
-/* --- LE FILTRE DÉGRADÉ (SUBTIL) --- */
-.overlay {
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
+.video-zone video {
+    width: 100%;
     height: 100%;
-    
-    /* Dégradé en diagonale (45deg) :
-       - Le coin bas-gauche est sombre (pour lire le texte)
-       - Le centre et le haut-droite sont 100% transparents (pour voir la maison) */
-    background: linear-gradient(45deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, transparent 70%);
-    
-    z-index: 0;
+    object-fit: cover; /* Remplit la zone sans déformer l'image */
+    display: block;
+    /* Pas de filtre ici : la vidéo est brute et lumineuse */
 }
 
-/* =========================================
-   3. CONTENU DU HERO (TEXTE & BOUTON)
-   ========================================= */
-.hero-content {
-    z-index: 2; /* Au-dessus de l'overlay */
-    max-width: 750px; /* On limite la largeur pour ne pas aller au milieu */
-    
-    /* La petite ligne verticale "Architecte" à gauche du texte */
-    border-left: 4px solid rgba(255, 255, 255, 0.9);
-    padding-left: 30px; /* Espace entre la ligne et le texte */
-    
-    animation: slideIn 1.5s ease-out;
-}
-
-/* Badge "Nouveauté" */
-.badge {
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.2); 
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 5px 12px; 
-    border-radius: 4px; /* Coins plus carrés pour le style Archi */
-    font-size: 0.75rem; 
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 2px; 
-    margin-bottom: 20px; 
-    backdrop-filter: blur(4px);
-    color: #fff;
-}
-
-/* Titre Principal */
-h1 { 
-    font-size: 3.2rem; 
-    font-weight: 700; 
-    line-height: 1.1; 
-    margin-bottom: 15px; 
-    letter-spacing: -1px; 
-    /* Ombre pour détacher le texte du fond */
-    text-shadow: 0 4px 30px rgba(0,0,0,0.5); 
-}
-
-/* Sous-titre (Sarlat • 240m2...) */
-p.subtitle { 
-    font-size: 1.2rem; 
-    color: #dddddd; 
-    margin-bottom: 35px; 
-    font-weight: 300; 
-    letter-spacing: 0.5px;
-}
-
-/* --- BOUTON D'ACTION --- */
-.btn-primary {
-    display: inline-block;
-    background-color: #ffffff; /* Bouton blanc plein pour être visible */
-    color: #000000; 
-    padding: 14px 32px; 
-    
-    font-family: var(--font-main);
-    text-decoration: none; 
-    font-weight: 700; 
-    font-size: 0.85rem; 
-    text-transform: uppercase; 
-    letter-spacing: 1px;
-    
-    border: 1px solid #ffffff; 
-    transition: all 0.3s ease;
-}
-
-.btn-primary:hover { 
-    background-color: transparent; /* Devient transparent au survol */
-    color: #ffffff; 
-    padding-left: 40px; /* Petit effet de glissement vers la droite */
-}
-
-/* =========================================
-   4. HEADER MARQUE (LOGO)
-   ========================================= */
+/* Logo de la marque (Posé sur la vidéo) */
 .brand-header {
     position: absolute; 
-    top: 40px; 
-    left: 60px; /* Aligné avec le texte du bas */
+    top: 30px; 
+    left: 40px; 
     z-index: 10;
     color: white; 
     display: flex; 
     align-items: center; 
     gap: 15px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    /* Une petite ombre pour que le logo reste lisible si le ciel est blanc */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
-.brand-name { font-weight: 800; font-size: 1.4rem; text-transform: uppercase; letter-spacing: -0.5px; }
-.brand-sep { font-weight: 100; font-size: 1.4rem; opacity: 0.6; }
+.brand-name { font-weight: 800; font-size: 1.3rem; text-transform: uppercase; letter-spacing: -0.5px; }
+.brand-sep { font-weight: 100; font-size: 1.3rem; opacity: 0.6; }
 .brand-tagline { font-weight: 300; font-size: 0.9rem; letter-spacing: 0.5px; opacity: 0.9; }
 
+
+/* --- B. BANDEAU D'INFORMATION (BAS) --- */
+.info-band {
+    background-color: var(--band-bg);
+    color: var(--band-text);
+    width: 100%;
+    height: auto;
+    min-height: 20vh; /* Prend environ 20% de l'écran */
+    
+    display: flex;
+    align-items: center; /* Centre verticalement */
+    justify-content: center;
+    
+    border-top: 1px solid #333; /* Séparation subtile avec la vidéo */
+    padding: 0 40px;
+    z-index: 5;
+}
+
+/* Conteneur flexible pour aligner Titre - Infos - Bouton */
+.info-content {
+    width: 100%;
+    max-width: 1400px; /* Largeur max pour les grands écrans */
+    display: flex;
+    justify-content: space-between; /* Écarte les éléments */
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: 20px;
+    padding: 25px 0;
+}
+
+/* 1. Bloc Titre (Gauche) */
+.title-block { 
+    text-align: left; 
+    flex: 1; /* Prend de la place si besoin */
+    min-width: 250px;
+}
+
+.badge-mini {
+    display: inline-block; 
+    color: #999; 
+    font-size: 0.7rem; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.info-band h1 {
+    font-size: 2rem; 
+    margin: 0; 
+    line-height: 1.1; 
+    font-weight: 600; 
+    letter-spacing: -0.5px;
+    color: #fff;
+}
+
+/* 2. Bloc Détails (Milieu) */
+.details-block {
+    flex: 1;
+    text-align: center;
+    border-left: 1px solid #333; /* Petites séparations verticales */
+    border-right: 1px solid #333;
+    padding: 0 20px;
+}
+
+.details-block p {
+    font-size: 1.1rem; 
+    color: #ccc; 
+    font-weight: 300; 
+    margin: 0;
+}
+
+/* 3. Bloc Action (Droite) */
+.action-block {
+    flex: 0 0 auto; /* Ne rétrécit pas */
+    text-align: right;
+}
+
+/* Bouton "Solide" (Contraste fort sur le noir) */
+.btn-solid {
+    display: inline-block;
+    background-color: white; 
+    color: black;
+    padding: 14px 32px; 
+    border-radius: 4px; /* Coins légèrement arrondis */
+    
+    text-decoration: none; 
+    font-weight: 700; 
+    text-transform: uppercase;
+    font-size: 0.85rem; 
+    letter-spacing: 1px; 
+    transition: all 0.3s ease;
+}
+
+.btn-solid:hover {
+    background-color: #e0e0e0; 
+    transform: translateY(-2px);
+}
+
 /* =========================================
-   5. SECTIONS VIDES (PLACEHOLDERS)
+   3. SECTIONS SUIVANTES (PLACEHOLDERS)
    ========================================= */
-/* Ces sections sont prêtes à recevoir le contenu suivant */
 .intro-property, .video-experience, .details-grid, .location-contact {
     background: white;
     position: relative;
-    z-index: 2; 
-    padding: 50px 20px;
-    min-height: 200px;
+    padding: 60px 20px;
 }
 
 /* =========================================
-   6. RESPONSIVE (MOBILE & TABLETTE)
+   4. RESPONSIVE (MOBILE & TABLETTE)
    ========================================= */
-@media (max-width: 1024px) {
-    /* Sur tablette, on réduit un peu le titre */
-    h1 { font-size: 2.5rem; }
-}
-
-@media (max-width: 768px) {
-    /* SUR MOBILE : On recentre tout car l'écran est trop étroit pour l'alignement gauche */
-    .hero { 
-        justify-content: flex-end; 
-        align-items: center; 
-        text-align: center;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-bottom: 60px;
+@media (max-width: 900px) {
+    /* La vidéo prend moins de hauteur sur mobile pour laisser place au texte */
+    .video-zone { min-height: 55vh; }
+    
+    .info-band { 
+        padding: 20px; 
+        align-items: flex-start;
     }
     
-    .hero-content { 
-        border-left: none; /* On enlève la ligne verticale */
-        padding-left: 0;
-        max-width: 100%;
+    .info-content {
+        flex-direction: column; /* On empile tout verticalement */
+        align-items: flex-start;
+        justify-content: center;
+        gap: 25px;
+        padding: 10px 0;
     }
-
-    /* Le dégradé revient vers le bas classique sur mobile */
-    .overlay { 
-        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
-    }
-
-    h1 { font-size: 2.2rem; }
     
-    /* Logo mobile */
+    /* On réinitialise les bordures et largeurs */
+    .title-block, .details-block, .action-block {
+        width: 100%;
+        text-align: left;
+        border: none;
+        padding: 0;
+    }
+    
+    .info-band h1 { font-size: 1.8rem; }
+    .details-block p { font-size: 1rem; color: #999; }
+    
+    /* Bouton pleine largeur sur mobile */
+    .btn-solid { 
+        display: block; 
+        width: 100%; 
+        text-align: center; 
+        padding: 16px;
+    }
+    
+    /* Header Marque Mobile */
     .brand-header { 
         left: 20px; top: 20px; 
         flex-direction: column; 
@@ -218,10 +222,4 @@ p.subtitle {
         gap: 5px; 
     }
     .brand-sep { display: none; }
-}
-
-/* Animation d'entrée */
-@keyframes slideIn { 
-    from { opacity: 0; transform: translateX(-30px); } 
-    to { opacity: 1; transform: translateX(0); } 
 }
