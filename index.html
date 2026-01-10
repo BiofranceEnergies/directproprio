@@ -144,7 +144,73 @@
 
 
     <section id="experience" class="video-experience">
-        </section>
+    <div class="container-player">
+        
+        <div class="section-title">
+            <h2>Visite Guidée</h2>
+            <p>Explorez chaque pièce comme si vous y étiez.</p>
+        </div>
+
+        <div class="main-player-wrapper">
+            <video id="mainVideo" controls playsinline poster="assets/poster-salon.jpg">
+                <source src="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/448ea69e534288cafa7204c71ed6da4df8c49eee/assets/video/sabouret%2012.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="chapter-scroller">
+            
+            <div class="chapter-card active" onclick="changeVideo('salon', this)">
+                <div class="thumbnail-wrapper">
+                    <div class="fake-thumb" style="background-color: #333;">▶</div>
+                </div>
+                <div class="chapter-info">
+                    <span class="chapter-num">01</span>
+                    <h3>Le Grand Salon</h3>
+                    <span class="duration">0:45</span>
+                </div>
+                <data value="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/448ea69e534288cafa7204c71ed6da4df8c49eee/assets/video/sabouret%2012.mp4"></data>
+            </div>
+
+            <div class="chapter-card" onclick="changeVideo('cuisine', this)">
+                <div class="thumbnail-wrapper">
+                    <div class="fake-thumb" style="background-color: #444;">▶</div>
+                </div>
+                <div class="chapter-info">
+                    <span class="chapter-num">02</span>
+                    <h3>Cuisine & Repas</h3>
+                    <span class="duration">0:30</span>
+                </div>
+                <data value="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/448ea69e534288cafa7204c71ed6da4df8c49eee/assets/video/sabouret%2012.mp4"></data>
+            </div>
+
+            <div class="chapter-card" onclick="changeVideo('suite', this)">
+                <div class="thumbnail-wrapper">
+                    <div class="fake-thumb" style="background-color: #555;">▶</div>
+                </div>
+                <div class="chapter-info">
+                    <span class="chapter-num">03</span>
+                    <h3>Suite Parentale</h3>
+                    <span class="duration">0:50</span>
+                </div>
+                <data value="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/448ea69e534288cafa7204c71ed6da4df8c49eee/assets/video/sabouret%2012.mp4"></data>
+            </div>
+
+            <div class="chapter-card" onclick="changeVideo('jardin', this)">
+                <div class="thumbnail-wrapper">
+                    <div class="fake-thumb" style="background-color: #666;">▶</div>
+                </div>
+                <div class="chapter-info">
+                    <span class="chapter-num">04</span>
+                    <h3>Parc & Piscine</h3>
+                    <span class="duration">1:15</span>
+                </div>
+                <data value="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/448ea69e534288cafa7204c71ed6da4df8c49eee/assets/video/sabouret%2012.mp4"></data>
+            </div>
+
+        </div>
+
+    </div>
+</section>
 
 
     <section class="location-contact">
