@@ -352,3 +352,61 @@ body {
         grid-template-columns: 1fr; 
     }
 }
+/* --- AJUSTEMENTS CONTENU IMMO --- */
+
+/* Le bloc "Avis du Studio" en bas du texte */
+.agent-note {
+    margin-top: 40px;
+    padding-left: 20px;
+    border-left: 3px solid #111;
+}
+.note-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #999;
+    letter-spacing: 1px;
+}
+.agent-note p {
+    font-size: 1rem;
+    font-style: italic;
+    color: #333;
+    margin-top: 5px;
+}
+
+/* Style des listes dans les cartes Bento */
+.specs-list {
+    list-style: none; /* Pas de puces moches */
+    padding: 0;
+    margin: 0;
+}
+
+.specs-list li {
+    font-size: 0.95rem;
+    color: #555;
+    padding: 6px 0;
+    border-bottom: 1px solid #f0f0f0; /* Petite ligne de séparation */
+    display: flex;
+    justify-content: space-between; /* Ecarte le label et la valeur */
+}
+
+.specs-list li:last-child {
+    border-bottom: none;
+}
+
+.specs-list li strong {
+    color: #111;
+    font-weight: 600;
+}
+
+/* Ajustement des cartes pour qu'elles fassent plus "Fiche" */
+.bento-card {
+    padding: 25px; /* Un peu plus compact */
+}
+.bento-card h3 {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888; /* Titre discret, on met en avant les chiffres */
+}
