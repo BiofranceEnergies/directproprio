@@ -7,10 +7,10 @@
     --text-light: #555555;
     --brand-font: 'Inter', sans-serif;
     
-    /* Couleurs du thème "Galerie" */
-    --band-bg: #111111; /* Noir mat */
+    /* Couleurs du thème */
+    --band-bg: #111111; /* Noir mat (Hero) */
     --band-text: #ffffff;
-    --accent-color: #ffffff; 
+    --accent-color: #00bfbf; /* Cyan/Turquoise "Agence" pour les chiffres et icônes */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,7 +23,7 @@ body {
 }
 
 /* =========================================
-   2. HERO SPLIT (DESIGN "LAME FINE" & ALIGNÉ)
+   2. HERO SPLIT (VIDÉO + BANDEAU NOIR)
    ========================================= */
 .hero-split {
     height: 100vh; 
@@ -33,7 +33,7 @@ body {
     background-color: var(--band-bg);
 }
 
-/* --- A. ZONE VIDÉO (Prend tout l'espace restant) --- */
+/* --- A. ZONE VIDÉO (Haut) --- */
 .video-zone {
     flex: 1; 
     width: 100%;
@@ -48,7 +48,7 @@ body {
     display: block;
 }
 
-/* Logo (Posé sur la vidéo) */
+/* Logo Marque */
 .brand-header {
     position: absolute; 
     top: 30px; 
@@ -66,7 +66,7 @@ body {
 .brand-tagline { font-weight: 300; font-size: 0.9rem; letter-spacing: 0.5px; opacity: 0.9; }
 
 
-/* --- B. BANDEAU D'INFORMATION (CORRIGÉ V2) --- */
+/* --- B. BANDEAU INFO (Bas) --- */
 .info-band {
     background-color: var(--band-bg);
     color: var(--band-text);
@@ -84,7 +84,7 @@ body {
     max-width: 1400px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; /* Important : alignement haut pour gérer les décalages */
+    align-items: flex-start; /* Alignement haut pour gérer les décalages */
     padding: 20px 0; 
     gap: 20px;
 }
@@ -93,7 +93,6 @@ body {
 .title-block { 
     text-align: left; 
     min-width: 250px;
-    /* Ce bloc sert de référence, il commence en haut */
 }
 
 .badge-mini {
@@ -119,10 +118,7 @@ body {
 /* 2. Bloc Détails (Milieu) */
 .details-block {
     text-align: center;
-    
-    /* --- CORRECTION D'ALIGNEMENT RENFORCÉE --- */
-    /* On pousse "Sarlat..." bien plus bas pour qu'il s'aligne avec "Le Domaine..." */
-    /* Avant : 18px -> Maintenant : 28px */
+    /* CORRECTION ALIGNEMENT : On pousse le texte pour l'aligner avec le titre */
     padding-top: 28px; 
 }
 
@@ -131,14 +127,12 @@ body {
     color: #bbb; 
     font-weight: 400; 
     margin: 0;
-    line-height: 1.1; /* Même line-height que le titre */
+    line-height: 1.1; 
 }
 
 /* 3. Bloc Action (Droite) */
 .action-block {
     text-align: right;
-    
-    /* On ajuste aussi le bouton pour qu'il ne flotte pas trop haut */
     padding-top: 12px; 
 }
 
@@ -161,252 +155,184 @@ body {
     transform: translateY(-1px);
 }
 
-/* =========================================
-   3. SECTIONS SUIVANTES (PLACEHOLDERS)
-   ========================================= */
-.intro-property, .video-experience, .details-grid, .location-contact {
-    background: white;
-    position: relative;
-    padding: 60px 20px;
-}
 
 /* =========================================
-   4. RESPONSIVE (MOBILE & TABLETTE)
+   3. SECTION DÉTAILS IMMO (STYLE AGENCE PREMIUM)
    ========================================= */
-@media (max-width: 900px) {
-    .info-band { padding: 20px; }
-    
-    .info-content {
-        flex-direction: column; 
-        align-items: flex-start; 
-        gap: 15px;
-    }
-    
-    .title-block, .details-block, .action-block {
-        width: 100%;
-        text-align: left;
-    }
-    
-    /* Sur mobile, on annule les décalages "bureau" */
-    .details-block { 
-        padding-top: 0; 
-        margin-top: -5px; 
-    }
-    
-    .action-block { padding-top: 10px; }
-    
-    .info-band h1 { font-size: 1.4rem; }
-    
-    .btn-solid { 
-        display: block; 
-        width: 100%; 
-        text-align: center; 
-        padding: 14px;
-        margin-top: 5px;
-    }
-    
-    .brand-header { 
-        left: 20px; top: 20px; 
-        flex-direction: column; 
-        align-items: flex-start; 
-        gap: 5px; 
-    }
-    .brand-sep { display: none; }
-}
-/* =========================================
-   SECTION 2 : INTRO SAAS / BENTO GRID
-   ========================================= */
-.intro-property {
+
+.property-details {
     background-color: #ffffff;
-    /* On laisse beaucoup d'espace en haut et en bas pour le côté "Luxe/Tech" */
-    padding: 120px 40px; 
-    position: relative;
-    z-index: 2;
+    padding: 100px 20px; /* Espace confortable */
+    color: #111;
 }
 
-.container-saas {
-    max-width: 1200px;
+.container-immo {
+    max-width: 900px; /* Centré, largeur lecture agréable */
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 100px; /* Grand écart entre le texte et la grille */
 }
 
-/* --- COLONNE GAUCHE : TEXTE --- */
-.story-block {
-    flex: 1; 
-    max-width: 480px;
-    position: sticky; 
-    top: 40px; /* Petit bonus : le texte reste accroché si on scrolle */
+/* --- EN-TÊTE DU BIEN --- */
+.listing-header {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-/* Le petit badge style "Tech" */
-.tag-tech {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 700;
+.location-tag {
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: #111;
-    background: #f4f4f5; /* Gris très pâle */
-    padding: 8px 14px;
-    border-radius: 6px;
-    margin-bottom: 30px;
-}
-
-.story-block h2 {
-    font-size: 3.5rem; /* Très gros titre */
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -2px; /* Signature visuelle SaaS 2025/2026 */
-    color: #111;
-    margin-bottom: 30px;
-}
-
-.lead-text {
-    font-size: 1.3rem;
-    line-height: 1.5;
-    color: #222;
-    font-weight: 500;
-    margin-bottom: 25px;
-}
-
-.sub-text {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #666; 
-    font-weight: 400;
-}
-
-/* --- COLONNE DROITE : BENTO GRID --- */
-.features-bento {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Grille 2 colonnes */
-    gap: 24px; 
-}
-
-/* Les cartes "Style Linear" */
-.bento-card {
-    background: #ffffff;
-    border: 1px solid #e5e5e5; /* Bordure grise ultra-fine par défaut */
-    padding: 35px 30px;
-    border-radius: 12px; 
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-/* Interaction : La bordure devient noire au survol */
-.bento-card:hover {
-    border-color: #000000; 
-    transform: translateY(-4px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-}
-
-.icon-box {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
-
-.bento-card h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #111;
-    margin-bottom: 10px;
-    letter-spacing: -0.5px;
-}
-
-.bento-card p {
-    font-size: 0.95rem;
-    color: #666;
-    line-height: 1.5;
-}
-
-/* --- RESPONSIVE MOBILE --- */
-@media (max-width: 1024px) {
-    .container-saas { gap: 50px; }
-    .story-block h2 { font-size: 2.8rem; }
-}
-
-@media (max-width: 900px) {
-    .intro-property { padding: 60px 20px; }
-    
-    .container-saas {
-        flex-direction: column; /* On empile tout */
-    }
-    
-    .story-block { 
-        max-width: 100%; 
-        position: static; /* On enlève le sticky sur mobile */
-        margin-bottom: 40px;
-    }
-    
-    .story-block h2 { font-size: 2.5rem; }
-    
-    /* Sur mobile, une seule colonne pour les cartes */
-    .features-bento { 
-        width: 100%;
-        grid-template-columns: 1fr; 
-    }
-}
-/* --- AJUSTEMENTS CONTENU IMMO --- */
-
-/* Le bloc "Avis du Studio" en bas du texte */
-.agent-note {
-    margin-top: 40px;
-    padding-left: 20px;
-    border-left: 3px solid #111;
-}
-.note-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #999;
-    letter-spacing: 1px;
-}
-.agent-note p {
-    font-size: 1rem;
-    font-style: italic;
-    color: #333;
-    margin-top: 5px;
-}
-
-/* Style des listes dans les cartes Bento */
-.specs-list {
-    list-style: none; /* Pas de puces moches */
-    padding: 0;
-    margin: 0;
-}
-
-.specs-list li {
-    font-size: 0.95rem;
-    color: #555;
-    padding: 6px 0;
-    border-bottom: 1px solid #f0f0f0; /* Petite ligne de séparation */
-    display: flex;
-    justify-content: space-between; /* Ecarte le label et la valeur */
-}
-
-.specs-list li:last-child {
-    border-bottom: none;
-}
-
-.specs-list li strong {
-    color: #111;
     font-weight: 600;
+    color: #888;
+    margin-bottom: 15px;
 }
 
-/* Ajustement des cartes pour qu'elles fassent plus "Fiche" */
-.bento-card {
-    padding: 25px; /* Un peu plus compact */
+.listing-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+    color: #111;
+    line-height: 1.1;
 }
-.bento-card h3 {
-    margin-bottom: 15px;
-    font-size: 1rem;
+
+.price-tag {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111;
+}
+
+.hai {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #666;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+/* --- BARRE DES CHIFFRES CLÉS --- */
+.key-metrics {
+    display: flex;
+    justify-content: center; 
+    gap: 60px; /* Espace large entre les métriques */
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.metric {
+    text-align: center;
+}
+
+.metric .value {
+    display: block;
+    font-size: 1.8rem; /* Gros chiffre impactant */
+    font-weight: 700;
+    color: var(--accent-color); /* Cyan Agence */
+    line-height: 1.2;
+}
+
+.metric .label {
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #888; /* Titre discret, on met en avant les chiffres */
+    letter-spacing: 0.5px;
+    color: #666;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+/* Séparateur fin */
+.divider-light {
+    border: 0;
+    height: 1px;
+    background: #eaeaea;
+    margin: 50px 0;
+}
+
+/* --- CORPS DE L'ANNONCE --- */
+.listing-body h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #111;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Texte Descriptif */
+.description-text {
+    margin-bottom: 60px;
+}
+
+.description-text p {
+    font-size: 1.05rem;
+    line-height: 1.7; 
+    color: #444;
+    margin-bottom: 20px;
+    text-align: justify; /* Justifié pour faire "Papier Journal" */
+}
+
+/* Grille Caractéristiques (Icones SVG) */
+.features-grid-simple {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+    gap: 20px 40px; 
+}
+
+.feature-item {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f5f5f5; /* Ligne de séparation très légère */
+}
+
+/* Style des icônes SVG */
+.immo-icon {
+    width: 22px;
+    height: 22px;
+    stroke: var(--accent-color); /* Cyan Agence pour rappeler les chiffres */
+    stroke-width: 1.5px;
+    fill: none;
+    flex-shrink: 0;
+}
+
+/* =========================================
+   4. PLACEHOLDERS (FUTUR)
+   ========================================= */
+.video-experience, .location-contact {
+    background: #f9f9f9; /* Légèrement gris pour séparer */
+    position: relative;
+    padding: 80px 20px;
+    min-height: 300px;
+}
+
+/* =========================================
+   5. RESPONSIVE (MOBILE & TABLETTE)
+   ========================================= */
+@media (max-width: 900px) {
+    /* HERO MOBILE */
+    .info-band { padding: 20px; }
+    .info-content {
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .title-block, .details-block, .action-block { width: 100%; text-align: left; }
+    .details-block { padding-top: 0; margin-top: -5px; }
+    .action-block { padding-top: 10px; }
+    .info-band h1 { font-size: 1.4rem; }
+    .btn-solid { display: block; width: 100%; text-align: center; margin-top: 5px; }
+    .brand-header { left: 20px; top: 20px; flex-direction: column; align-items: flex-start; gap: 5px; }
+    .brand-sep { display: none; }
+
+    /* DÉTAILS IMMO MOBILE */
+    .property-details { padding: 60px 20px; }
+    .listing-header h2 { font-size: 1.8rem; }
+    .key-metrics { gap: 30px; justify-content: space-between; }
+    .metric .value { font-size: 1.4rem; }
+    
+    /* Une seule colonne pour les caractéristiques sur mobile */
+    .features-grid-simple { grid-template-columns: 1fr; gap: 10px; }
 }
