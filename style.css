@@ -23,7 +23,7 @@ body {
 }
 
 /* =========================================
-   2. HERO SPLIT (DESIGN "LAME FINE")
+   2. HERO SPLIT (DESIGN "LAME FINE" & ALIGNÉ)
    ========================================= */
 .hero-split {
     height: 100vh; /* Prend exactement la hauteur de l'écran */
@@ -35,7 +35,7 @@ body {
 
 /* --- A. ZONE VIDÉO (Prend tout l'espace restant) --- */
 .video-zone {
-    flex: 1; /* C'est la clé : la vidéo prend toute la place disponible */
+    flex: 1; /* La vidéo prend toute la place disponible (environ 85%) */
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -66,55 +66,57 @@ body {
 .brand-tagline { font-weight: 300; font-size: 0.9rem; letter-spacing: 0.5px; opacity: 0.9; }
 
 
-/* --- B. BANDEAU D'INFORMATION (AFFINÉ) --- */
+/* --- B. BANDEAU D'INFORMATION (CORRIGÉ) --- */
 .info-band {
     background-color: var(--band-bg);
     color: var(--band-text);
     width: 100%;
     
-    /* On ne fixe pas de hauteur, elle s'adapte au contenu qui est petit */
+    /* Hauteur automatique selon le contenu */
     flex: 0 0 auto; 
     
     display: flex;
-    align-items: center; 
     justify-content: center;
     
-    border-top: 1px solid #222; /* Ligne très discrète */
+    border-top: 1px solid #222; 
     padding: 0 40px;
     z-index: 5;
 }
 
-/* Conteneur compact */
 .info-content {
     width: 100%;
     max-width: 1400px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     
-    /* Padding réduit pour un bandeau fin */
-    padding: 15px 0; 
+    /* IMPORTANT : On aligne tout en HAUT (flex-start) */
+    /* Cela nous permet de pousser manuellement les éléments pour les aligner */
+    align-items: flex-start; 
+    
+    padding: 20px 0; 
     gap: 20px;
 }
 
 /* 1. Bloc Titre (Gauche) */
 .title-block { 
     text-align: left; 
-    min-width: 200px;
+    min-width: 250px;
+    /* Le bloc titre commence tout en haut, rien à changer */
 }
 
 .badge-mini {
-    display: inline-block; 
+    display: block; 
     color: #888; 
     font-size: 0.65rem; 
     text-transform: uppercase; 
     letter-spacing: 2px; 
-    margin-bottom: 2px;
+    margin-bottom: 6px; /* Espace sous le badge */
     font-weight: 600;
+    line-height: 1;
 }
 
 .info-band h1 {
-    font-size: 1.5rem; /* Taille raisonnable pour ne pas élargir la bande */
+    font-size: 1.6rem; 
     margin: 0; 
     line-height: 1; 
     font-weight: 600; 
@@ -125,18 +127,27 @@ body {
 /* 2. Bloc Détails (Milieu) */
 .details-block {
     text-align: center;
+    
+    /* --- CORRECTION D'ALIGNEMENT --- */
+    /* On pousse ce bloc vers le bas pour qu'il s'aligne avec le Titre */
+    /* 0.65rem (badge) + 6px (marge) ≈ 18px */
+    padding-top: 18px; 
 }
 
 .details-block p {
-    font-size: 1rem; 
+    font-size: 1.1rem; 
     color: #bbb; 
     font-weight: 400; 
     margin: 0;
+    line-height: 1; /* Même hauteur de ligne que le titre */
 }
 
 /* 3. Bloc Action (Droite) */
 .action-block {
     text-align: right;
+    
+    /* On descend légèrement le bouton pour le centrer visuellement */
+    padding-top: 8px; 
 }
 
 .btn-solid {
@@ -181,7 +192,7 @@ body {
     
     .info-content {
         flex-direction: column; 
-        align-items: flex-start;
+        align-items: flex-start; /* Tout aligné à gauche */
         gap: 15px;
     }
     
@@ -190,7 +201,15 @@ body {
         text-align: left;
     }
     
-    .details-block { margin-top: -5px; } /* Remonte les infos sous le titre */
+    /* On annule le décalage sur mobile car ils sont l'un sous l'autre */
+    .details-block { 
+        padding-top: 0; 
+        margin-top: -5px; /* On remonte visuellement les détails sous le titre */
+    }
+    
+    .action-block {
+        padding-top: 10px;
+    }
     
     .info-band h1 { font-size: 1.4rem; }
     
