@@ -90,10 +90,17 @@ body {
     .brand-text-horizontal { font-size: 1.3rem; }
 }
 /* BANDEAU INFO */
+/* BANDEAU INFO ROUGE */
 .info-band {
-    background-color: var(--band-bg); color: var(--band-text);
-    width: 100%; flex: 0 0 auto; display: flex; justify-content: center;
-    border-top: 1px solid #222; padding: 0 40px; z-index: 5;
+    background-color: #ed154f; /* Le Rouge Proprietes-privees */
+    color: #ffffff; /* Tout le texte en blanc */
+    width: 100%;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    border-top: none; /* On supprime la bordure grise */
+    padding: 0 40px;
+    z-index: 5;
 }
 
 .info-content {
