@@ -1,30 +1,45 @@
-// script.js
+// ===========================================
+// CONFIGURATION
+// ===========================================
+// ⚠️ COLLE TON ID YOUTUBE ICI (ex: "dQw4w9WgXcQ")
+const YOUTUBE_VIDEO_ID = "TON_ID_ICI"; 
 
-// On force la vidéo à démarrer
+// ===========================================
+// 1. GESTION DU HEADER (VIDEO GITHUB)
+// ===========================================
 window.addEventListener('load', function() {
-    let video = document.querySelector('video');
-    video.muted = true; // On s'assure qu'elle est muette
-    video.play();
+    let video = document.querySelector('.video-zone video');
+    if(video) {
+        video.muted = true; // On force le mode muet pour être sûr
+        // On tente de lancer la vidéo
+        let playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // Lecture auto réussie
+            })
+            .catch(error => {
+                console.log("Lecture auto bloquée par le navigateur (normal sur mobile)");
+            });
+        }
+    }
 });
-/* --- SCRIPT LECTEUR VIDÉO INTERACTIF --- */
 
-function changeVideo(roomId, cardElement) {
-    // 1. Récupérer le lecteur vidéo principal
-    const mainVideo = document.getElementById('mainVideo');
+// ===========================================
+// 2. GESTION DU PLAYER YOUTUBE (CHAPITRES)
+// ===========================================
+function jumpToTime(seconds, element) {
+    var iframe = document.getElementById("myYoutubePlayer");
     
-    // 2. Récupérer l'URL de la nouvelle vidéo (stockée dans la balise <data>)
-    // cardElement est la div sur laquelle on a cliqué
-    const newSource = cardElement.querySelector('data').value;
+    // On construit la nouvelle URL YouTube avec le temps de départ
+    // &autoplay=1 : lance la lecture direct
+    // &rel=0 : pas de pubs à la fin
+    var newSrc = "https://www.youtube.com/embed/" + YOUTUBE_VIDEO_ID + "?start=" + seconds + "&autoplay=1&enablejsapi=1&rel=0";
     
-    // 3. Changer la source et lancer la vidéo
-    mainVideo.src = newSource;
-    mainVideo.play(); // Lance la lecture automatiquement
+    iframe.src = newSrc;
     
-    // 4. Gérer l'apparence "Active" (surbrillance)
-    // On enlève la classe 'active' de toutes les cartes
-    document.querySelectorAll('.chapter-card').forEach(card => {
-        card.classList.remove('active');
-    });
-    // On l'ajoute uniquement sur celle cliquée
-    cardElement.classList.add('active');
+    // Gestion visuelle des boutons (Active / Pas active)
+    var cards = document.querySelectorAll('.chapter-card');
+    cards.forEach(card => card.classList.remove('active')); // On éteint tout
+    element.classList.add('active'); // On allume celui cliqué
 }
