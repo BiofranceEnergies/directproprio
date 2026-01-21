@@ -172,27 +172,115 @@ body {
 }
 
 /* =========================================
-   5. DIAGNOSTICS (DPE & GES) - NOUVEAU
+   5. DIAGNOSTICS (ÉCHELLE A-G STANDARD)
    ========================================= */
 .diagnostics-container {
     margin-top: 60px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
-.diag-header { text-align: center; margin-bottom: 30px; }
+.diag-header { text-align: center; margin-bottom: 40px; }
 .center-divider { width: 50%; margin: 0 auto 30px auto; }
-.diag-header h3 { font-size: 1.5rem; font-weight: 700; color: #111; margin-bottom: 10px; }
-.diag-header p { color: #666; font-size: 0.95rem; }
 
-.dpe-wrapper { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
-.dpe-card { flex: 1; min-width: 280px; max-width: 350px; }
-.dpe-card h4 { margin-bottom: 15px; font-size: 0.9rem; color: #555; text-transform: uppercase; letter-spacing: 1px; text-align: center; font-weight: 600; }
+.spectrum-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 60px; /* Espace entre les deux colonnes */
+    flex-wrap: wrap;
+}
 
-.dpe-content { display: flex; align-items: center; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+.spectrum-column {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+}
 
-.dpe-letter { width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 800; }
-.bg-yellow { background-color: #F4E70F; color: #333; } 
-.bg-grey   { background-color: #778496; color: #fff; } 
+.spectrum-column h4 {
+    text-align: center; margin-bottom: 20px; font-size: 0.95rem;
+    text-transform: uppercase; color: #555; letter-spacing: 1px; font-weight: 700;
+}
 
-.dpe-info { padding: 0 20px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
-.dpe-value { font-size: 1.4rem; font-weight: 700; color: #111; line-height: 1.1; }
-.dpe-unit { font-size: 0.8rem; color: #888; margin-top: 2px; }
+.spectrum-bars {
+    display: flex; flex-direction: column; gap: 4px; 
+    font-family: Arial, sans-serif; /* Police technique */
+}
+
+/* Structure d'une ligne */
+.bar-row {
+    display: flex;
+    align-items: center;
+    height: 26px; /* Hauteur standard des barres */
+}
+
+/* LA BARRE COLORÉE */
+.bar {
+    height: 100%;
+    display: flex; align-items: center; padding-left: 10px;
+    color: white; font-weight: bold; font-size: 0.9rem;
+    /* Forme en flèche pointue */
+    clip-path: polygon(0% 0%, 92% 0%, 100% 50%, 92% 100%, 0% 100%);
+    border-radius: 2px 0 0 2px;
+}
+
+/* LARGEURS PROGRESSIVES */
+.class-a, .ges-a { width: 30%; }
+.class-b, .ges-b { width: 37%; }
+.class-c, .ges-c { width: 44%; }
+.class-d, .ges-d { width: 51%; } /* Taille normale, pas de déformation */
+.class-e, .ges-e { width: 58%; }
+.class-f, .ges-f { width: 65%; }
+.class-g, .ges-g { width: 72%; }
+
+/* COULEURS ÉNERGIE (Gauche) */
+.class-a { background-color: #009c6d; }
+.class-b { background-color: #52b153; }
+.class-c { background-color: #78bd76; }
+.class-d { background-color: #f4e70f; color: #111; } /* Jaune, texte noir */
+.class-e { background-color: #f4b400; }
+.class-f { background-color: #eb8235; }
+.class-g { background-color: #d7221f; }
+
+/* COULEURS GES (Droite) */
+.ges-a { background-color: #f0f7fb; color: #333; }
+.ges-b { background-color: #bdcde3; color: #333; }
+.ges-c { background-color: #9cb3d3; color: #333; }
+.ges-d { background-color: #778496; } /* Gris D */
+.ges-e { background-color: #585d75; }
+.ges-f { background-color: #45475a; }
+.ges-g { background-color: #2d263b; }
+
+/* === L'AFFICHAGE DU SCORE (A DROITE DE LA BARRE D) === */
+.active-row .bar-value {
+    margin-left: 15px; /* Espace entre la pointe de la flèche et le chiffre */
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    color: #111;
+    position: relative;
+}
+
+/* Petite ligne noire de liaison (Optionnel, fait très pro) */
+.active-row .bar-value::before {
+    content: "";
+    display: block;
+    width: 10px; height: 2px; background: #111;
+    position: absolute; left: -12px; top: 50%; transform: translateY(-50%);
+}
+
+.active-row .bar-value strong {
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.active-row .bar-value span {
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .spectrum-column { width: 100%; margin-bottom: 40px; }
+    /* Sur mobile, on réduit un peu les largeurs pour que le chiffre rentre */
+    .class-d, .ges-d { width: 45%; } 
+}
