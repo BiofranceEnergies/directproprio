@@ -218,7 +218,14 @@ body {
 
 .features-grid-simple { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 40px; }
 .feature-item { font-size: 1rem; color: #333; font-weight: 500; display: flex; align-items: center; gap: 15px; padding-bottom: 15px; border-bottom: 1px solid #f5f5f5; }
-.immo-icon { width: 22px; height: 22px; stroke: var(--accent-color); stroke-width: 1.5px; fill: none; flex-shrink: 0; }
+.immo-icon { 
+    width: 22px; 
+    height: 22px; 
+    stroke: #EA1D54; /* <--- ON MET LE ROUGE ICI */
+    stroke-width: 1.5px; 
+    fill: none; 
+    flex-shrink: 0; 
+}
 
 /* =========================================
    4. VISITE GUIDÉE (YOUTUBE)
