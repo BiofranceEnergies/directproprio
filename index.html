@@ -6,7 +6,6 @@
     <title>Le Domaine des Deux Cèdres - Visite Privée</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -43,6 +42,7 @@
 
     <section id="details" class="property-details">
         <div class="container-immo">
+            
             <div class="listing-header">
                 <div class="location-tag">Sarlat-la-Canéda (24200)</div>
                 <h2>Maison de caractère rénovée</h2>
@@ -95,13 +95,44 @@
                             <svg class="immo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
                             <span>Piscine 10x4m (Sel)</span>
                         </div>
-                        <div class="feature-item">
-                            <svg class="immo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                            <span>DPE : Classe B</span>
-                        </div>
                     </div>
                 </div>
-            </div>
+
+                <div class="diagnostics-container">
+                    
+                    <div class="diag-header">
+                        <hr class="divider-light center-divider">
+                        <h3>Diagnostics de Performance</h3>
+                        <p>Estimations des coûts annuels : entre 1500 € et 2100 € par an.</p>
+                    </div>
+
+                    <div class="dpe-wrapper">
+
+                        <div class="dpe-card">
+                            <h4>Consommation</h4>
+                            <div class="dpe-content">
+                                <div class="dpe-letter bg-yellow">D</div>
+                                <div class="dpe-info">
+                                    <span class="dpe-value">195</span>
+                                    <span class="dpe-unit">kWh/m².an</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dpe-card">
+                            <h4>Émissions</h4>
+                            <div class="dpe-content">
+                                <div class="dpe-letter bg-grey">D</div>
+                                <div class="dpe-info">
+                                    <span class="dpe-value">38</span>
+                                    <span class="dpe-unit">kg CO₂/m².an</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                </div>
         </div>
     </section>
 
@@ -114,7 +145,7 @@
             <p>Sélectionnez une pièce pour y accéder directement.</p>
         </div>
 
-       <div class="main-player-wrapper">
+        <div class="main-player-wrapper">
             <iframe 
                 id="myYoutubePlayer"
                 src="https://www.youtube.com/embed/e2gSjrCwafQ?enablejsapi=1&rel=0" 
