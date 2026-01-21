@@ -1,43 +1,198 @@
-// ===========================================
-// CONFIGURATION
-// ===========================================
-// ✅ TON ID YOUTUBE
-const YOUTUBE_VIDEO_ID = "e2gSjrCwafQ"; 
-
-// ===========================================
-// 1. GESTION DU HEADER (VIDEO GITHUB)
-// ===========================================
-window.addEventListener('load', function() {
-    let video = document.querySelector('.video-zone video');
-    if(video) {
-        video.muted = true; // On force le mode muet pour être sûr
-        // On tente de lancer la vidéo
-        let playPromise = video.play();
-        
-        if (playPromise !== undefined) {
-            playPromise.then(_ => {
-                // Lecture auto réussie
-            })
-            .catch(error => {
-                console.log("Lecture auto bloquée par le navigateur (normal sur mobile)");
-            });
-        }
-    }
-});
-
-// ===========================================
-// 2. GESTION DU PLAYER YOUTUBE (CHAPITRES)
-// ===========================================
-function jumpToTime(seconds, element) {
-    var iframe = document.getElementById("myYoutubePlayer");
+/* =========================================
+   1. RESET & VARIABLES GLOBALES
+   ========================================= */
+:root {
+    --bg-color: #ffffff;
+    --text-main: #111111;
+    --text-light: #555555;
+    --brand-font: 'Inter', sans-serif;
     
-    // ✅ Construction de l'URL avec l'ID et le temps
-    var newSrc = "https://www.youtube.com/embed/" + YOUTUBE_VIDEO_ID + "?start=" + seconds + "&autoplay=1&enablejsapi=1&rel=0";
-    
-    iframe.src = newSrc;
-    
-    // Gestion visuelle des boutons (Active / Pas active)
-    var cards = document.querySelectorAll('.chapter-card');
-    cards.forEach(card => card.classList.remove('active')); // On éteint tout
-    element.classList.add('active'); // On allume celui cliqué
+    /* Couleurs du thème */
+    --band-bg: #111111; /* Noir mat (Hero) */
+    --band-text: #ffffff;
+    --accent-color: #00bfbf; /* Cyan/Turquoise */
 }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+    font-family: var(--brand-font); 
+    overflow-x: hidden; 
+    background-color: var(--bg-color); 
+    color: var(--text-main); 
+}
+
+/* =========================================
+   2. HERO SPLIT (VIDÉO GITHUB)
+   ========================================= */
+.hero-split {
+    height: 100vh; 
+    width: 100%;
+    display: flex;
+    flex-direction: column; 
+    background-color: var(--band-bg);
+}
+
+.video-zone {
+    flex: 1; 
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-zone video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+.brand-header {
+    position: absolute; top: 30px; left: 40px; z-index: 10;
+    color: white; display: flex; align-items: center; gap: 15px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.brand-name { font-weight: 800; font-size: 1.3rem; text-transform: uppercase; letter-spacing: -0.5px; }
+.brand-sep { font-weight: 100; font-size: 1.3rem; opacity: 0.6; }
+.brand-tagline { font-weight: 300; font-size: 0.9rem; letter-spacing: 0.5px; opacity: 0.9; }
+
+/* BANDEAU INFO */
+.info-band {
+    background-color: var(--band-bg); color: var(--band-text);
+    width: 100%; flex: 0 0 auto; display: flex; justify-content: center;
+    border-top: 1px solid #222; padding: 0 40px; z-index: 5;
+}
+
+.info-content {
+    width: 100%; max-width: 1400px; display: flex;
+    justify-content: space-between; align-items: flex-start;
+    padding: 20px 0; gap: 20px;
+}
+
+.title-block { text-align: left; min-width: 250px; }
+.badge-mini { display: block; color: #888; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; font-weight: 600; line-height: 1.2; }
+.info-band h1 { font-size: 1.6rem; margin: 0; line-height: 1.1; font-weight: 600; letter-spacing: -0.5px; color: #fff; }
+
+.details-block { text-align: center; padding-top: 28px; }
+.details-block p { font-size: 1.1rem; color: #bbb; font-weight: 400; margin: 0; line-height: 1.1; }
+
+.action-block { text-align: right; padding-top: 12px; }
+.btn-solid { display: inline-block; background-color: white; color: black; padding: 10px 24px; border-radius: 2px; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; transition: all 0.3s ease; }
+.btn-solid:hover { background-color: #ddd; transform: translateY(-1px); }
+
+/* =========================================
+   3. DÉTAILS IMMO
+   ========================================= */
+.property-details { background-color: #ffffff; padding: 100px 20px; color: #111; }
+.container-immo { max-width: 900px; margin: 0 auto; }
+.listing-header { text-align: center; margin-bottom: 50px; }
+.location-tag { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; color: #888; margin-bottom: 15px; }
+.listing-header h2 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 20px; color: #111; line-height: 1.1; }
+.price-tag { font-size: 2rem; font-weight: 700; color: #111; }
+.hai { font-size: 0.9rem; font-weight: 400; color: #666; margin-left: 5px; vertical-align: middle; }
+
+.key-metrics { display: flex; justify-content: center; gap: 60px; margin-bottom: 50px; flex-wrap: wrap; }
+.metric { text-align: center; }
+.metric .value { display: block; font-size: 1.8rem; font-weight: 700; color: var(--accent-color); line-height: 1.2; }
+.metric .label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; color: #666; margin-top: 5px; font-weight: 500; }
+
+.divider-light { border: 0; height: 1px; background: #eaeaea; margin: 50px 0; }
+
+.listing-body h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 25px; color: #111; text-transform: uppercase; letter-spacing: 0.5px; }
+.description-text { margin-bottom: 60px; }
+.description-text p { font-size: 1.05rem; line-height: 1.7; color: #444; margin-bottom: 20px; text-align: justify; }
+
+.features-grid-simple { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 40px; }
+.feature-item { font-size: 1rem; color: #333; font-weight: 500; display: flex; align-items: center; gap: 15px; padding-bottom: 15px; border-bottom: 1px solid #f5f5f5; }
+.immo-icon { width: 22px; height: 22px; stroke: var(--accent-color); stroke-width: 1.5px; fill: none; flex-shrink: 0; }
+
+/* =========================================
+   4. VISITE GUIDÉE (YOUTUBE)
+   ========================================= */
+.video-experience { background-color: #f9f9f9; padding: 80px 20px; }
+.container-player { max-width: 1000px; margin: 0 auto; }
+.section-title { text-align: center; margin-bottom: 40px; }
+.section-title h2 { font-size: 2rem; margin-bottom: 5px; color: #111; }
+.section-title p { color: #888; font-size: 1rem; }
+
+.main-player-wrapper {
+    width: 100%; aspect-ratio: 16 / 9; background: black;
+    border-radius: 8px; overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1); margin-bottom: 30px;
+}
+.main-player-wrapper iframe { width: 100%; height: 100%; border: none; }
+
+.chapter-scroller.text-only-mode {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; width: 100%; padding: 0;
+}
+
+.chapter-card {
+    flex: 1 1 220px; max-width: 300px;
+    background: #ffffff; border: 1px solid #e5e5e5; border-radius: 8px;
+    padding: 15px 20px; cursor: pointer; transition: all 0.2s ease;
+    display: flex; align-items: center;
+}
+.chapter-card:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-color: #ccc; z-index: 2; }
+.chapter-card.active { background: #ffffff; border: 2px solid #00bfbf; box-shadow: 0 5px 20px rgba(0,191,191,0.15); z-index: 1; }
+
+.card-content { display: flex; align-items: center; width: 100%; gap: 15px; }
+.chapter-num { font-size: 1.5rem; font-weight: 800; color: #e0e0e0; line-height: 1; flex-shrink: 0; }
+.chapter-card.active .chapter-num { color: #00bfbf; }
+
+.text-group { flex: 1; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+.chapter-card h3 { font-size: 0.95rem; font-weight: 700; color: #222; margin-bottom: 4px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.duration { font-size: 0.75rem; color: #888; font-weight: 500; }
+
+.play-icon { font-size: 0.8rem; color: #00bfbf; opacity: 0; transition: opacity 0.2s; flex-shrink: 0; }
+.chapter-card.active .play-icon { opacity: 1; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .info-band { padding: 20px; }
+    .info-content { flex-direction: column; align-items: flex-start; gap: 15px; }
+    .title-block, .details-block, .action-block { width: 100%; text-align: left; }
+    .details-block { padding-top: 0; margin-top: -5px; }
+    .action-block { padding-top: 10px; }
+    .info-band h1 { font-size: 1.4rem; }
+    .btn-solid { display: block; width: 100%; text-align: center; margin-top: 5px; }
+    .brand-header { left: 20px; top: 20px; flex-direction: column; align-items: flex-start; gap: 5px; }
+    .brand-sep { display: none; }
+    .property-details { padding: 60px 20px; }
+    .listing-header h2 { font-size: 1.8rem; }
+    .key-metrics { gap: 30px; justify-content: space-between; }
+    .metric .value { font-size: 1.4rem; }
+    .features-grid-simple { grid-template-columns: 1fr; gap: 10px; }
+}
+
+@media (max-width: 600px) {
+    .chapter-card { flex: 1 1 100%; max-width: 100%; }
+    .dpe-wrapper { gap: 20px; }
+    .dpe-card { max-width: 100%; }
+}
+
+/* =========================================
+   5. DIAGNOSTICS (DPE & GES) - NOUVEAU
+   ========================================= */
+.diagnostics-container {
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+.diag-header { text-align: center; margin-bottom: 30px; }
+.center-divider { width: 50%; margin: 0 auto 30px auto; }
+.diag-header h3 { font-size: 1.5rem; font-weight: 700; color: #111; margin-bottom: 10px; }
+.diag-header p { color: #666; font-size: 0.95rem; }
+
+.dpe-wrapper { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+.dpe-card { flex: 1; min-width: 280px; max-width: 350px; }
+.dpe-card h4 { margin-bottom: 15px; font-size: 0.9rem; color: #555; text-transform: uppercase; letter-spacing: 1px; text-align: center; font-weight: 600; }
+
+.dpe-content { display: flex; align-items: center; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+
+.dpe-letter { width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 800; }
+.bg-yellow { background-color: #F4E70F; color: #333; } 
+.bg-grey   { background-color: #778496; color: #fff; } 
+
+.dpe-info { padding: 0 20px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.dpe-value { font-size: 1.4rem; font-weight: 700; color: #111; line-height: 1.1; }
+.dpe-unit { font-size: 0.8rem; color: #888; margin-top: 2px; }
