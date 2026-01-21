@@ -201,7 +201,13 @@ body {
 
 .key-metrics { display: flex; justify-content: center; gap: 60px; margin-bottom: 50px; flex-wrap: wrap; }
 .metric { text-align: center; }
-.metric .value { display: block; font-size: 1.8rem; font-weight: 700; color: var(--accent-color); line-height: 1.2; }
+.metric .value { 
+    display: block; 
+    font-size: 1.8rem; 
+    font-weight: 700; 
+    color: #EA1D54; /* J'ai remplacé la variable par le ROUGE direct */
+    line-height: 1.2; 
+}
 .metric .label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; color: #666; margin-top: 5px; font-weight: 500; }
 
 .divider-light { border: 0; height: 1px; background: #eaeaea; margin: 50px 0; }
