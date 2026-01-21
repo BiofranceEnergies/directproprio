@@ -2,7 +2,7 @@
 // CONFIGURATION
 // ===========================================
 // ⚠️ COLLE TON ID YOUTUBE ICI (ex: "dQw4w9WgXcQ")
-const YOUTUBE_VIDEO_ID = "TON_ID_ICI"; 
+const YOUTUBE_VIDEO_ID = "https://youtu.be/e2gSjrCwafQ"; 
 
 // ===========================================
 // 1. GESTION DU HEADER (VIDEO GITHUB)
@@ -34,7 +34,7 @@ function jumpToTime(seconds, element) {
     // On construit la nouvelle URL YouTube avec le temps de départ
     // &autoplay=1 : lance la lecture direct
     // &rel=0 : pas de pubs à la fin
-    var newSrc = "https://www.youtube.com/embed/" + YOUTUBE_VIDEO_ID + "?start=" + seconds + "&autoplay=1&enablejsapi=1&rel=0";
+    var newSrc = "https://www.youtube.com/embed/" + https://youtu.be/e2gSjrCwafQ + "?start=" + seconds + "&autoplay=1&enablejsapi=1&rel=0";
     
     iframe.src = newSrc;
     
