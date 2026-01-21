@@ -110,15 +110,33 @@ body {
 }
 
 .title-block { text-align: left; min-width: 250px; }
-.badge-mini { display: block; color: #888; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; font-weight: 600; line-height: 1.2; }
+.badge-mini { display: block; color: #ffffff; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; font-weight: 600; line-height: 1.2; }
 .info-band h1 { font-size: 1.6rem; margin: 0; line-height: 1.1; font-weight: 600; letter-spacing: -0.5px; color: #fff; }
 
 .details-block { text-align: center; padding-top: 28px; }
 .details-block p { font-size: 1.1rem; color: #ffffff; font-weight: 400; margin: 0; line-height: 1.1; }
 
 .action-block { text-align: right; padding-top: 12px; }
-.btn-solid { display: inline-block; background-color: white; color: black; padding: 10px 24px; border-radius: 2px; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; transition: all 0.3s ease; }
-.btn-solid:hover { background-color: #ddd; transform: translateY(-1px); }
+.btn-solid { 
+    display: inline-block; 
+    background-color: white; 
+    color: #ed154f; /* LE TEXTE EN ROUGE PP */
+    padding: 10px 24px; 
+    border-radius: 2px; 
+    text-decoration: none; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    font-size: 0.75rem; 
+    letter-spacing: 1px; 
+    transition: all 0.3s ease; 
+}
+
+/* Au survol de la souris, on inverse ? (Optionnel mais joli) */
+.btn-solid:hover { 
+    background-color: #f1f1f1; 
+    transform: translateY(-1px); 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
 
 /* =========================================
    3. DÉTAILS IMMO
