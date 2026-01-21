@@ -1,8 +1,8 @@
 // ===========================================
 // CONFIGURATION
 // ===========================================
-// ⚠️ COLLE TON ID YOUTUBE ICI (ex: "dQw4w9WgXcQ")
-const YOUTUBE_VIDEO_ID = "https://youtu.be/e2gSjrCwafQ"; 
+// ✅ CORRECTION : Juste l'ID (pas le lien entier https://...)
+const YOUTUBE_VIDEO_ID = "e2gSjrCwafQ"; 
 
 // ===========================================
 // 1. GESTION DU HEADER (VIDEO GITHUB)
@@ -31,10 +31,8 @@ window.addEventListener('load', function() {
 function jumpToTime(seconds, element) {
     var iframe = document.getElementById("myYoutubePlayer");
     
-    // On construit la nouvelle URL YouTube avec le temps de départ
-    // &autoplay=1 : lance la lecture direct
-    // &rel=0 : pas de pubs à la fin
-    var newSrc = "https://www.youtube.com/embed/" + https://youtu.be/e2gSjrCwafQ + "?start=" + seconds + "&autoplay=1&enablejsapi=1&rel=0";
+    // ✅ CORRECTION : On utilise la variable définie en haut proprement
+    var newSrc = "https://www.youtube.com/embed/" + YOUTUBE_VIDEO_ID + "?start=" + seconds + "&autoplay=1&enablejsapi=1&rel=0";
     
     iframe.src = newSrc;
     
