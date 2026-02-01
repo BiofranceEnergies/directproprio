@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if(el) el.innerText = txt; 
     }
     
-    // 1. HEADER HERO VIDEO
+    // 1. HEADER HERO VIDEO (AVEC GARDIEN DE SCROLL)
     document.title = HouseData.title + " - Visite Privée";
     setTxt('page-title', HouseData.title);
     setTxt('data-main-title', HouseData.title);
@@ -66,10 +66,25 @@ document.addEventListener("DOMContentLoaded", function() {
     
     const videoHero = document.getElementById('data-hero-video');
     if(videoHero) {
-        // Force le chargement de la source pour lancer l'autoplay
+        // Source
         videoHero.src = HouseData.heroVideoUrl;
-        videoHero.load(); 
-        videoHero.play().catch(e => console.log("Autoplay bloqué par le navigateur (normal sur mobile)"));
+        videoHero.load();
+        
+        // LE GARDIEN (Intersection Observer)
+        // Il surveille si la vidéo est visible ou non
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Si visible : ON LANCE
+                    videoHero.play().catch(e => console.log("Autoplay bloqué (attente interaction)"));
+                } else {
+                    // Si cachée : ON PAUSE (pour économiser)
+                    videoHero.pause();
+                }
+            });
+        });
+        // On active le gardien sur la vidéo
+        observer.observe(videoHero);
     }
 
     // 2. TEXTES ET CHIFFRES
@@ -163,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// FONCTION SAUT VIDÉO (Celle qui manquait !)
+// FONCTION SAUT VIDÉO
 function jumpToTime(seconds, element) {
     var iframe = document.getElementById("myYoutubePlayer");
     if(iframe) {
