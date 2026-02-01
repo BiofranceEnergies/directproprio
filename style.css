@@ -59,7 +59,9 @@ body {
 }
 .hero-title {
     font-family: var(--font-title);
-    font-size: 3.5rem; margin-bottom: 10px; font-weight: 400;
+    /* Réduit pour plus de finesse (était 3.5rem) */
+    font-size: 3rem; 
+    margin-bottom: 10px; font-weight: 400;
 }
 .hero-subtitle {
     font-size: 1.2rem; font-weight: 300; letter-spacing: 1px; text-transform: uppercase;
@@ -85,7 +87,9 @@ body {
 }
 .prestige-title {
     font-family: var(--font-title);
-    font-size: 3rem; margin-bottom: 20px; color: #111;
+    /* Réduit pour plus de finesse (était 3rem) */
+    font-size: 2.5rem; 
+    margin-bottom: 20px; color: #111;
 }
 .price-tag { 
     font-size: 1.8rem; font-weight: 700; color: var(--pp-red); margin-right: 10px;
@@ -117,8 +121,9 @@ body {
     margin-bottom: 25px; border-bottom: 2px solid var(--pp-red);
     display: inline-block; padding-bottom: 5px;
 }
-.lead-paragraph { font-size: 1.15rem; color: #333; font-weight: 500; }
-.description-text p { margin-bottom: 20px; text-align: justify; color: #555; }
+/* Réduction légère du texte courant */
+.lead-paragraph { font-size: 1.05rem; color: #333; font-weight: 500; }
+.description-text p { margin-bottom: 20px; text-align: justify; color: #555; font-size: 0.95rem; }
 
 .features-grid-simple { 
     display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 50px;
@@ -242,13 +247,7 @@ body {
 .duration { font-size: 0.7rem; color: #666; text-transform: uppercase; }
 
 /* =========================================
-   FOOTER & BLOCS
-   ========================================= */
-.legal-footer { background-color: #f9f9f9; padding: 40px 20px; font-size: 0.7rem; color: #888; text-align: center; border-top: 1px solid #eee; }
-.footer-logo img { height: 25px; opacity: 0.4; margin-bottom: 15px; }
-
-/* =========================================
-   FOOTER & BLOCS (CORRECTIF FINESSE)
+   FOOTER & BLOCS (CORRECTIF FINESSE FINALE)
    ========================================= */
 
 /* 1. LE BLOC VERDICT (Rose) */
@@ -260,14 +259,14 @@ body {
     margin-bottom: 40px;
     display: flex;
     gap: 20px;
-    align-items: flex-start; /* Aligné en haut */
+    align-items: flex-start;
     border-radius: 4px;
 }
 
 .expert-icon {
     flex-shrink: 0;
     background-color: #fff;
-    width: 50px; height: 50px; /* Taille fixe */
+    width: 50px; height: 50px;
     border-radius: 50%;
     border: 1px solid #ffe0e9;
     display: flex;
@@ -286,12 +285,12 @@ body {
 }
 
 .expert-content p {
-    font-size: 0.95rem; /* Taille standard */
+    font-size: 0.95rem;
     color: #444;
     line-height: 1.6;
 }
 
-/* 2. LE BLOC LÉGAL (C'est ici qu'on réduit tout !) */
+/* 2. LE BLOC LÉGAL (Version Miniaturisée) */
 .legal-compliance-block {
     margin-top: 20px;
     padding-top: 10px;
@@ -352,23 +351,23 @@ body {
 }
 .footer-logo img { height: 20px; opacity: 0.3; margin-bottom: 10px; }
 
-
 /* =========================================
-   AJUSTEMENTS GÉNÉRAUX (POUR EVITER L'EFFET "GROS")
+   RESPONSIVE (Mobile)
    ========================================= */
-
-/* On réduit un peu les titres H1 et H2 partout */
-.prestige-title { font-size: 2.5rem; } /* Au lieu de 3rem */
-.hero-title { font-size: 3rem; } /* Au lieu de 3.5rem */
-
-/* On réduit un peu le texte de description principal */
-.description-text p { font-size: 0.95rem; color: #555; }
-.lead-paragraph { font-size: 1.05rem; }
-
-/* Mobile : On réduit encore pour que ça rentre */
 @media (max-width: 900px) {
-    .prestige-title { font-size: 2rem; }
+    .listing-body-grid { flex-direction: column; }
+    .sidebar-col { position: static; width: 100%; margin-top: 40px; }
+    .key-metrics-grid { flex-wrap: wrap; }
+    .metric-box { flex: 1 1 45%; margin-bottom: 20px; }
+    
+    /* Ajustement des gros titres sur mobile */
     .hero-title { font-size: 2.2rem; }
-    .legal-text, .legal-text-dense { font-size: 0.75rem; } /* Très petit sur mobile */
+    .prestige-title { font-size: 2rem; }
+    
+    .dpe-container { flex-direction: column; align-items: center; gap: 40px; }
+    .dpe-column { width: 100%; }
+    .expert-analysis-box { flex-direction: column; }
+    
+    /* Textes légaux minuscules sur mobile */
+    .legal-text, .legal-text-dense { font-size: 0.75rem; }
 }
-
