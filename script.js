@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if(el) el.innerText = txt; 
     }
     
-    // 1. HEADER HERO VIDEO (MODE FORCE BRUTE)
+    // 1. HEADER HERO VIDEO (MODE FORCE BRUTE - OK)
     document.title = HouseData.title + " - Visite Privée";
     setTxt('page-title', HouseData.title);
     setTxt('data-main-title', HouseData.title);
@@ -66,23 +66,14 @@ document.addEventListener("DOMContentLoaded", function() {
     
     const videoHero = document.getElementById('data-hero-video');
     if(videoHero) {
-        // On force les attributs vitaux pour l'autoplay
-        videoHero.muted = true; // Indispensable pour Chrome/Safari
+        videoHero.muted = true;
         videoHero.loop = true;
         videoHero.playsInline = true;
-        
         videoHero.src = HouseData.heroVideoUrl;
         
-        // On lance la lecture et on ne l'arrête JAMAIS manuellement
         var playPromise = videoHero.play();
-        
         if (playPromise !== undefined) {
-            playPromise.then(_ => {
-                // La lecture a commencé !
-            })
-            .catch(error => {
-                // Si le navigateur bloque, on force le mute et on réessaie
-                console.log("Autoplay bloqué, tentative force mute...");
+            playPromise.then(_ => {}).catch(error => {
                 videoHero.muted = true;
                 videoHero.play();
             });
@@ -155,13 +146,13 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // 6. YOUTUBE INJECTOR (AVEC API)
+    // 6. YOUTUBE INJECTOR (CORRECTIF : AUTOPLAY BLOQUÉ)
     const playerDiv = document.getElementById('youtube-injector');
     if(playerDiv) {
         playerDiv.innerHTML = `
             <iframe id="myYoutubePlayer" 
-            src="https://www.youtube.com/embed/${HouseData.youtubeID}?enablejsapi=1&rel=0&modestbranding=1&showinfo=0&loop=1&playlist=${HouseData.youtubeID}" 
-            title="Visite Privée" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            src="https://www.youtube.com/embed/${HouseData.youtubeID}?autoplay=0&enablejsapi=1&rel=0&modestbranding=1&showinfo=0&loop=1&playlist=${HouseData.youtubeID}" 
+            title="Visite Privée" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         `;
     }
 
