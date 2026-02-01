@@ -3,7 +3,7 @@
    ========================================================================== */
 const HouseData = {
     title: "Le Domaine des Deux Cèdres",
-    subtitle: "Sarlat-la-Canéda • 4 Hectares de Sérénité",
+    subtitle: "Sarlat-la-Canéda • 4 000 m² de Sérénité",
     location: "Sarlat-la-Canéda (24200)",
     type: "Maison de caractère rénovée",
     
