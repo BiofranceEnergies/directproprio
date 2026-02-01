@@ -1,46 +1,209 @@
-const YOUTUBE_VIDEO_ID = "e2gSjrCwafQ"; 
+/* ==========================================================================
+   CONSOLE DE COMMANDE - MODIFIE LES DONNÉES DE LA MAISON ICI
+   ========================================================================== */
+const HouseData = {
+    // 1. INFOS PRINCIPALES
+    title: "Le Domaine des Deux Cèdres",
+    subtitle: "Sarlat-la-Canéda • 4 Hectares de Sérénité",
+    location: "Sarlat-la-Canéda (24200)",
+    type: "Maison de caractère rénovée",
+    
+    // 2. PRIX & MANDAT
+    price: 695000,         // Mettre le prix sans espace (ex: 695000)
+    feesPercent: 3.99,     // Le % des honoraires
+    mandatRef: "358412",   // Ton numéro de mandat
 
-// ===========================================
-// 1. GESTION DU HEADER (VIDÉO GITHUB)
-// ===========================================
-window.addEventListener('load', function() {
-    let video = document.querySelector('.video-zone video');
-    if(video) {
-        video.muted = true;
-        let playPromise = video.play();
-        if (playPromise !== undefined) {
-            playPromise.then(_ => {}).catch(error => {
-                console.log("Autoplay bloqué par le navigateur (normal sur mobile)");
-            });
-        }
+    // 3. CHIFFRES CLÉS (METRICS)
+    surface: "240",
+    rooms: "7",
+    bedrooms: "4",
+    land: "4 Hectares",    // Ou "4000 m²"
+
+    // 4. MULTIMÉDIA
+    // L'ID de la vidéo YouTube (ex: e2gSjrCwafQ)
+    youtubeID: "e2gSjrCwafQ", 
+    // Le lien de la vidéo d'ambiance en haut de page
+    heroVideoUrl: "https://raw.githubusercontent.com/BiofranceEnergies/directproprio/448ea69e534288cafa7204c71ed6da4df8c49eee/assets/video/sabouret%2012.mp4",
+
+    // 5. DIAGNOSTICS (DPE / GES)
+    dpeLetter: "D", // Choisir entre A, B, C, D, E, F, G
+    dpeValue: "195",
+    gesLetter: "D", // Choisir entre A, B, C, D, E, F, G
+    gesValue: "38",
+    energyCost: "entre 1500 € et 2100 €",
+
+    // 6. CARACTÉRISTIQUES (Liste avec icônes)
+    // Icones dispos: "rect" (surface), "bed" (chambre), "bath" (douche), "sun" (chauffage), "pool" (piscine)
+    features: [
+        { icon: "rect", text: "7 pièces" },
+        { icon: "bed", text: "4 chambres" },
+        { icon: "bath", text: "3 salles d'eau" },
+        { icon: "sun", text: "Pompe à Chaleur" },
+        { icon: "pool", text: "Piscine 10x4m (Sel)" }
+    ],
+
+    // 7. CHAPITRAGE VIDÉO (Les boutons sous la vidéo)
+    // time: secondes où la vidéo doit sauter
+    chapters: [
+        { time: 0, title: "Le Grand Salon", subtitle: "Rez-de-chaussée" },
+        { time: 45, title: "Cuisine & Repas", subtitle: "Espace de vie" },
+        { time: 90, title: "Suite Parentale", subtitle: "Espace nuit" },
+        { time: 140, title: "Parc & Piscine", subtitle: "Extérieurs" }
+    ],
+    
+    // 8. INFOS AGENT
+    agentCity: "SARLAT-LA-CANÉDA",
+    agentPhone: "06.00.00.00.00"
+};
+
+/* ==========================================================================
+   NE TOUCHE À RIEN EN DESSOUS - C'EST LE MOTEUR DU SITE
+   ========================================================================== */
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // A. INJECTION DES TEXTES SIMPLES
+    function setTxt(id, txt) { 
+        const el = document.getElementById(id); 
+        if(el) el.innerText = txt; 
     }
+    
+    // Titres & Header
+    document.title = HouseData.title + " - Visite Privée";
+    setTxt('page-title', HouseData.title);
+    setTxt('data-main-title', HouseData.title);
+    setTxt('data-subtitle', HouseData.subtitle);
+    
+    const videoHero = document.getElementById('data-hero-video');
+    if(videoHero) videoHero.innerHTML = `<source src="${HouseData.heroVideoUrl}" type="video/mp4">`;
+
+    // Détails & Métriques
+    setTxt('data-location', HouseData.location);
+    setTxt('data-type-title', HouseData.type);
+    
+    const formattedPrice = new Intl.NumberFormat('fr-FR').format(HouseData.price);
+    setTxt('data-price', formattedPrice + " €");
+
+    setTxt('data-surface', HouseData.surface);
+    setTxt('data-rooms', HouseData.rooms);
+    setTxt('data-bedrooms', HouseData.bedrooms);
+    setTxt('data-land', HouseData.land);
+
+    // Agent
+    setTxt('data-agent-city', HouseData.agentCity);
+    const btnCall = document.getElementById('data-agent-tel');
+    if(btnCall) btnCall.href = "tel:" + HouseData.agentPhone.replace(/\./g, '');
+
+    // Légal & Financier
+    setTxt('legal-price', formattedPrice);
+    setTxt('legal-fees', HouseData.feesPercent);
+    setTxt('legal-mandat', HouseData.mandatRef);
+    
+    // Calcul automatique du Net Vendeur (Approx)
+    const netVendeur = Math.round(HouseData.price / (1 + (HouseData.feesPercent/100)));
+    setTxt('legal-net-price', new Intl.NumberFormat('fr-FR').format(netVendeur));
+    
+    setTxt('data-energy-cost', "Montant estimé des dépenses annuelles d'énergie : " + HouseData.energyCost + ".");
+
+    // B. GÉNÉRATION AUTOMATIQUE DU DPE
+    const letters = ['A','B','C','D','E','F','G'];
+    
+    function generateLadder(targetId, activeLetter, val, unit, prefixClass) {
+        const container = document.getElementById(targetId);
+        if(!container) return;
+        container.innerHTML = '';
+        
+        letters.forEach((l) => {
+            const index = letters.indexOf(l);
+            const widthClass = "w-" + (index + 1);
+            const row = document.createElement('div');
+            
+            if (l === activeLetter) {
+                row.className = "dpe-row active-row";
+                row.innerHTML = `
+                    <div class="dpe-bar ${prefixClass}-${l.toLowerCase()} ${widthClass}">${l}</div>
+                    <div class="dpe-value">${val} <span>${unit}</span></div>
+                `;
+            } else {
+                row.className = "dpe-row";
+                row.innerHTML = `<div class="dpe-bar ${prefixClass}-${l.toLowerCase()} ${widthClass}">${l}</div>`;
+            }
+            container.appendChild(row);
+        });
+    }
+
+    generateLadder('dpe-ladder-conso', HouseData.dpeLetter, HouseData.dpeValue, 'kWh/m²', 'class');
+    generateLadder('dpe-ladder-ges', HouseData.gesLetter, HouseData.gesValue, 'kg CO₂/m²', 'ges');
+
+    // C. GÉNÉRATION LISTE CARACTÉRISTIQUES
+    const featContainer = document.getElementById('data-features-list');
+    if(featContainer) {
+        featContainer.innerHTML = '';
+        HouseData.features.forEach(f => {
+            let svgPath = "";
+            // Bibliothèque d'icônes SVG simples
+            if(f.icon === "rect") svgPath = '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>';
+            else if(f.icon === "bed") svgPath = '<path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/>';
+            else if(f.icon === "bath") svgPath = '<path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="10" y1="5" x2="8" y2="7"/><line x1="2" y1="12" x2="22" y2="12"/>';
+            else if(f.icon === "sun") svgPath = '<path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/><circle cx="12" cy="12" r="4"/>';
+            else if(f.icon === "pool") svgPath = '<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>';
+            else svgPath = '<circle cx="12" cy="12" r="10"/>';
+
+            const div = document.createElement('div');
+            div.className = 'feature-item';
+            div.innerHTML = `<svg class="immo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${svgPath}</svg><span>${f.text}</span>`;
+            featContainer.appendChild(div);
+        });
+    }
+
+    // D. GÉNÉRATION PLAYER YOUTUBE
+    const playerDiv = document.getElementById('youtube-injector');
+    if(playerDiv) {
+        playerDiv.innerHTML = `
+            <iframe id="myYoutubePlayer" 
+            src="https://www.youtube.com/embed/${HouseData.youtubeID}?enablejsapi=1&rel=0&modestbranding=1&showinfo=0&loop=1&playlist=${HouseData.youtubeID}" 
+            title="Visite Privée" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        `;
+    }
+
+    // E. GÉNÉRATION DES CHAPITRES
+    const chapContainer = document.getElementById('data-chapters');
+    if(chapContainer) {
+        chapContainer.innerHTML = '';
+        HouseData.chapters.forEach((c, i) => {
+            const num = (i+1).toString().padStart(2, '0');
+            const div = document.createElement('div');
+            div.className = (i===0) ? "chapter-card active" : "chapter-card";
+            div.setAttribute('onclick', `jumpToTime(${c.time}, this)`);
+            div.innerHTML = `
+                <div class="chapter-indicator"></div>
+                <div class="card-content">
+                    <span class="chapter-num">${num}</span>
+                    <div class="text-group"><h3>${c.title}</h3><span class="duration">${c.subtitle}</span></div>
+                </div>
+            `;
+            chapContainer.appendChild(div);
+        });
+    }
+
 });
 
-// ===========================================
-// 2. GESTION DU PLAYER YOUTUBE (CHAPITRES & ANTI-PUB)
-// ===========================================
+// FONCTION POUR SAUTER DANS LA VIDÉO
 function jumpToTime(seconds, element) {
     var iframe = document.getElementById("myYoutubePlayer");
-    
-    // ✅ CONSTRUCTION DE L'URL "PROPRE"
-    // rel=0 : Suggère seulement tes vidéos (pas de pubs random)
-    // modestbranding=1 : Réduit le logo YouTube
-    // loop=1 + playlist : Empêche l'écran de fin de s'afficher (boucle)
-    
-    var newSrc = "https://www.youtube.com/embed/" + YOUTUBE_VIDEO_ID + 
-                 "?start=" + seconds + 
-                 "&autoplay=1" +
-                 "&enablejsapi=1" + 
-                 "&rel=0" + 
-                 "&modestbranding=1" + 
-                 "&showinfo=0" +
-                 "&loop=1" + 
-                 "&playlist=" + YOUTUBE_VIDEO_ID; // Obligatoire pour que le loop fonctionne
-    
-    iframe.src = newSrc;
-    
-    // Gestion visuelle des boutons "Actif"
-    var cards = document.querySelectorAll('.chapter-card');
-    cards.forEach(card => card.classList.remove('active'));
+    if(iframe) {
+        iframe.contentWindow.postMessage(JSON.stringify({
+            "event": "command",
+            "func": "seekTo",
+            "args": [seconds, true]
+        }), "*");
+        iframe.contentWindow.postMessage(JSON.stringify({
+            "event": "command",
+            "func": "playVideo",
+            "args": []
+        }), "*");
+    }
+    // Mise à jour visuelle du bouton actif
+    document.querySelectorAll('.chapter-card').forEach(c => c.classList.remove('active'));
     element.classList.add('active');
 }
