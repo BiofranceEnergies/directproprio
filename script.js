@@ -14,7 +14,7 @@ const HouseData = {
     surface: "240",
     rooms: "7",
     bedrooms: "4",
-    land: "4 Hectares",
+    land: "4000 m2",
 
     // ID Youtube (publique)
     youtubeID: "e2gSjrCwafQ", 
