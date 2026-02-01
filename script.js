@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if(el) el.innerText = txt; 
     }
     
-    // 1. HEADER HERO VIDEO (AVEC GARDIEN DE SCROLL)
+    // 1. HEADER HERO VIDEO (MODE FORCE BRUTE)
     document.title = HouseData.title + " - Visite Privée";
     setTxt('page-title', HouseData.title);
     setTxt('data-main-title', HouseData.title);
@@ -66,25 +66,27 @@ document.addEventListener("DOMContentLoaded", function() {
     
     const videoHero = document.getElementById('data-hero-video');
     if(videoHero) {
-        // Source
-        videoHero.src = HouseData.heroVideoUrl;
-        videoHero.load();
+        // On force les attributs vitaux pour l'autoplay
+        videoHero.muted = true; // Indispensable pour Chrome/Safari
+        videoHero.loop = true;
+        videoHero.playsInline = true;
         
-        // LE GARDIEN (Intersection Observer)
-        // Il surveille si la vidéo est visible ou non
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Si visible : ON LANCE
-                    videoHero.play().catch(e => console.log("Autoplay bloqué (attente interaction)"));
-                } else {
-                    // Si cachée : ON PAUSE (pour économiser)
-                    videoHero.pause();
-                }
+        videoHero.src = HouseData.heroVideoUrl;
+        
+        // On lance la lecture et on ne l'arrête JAMAIS manuellement
+        var playPromise = videoHero.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // La lecture a commencé !
+            })
+            .catch(error => {
+                // Si le navigateur bloque, on force le mute et on réessaie
+                console.log("Autoplay bloqué, tentative force mute...");
+                videoHero.muted = true;
+                videoHero.play();
             });
-        });
-        // On active le gardien sur la vidéo
-        observer.observe(videoHero);
+        }
     }
 
     // 2. TEXTES ET CHIFFRES
@@ -193,7 +195,6 @@ function jumpToTime(seconds, element) {
             "args": []
         }), "*");
     }
-    // Mise à jour visuelle du bouton actif
     document.querySelectorAll('.chapter-card').forEach(c => c.classList.remove('active'));
     element.classList.add('active');
 }
