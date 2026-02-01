@@ -1,520 +1,239 @@
 /* =========================================
-   1. RESET & VARIABLES GLOBALES
+   1. RESET & VARIABLES GLOBALES (STYLE LUXE)
    ========================================= */
 :root {
     --bg-color: #ffffff;
-    --text-main: #111111;
-    --text-light: #555555;
-    --brand-font: 'Inter', sans-serif;
+    --bg-alt: #f8f8f8;
     
-    /* Couleurs du thème */
-    --band-bg: #111111; /* Noir mat (Hero) */
-    --band-text: #ffffff;
-    --accent-color: #00bfbf; /* Cyan/Turquoise */
+    /* COULEURS CHARTE PROPRIETES-PRIVEES */
+    --pp-red: #EA1D54;         /* Le Rouge officiel */
+    --pp-grey-dark: #2c2c2c;   /* Gris Anthracite foncé */
+    --pp-grey-light: #f1f1f1;  /* Gris très clair pour les fonds */
+    
+    /* TYPOGRAPHIE */
+    --font-body: 'Inter', sans-serif;
+    --font-title: 'Playfair Display', serif; /* LA TOUCHE "PRESTIGE" */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body { 
-    font-family: var(--brand-font); 
+    font-family: var(--font-body); 
     overflow-x: hidden; 
     background-color: var(--bg-color); 
-    color: var(--text-main); 
+    color: var(--pp-grey-dark);
+    line-height: 1.6;
 }
 
 /* =========================================
    2. HERO SPLIT (VIDÉO GITHUB)
    ========================================= */
 .hero-split {
-    height: 100vh; 
+    height: 90vh; /* Un peu moins que 100vh pour inviter au scroll */
     width: 100%;
-    display: flex;
-    flex-direction: column; 
-    background-color: var(--band-bg);
+    position: relative;
+    background-color: #000;
 }
 
 .video-zone {
-    flex: 1; 
-    width: 100%;
-    position: relative;
-    overflow: hidden;
+    width: 100%; height: 100%;
+    position: relative; overflow: hidden;
 }
 
 .video-zone video {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover; 
-    display: block;
+    opacity: 0.85; /* Légèrement assombri pour lire le texte */
 }
 
-/* =========================================
-   LOGO MARQUE (VERSION HORIZONTALE)
-   ========================================= */
+/* LOGO HEADER */
 .brand-header-horizontal {
-    position: absolute;
-    top: 30px;
-    left: 40px;
-    z-index: 10;
-    display: flex;
-    align-items: center; /* Centre verticalement l'icône et le texte */
-    gap: 15px; /* Espace entre l'icône et le texte */
-    /* Ombre portée pour que ça reste lisible même si la vidéo derrière est claire */
-    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+    position: absolute; top: 30px; left: 40px; z-index: 10;
+    display: flex; align-items: center; gap: 15px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
 }
-
-/* Style de l'icône image */
-.brand-icon {
-    height: 55px; /* Ajuste la taille globale du logo ici */
-    width: auto;
-}
-
-/* Style du bloc texte à côté */
-.brand-text-horizontal {
-    font-family: 'Inter', sans-serif;
-    font-weight: 800; /* Très gras comme le logo officiel */
-    font-size: 1.6rem; /* Taille du texte */
-    line-height: 1;
-    white-space: nowrap; /* Empêche le texte de se couper en deux lignes */
-}
-
-/* Couleurs spécifiques */
+.brand-icon { height: 50px; width: auto; }
+.brand-text-horizontal { font-weight: 800; font-size: 1.5rem; line-height: 1; }
 .txt-white { color: #ffffff; }
-.txt-red { color: #EA1D54; } /* Le rouge exact de la marque */
+.txt-red { color: var(--pp-red); }
 
-/* RESPONSIVE MOBILE */
-@media (max-width: 600px) {
-    .brand-header-horizontal {
-        top: 20px; left: 20px; gap: 10px;
-    }
-    .brand-icon { height: 45px; } /* Un peu plus petit sur mobile */
-    .brand-text-horizontal { font-size: 1.3rem; }
+/* TITRE FLOTTANT (NOUVEAU) */
+.hero-overlay-content {
+    position: absolute;
+    bottom: 80px; left: 40px; z-index: 5;
+    color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
-/* BANDEAU INFO */
-/* =========================================
-   BANDEAU INFO (LIGNE UNIQUE ROUGE)
-   ========================================= */
-.info-band {
-    background-color: #ed154f; /* Rouge Proprietes-privees */
-    color: #ffffff;
-    width: 100%;
-    /* Hauteur fixe et fine pour l'effet "Bandeau TV" */
-    height: 60px; 
-    display: flex;
-    align-items: center; /* Centre verticalement */
-    justify-content: center; /* Centre horizontalement */
-    border-top: none;
-    z-index: 5;
-    padding: 0 20px;
+.hero-title {
+    font-family: var(--font-title); /* Police Serif */
+    font-size: 3.5rem; margin-bottom: 10px; font-weight: 400;
 }
-
-/* Le conteneur qui aligne tous les éléments sur une ligne */
-.single-line-content {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Espace entre les éléments */
-    white-space: nowrap; /* Force tout sur une seule ligne */
-}
-
-/* 1. Le Badge "NOUVEAUTÉ" */
-.badge-inline {
-    background-color: rgba(255, 255, 255, 0.2); /* Fond blanc transparent */
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* 2. Le Titre */
-.title-inline {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin: 0;
-    line-height: 1;
-}
-
-/* 3. Le Séparateur (|) */
-.sep-inline {
-    font-weight: 100;
-    opacity: 0.5;
-    font-size: 1.3rem;
-}
-
-/* 4. Les Détails */
-.details-inline {
-    font-size: 1.1rem;
-    font-weight: 400;
-    margin: 0;
-}
-
-/* RESPONSIVE (Si l'écran est trop petit, on passe sur 2 lignes proprement) */
-@media (max-width: 900px) {
-    .info-band { height: auto; padding: 15px 20px; }
-    .single-line-content { 
-        flex-direction: column; 
-        gap: 5px; 
-        white-space: normal;
-        text-align: center;
-    }
-    .sep-inline { display: none; } /* On cache le séparateur sur mobile */
-}
-.title-block { text-align: left; min-width: 250px; }
-.badge-mini { display: block; color: #ffffff; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; font-weight: 600; line-height: 1.2; }
-.info-band h1 { font-size: 1.6rem; margin: 0; line-height: 1.1; font-weight: 600; letter-spacing: -0.5px; color: #fff; }
-
-.details-block { 
-    text-align: center; 
-    padding-top: 0; /* On met 0 ici pour que ça remonte et affine le bandeau */
-}
-
-.details-block p { 
-    font-size: 1.1rem; 
-    color: #ffffff; /* On garde le blanc pour le fond rouge */
-    font-weight: 400; 
-    margin: 0; 
-    line-height: 1.1; 
-}
-
-.action-block { 
-    text-align: right; 
-    padding-top: 0; /* On enlève le décalage */
-}
-
-/* Au survol de la souris, on inverse ? (Optionnel mais joli) */
-.btn-solid:hover { 
-    background-color: #f1f1f1; 
-    transform: translateY(-1px); 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+.hero-subtitle {
+    font-size: 1.2rem; font-weight: 300; letter-spacing: 1px; text-transform: uppercase;
 }
 
 /* =========================================
-   3. DÉTAILS IMMO
+   BANDEAU "NOUVEAUTÉ" FIN
    ========================================= */
-.property-details { background-color: #ffffff; padding: 100px 20px; color: #111; }
-.container-immo { max-width: 900px; margin: 0 auto; }
-.listing-header { text-align: center; margin-bottom: 50px; }
-.location-tag { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; color: #888; margin-bottom: 15px; }
-.listing-header h2 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 20px; color: #111; line-height: 1.1; }
-.price-tag { font-size: 2rem; font-weight: 700; color: #111; }
-.hai { font-size: 0.9rem; font-weight: 400; color: #666; margin-left: 5px; vertical-align: middle; }
-
-.key-metrics { display: flex; justify-content: center; gap: 60px; margin-bottom: 50px; flex-wrap: wrap; }
-.metric { text-align: center; }
-.metric .value { 
-    display: block; 
-    font-size: 1.8rem; 
-    font-weight: 700; 
-    color: #EA1D54; /* J'ai remplacé la variable par le ROUGE direct */
-    line-height: 1.2; 
-}
-.metric .label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; color: #666; margin-top: 5px; font-weight: 500; }
-
-.divider-light { border: 0; height: 1px; background: #eaeaea; margin: 50px 0; }
-
-.listing-body h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 25px; color: #111; text-transform: uppercase; letter-spacing: 0.5px; }
-.description-text { margin-bottom: 60px; }
-.description-text p { font-size: 1.05rem; line-height: 1.7; color: #444; margin-bottom: 20px; text-align: justify; }
-
-.features-grid-simple { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 40px; }
-.feature-item { font-size: 1rem; color: #333; font-weight: 500; display: flex; align-items: center; gap: 15px; padding-bottom: 15px; border-bottom: 1px solid #f5f5f5; }
-.immo-icon { 
-    width: 22px; 
-    height: 22px; 
-    stroke: #EA1D54; /* <--- ON MET LE ROUGE ICI */
-    stroke-width: 1.5px; 
-    fill: none; 
-    flex-shrink: 0; 
+.info-band-slim {
+    background-color: var(--pp-red);
+    color: white; text-align: center;
+    padding: 8px 0; font-size: 0.8rem;
+    font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
 }
 
 /* =========================================
-   4. VISITE GUIDÉE (YOUTUBE)
+   3. DÉTAILS IMMO (PRESTIGE)
    ========================================= */
-.video-experience { background-color: #f9f9f9; padding: 80px 20px; }
-.container-player { max-width: 1000px; margin: 0 auto; }
-.section-title { text-align: center; margin-bottom: 40px; }
-.section-title h2 { font-size: 2rem; margin-bottom: 5px; color: #111; }
-.section-title p { color: #888; font-size: 1rem; }
+.property-details { padding: 80px 20px; background-color: #fff; }
+.container-immo { max-width: 1000px; margin: 0 auto; }
 
-.main-player-wrapper {
-    width: 100%; aspect-ratio: 16 / 9; background: black;
-    border-radius: 8px; overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1); margin-bottom: 30px;
+/* HEADER ANNONCE */
+.listing-header { text-align: center; margin-bottom: 60px; }
+.location-tag { 
+    color: #888; text-transform: uppercase; letter-spacing: 2px; 
+    font-size: 0.85rem; margin-bottom: 15px; font-weight: 600;
 }
-.main-player-wrapper iframe { width: 100%; height: 100%; border: none; }
+.prestige-title {
+    font-family: var(--font-title);
+    font-size: 3rem; margin-bottom: 20px; color: #111;
+}
+.price-tag { 
+    font-size: 1.8rem; font-weight: 700; color: var(--pp-red); margin-right: 10px;
+}
+.hai { font-style: italic; color: #666; font-family: var(--font-title); }
 
-.chapter-scroller.text-only-mode {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; width: 100%; padding: 0;
+/* INFOS CLÉS (GRID MODERNE) */
+.key-metrics-grid {
+    display: flex; justify-content: space-between; gap: 20px;
+    padding: 30px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee;
+    margin-bottom: 50px;
 }
+.metric-box { text-align: center; flex: 1; }
+.metric-box .value { 
+    display: block; font-size: 2rem; font-weight: 700; color: #111; line-height: 1;
+}
+.metric-box .label {
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-top: 5px;
+}
+
+.divider-elegant { border: 0; height: 1px; background: #eee; width: 100px; margin: 50px auto; }
+
+/* =========================================
+   4. LAYOUT GRID (TEXTE vs AGENT)
+   ========================================= */
+.listing-body-grid { display: flex; gap: 60px; align-items: flex-start; }
+.main-content-col { flex: 2; }
+.sidebar-col { flex: 1; position: sticky; top: 30px; }
+
+/* TEXTE DESCRIPTION */
+.description-text h3, .features-list-container h3, .diagnostics-container h3 {
+    font-family: var(--font-title); font-size: 1.6rem; color: #111;
+    margin-bottom: 25px; border-bottom: 2px solid var(--pp-red);
+    display: inline-block; padding-bottom: 5px;
+}
+.lead-paragraph { font-size: 1.15rem; color: #333; font-weight: 500; }
+.description-text p { margin-bottom: 20px; text-align: justify; color: #555; }
+
+/* CARACTÉRISTIQUES */
+.features-grid-simple { 
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 50px;
+}
+.feature-item { 
+    display: flex; align-items: center; gap: 10px; font-weight: 500; 
+}
+.immo-icon { width: 20px; height: 20px; stroke: var(--pp-red); fill: none; stroke-width: 2; }
+
+/* =========================================
+   CARTE AGENT (STYLE CARTE DE VISITE)
+   ========================================= */
+.agent-card {
+    background: #fff; padding: 30px;
+    border: 1px solid #eee; 
+    border-top: 4px solid var(--pp-red); /* LA TOUCHE PP */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.agent-header-clean { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; text-align: left; }
+.agent-photo { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; }
+.agent-info { display: flex; flex-direction: column; }
+.agent-role { font-size: 0.7rem; text-transform: uppercase; color: #999; letter-spacing: 1px; }
+.agent-name { font-size: 1rem; margin: 0; color: #111; font-weight: 800; }
+.agent-location { font-size: 0.75rem; color: var(--pp-red); font-weight: 600; }
+
+.btn-call-agent, .btn-submit-form {
+    display: block; width: 100%; text-align: center;
+    background-color: var(--pp-red); color: white;
+    padding: 14px; text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;
+    border: none; cursor: pointer; transition: background 0.3s;
+}
+.btn-call-agent:hover, .btn-submit-form:hover { background-color: #be1542; }
+
+.or-divider { text-align: center; margin: 15px 0; font-size: 0.7rem; color: #ccc; }
+.agent-form input, .agent-form textarea {
+    width: 100%; padding: 12px; margin-bottom: 10px;
+    border: 1px solid #ddd; background: #fafafa;
+    font-family: var(--font-body); font-size: 0.9rem;
+}
+.agent-form input:focus { border-color: var(--pp-red); outline: none; background: #fff; }
+
+/* =========================================
+   5. VISITE GUIDÉE (VIDÉO) & CHAPITRES
+   ========================================= */
+.video-experience { background-color: #111; color: white; padding: 80px 20px; } /* FOND NOIR POUR CINÉMA */
+.section-title h2 { color: white; font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 10px; }
+.section-title p { color: #888; margin-bottom: 40px; }
+
+.chapter-scroller { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 
 .chapter-card {
-    flex: 1 1 220px; max-width: 300px;
-    background: #ffffff; border: 1px solid #e5e5e5; border-radius: 8px;
-    padding: 15px 20px; cursor: pointer; transition: all 0.2s ease;
-    display: flex; align-items: center;
+    background: #222; /* Gris foncé */
+    width: 220px; padding: 15px; cursor: pointer;
+    border-left: 3px solid #444; /* Bordure par défaut */
+    transition: all 0.3s;
 }
-.chapter-card:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-color: #ccc; z-index: 2; }
-.chapter-card.active { background: #ffffff; border: 2px solid #00bfbf; box-shadow: 0 5px 20px rgba(0,191,191,0.15); z-index: 1; }
+.chapter-card:hover { background: #333; }
 
-.card-content { display: flex; align-items: center; width: 100%; gap: 15px; }
-.chapter-num { font-size: 1.5rem; font-weight: 800; color: #e0e0e0; line-height: 1; flex-shrink: 0; }
-.chapter-card.active .chapter-num { color: #00bfbf; }
+/* ETAT ACTIF : ROUGE PP */
+.chapter-card.active { 
+    background: #2a2a2a; 
+    border-left: 3px solid var(--pp-red); /* L'indicateur actif est ROUGE */
+}
+.chapter-card.active h3 { color: white; }
+.chapter-num { font-size: 2rem; font-weight: 700; color: #444; display: block; margin-bottom: 5px; line-height: 1; }
+.chapter-card.active .chapter-num { color: var(--pp-red); opacity: 0.4; }
 
-.text-group { flex: 1; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
-.chapter-card h3 { font-size: 0.95rem; font-weight: 700; color: #222; margin-bottom: 4px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.duration { font-size: 0.75rem; color: #888; font-weight: 500; }
+.chapter-card h3 { font-size: 0.9rem; color: #ccc; margin: 0; font-weight: 600; }
+.duration { font-size: 0.7rem; color: #666; text-transform: uppercase; }
 
-.play-icon { font-size: 0.8rem; color: #00bfbf; opacity: 0; transition: opacity 0.2s; flex-shrink: 0; }
-.chapter-card.active .play-icon { opacity: 1; }
+/* =========================================
+   6. DIAGNOSTICS & FOOTER
+   ========================================= */
+.spectrum-wrapper { display: flex; gap: 40px; margin-bottom: 20px; }
+.spectrum-column { flex: 1; }
+.spectrum-column h4 { font-size: 0.9rem; text-transform: uppercase; text-align: center; margin-bottom: 10px; }
+
+/* Barres DPE (Style propre) */
+.bar-row { height: 20px; margin-bottom: 2px; }
+.bar { height: 100%; color: white; font-size: 0.7rem; display: flex; align-items: center; padding-left: 5px; font-weight: bold; }
+.active-row .bar { border: 2px solid #333; transform: scale(1.05); position: relative; z-index: 2; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+.active-row .bar-value { margin-left: 10px; font-size: 1.2rem; font-weight: 800; color: #333; }
+
+/* Couleurs DPE Standards */
+.class-a { background:#009c6d; width:20%; } .class-b { background:#52b153; width:30%; } .class-c { background:#78bd76; width:40%; }
+.class-d { background:#f4e70f; width:50%; color:#333; } .class-e { background:#f4b400; width:60%; } .class-f { background:#eb8235; width:70%; } .class-g { background:#d7221f; width:80%; }
+.ges-d { background:#778496; width:50%; } /* Gris bleuté pour GES */
+
+.legal-mention-energy { font-size: 0.75rem; text-align: center; color: #888; font-style: italic; }
+
+.legal-footer { background-color: #f9f9f9; padding: 40px 20px; font-size: 0.7rem; color: #888; text-align: center; border-top: 1px solid #eee; }
+.footer-logo img { height: 25px; opacity: 0.4; margin-bottom: 15px; }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-    .info-band { padding: 20px; }
-    .info-content { flex-direction: column; align-items: flex-start; gap: 15px; }
-    .title-block, .details-block, .action-block { width: 100%; text-align: left; }
-    .details-block { padding-top: 0; margin-top: -5px; }
-    .action-block { padding-top: 10px; }
-    .info-band h1 { font-size: 1.4rem; }
-    .btn-solid { display: block; width: 100%; text-align: center; margin-top: 5px; }
-    .brand-header { left: 20px; top: 20px; flex-direction: column; align-items: flex-start; gap: 5px; }
-    .brand-sep { display: none; }
-    .property-details { padding: 60px 20px; }
-    .listing-header h2 { font-size: 1.8rem; }
-    .key-metrics { gap: 30px; justify-content: space-between; }
-    .metric .value { font-size: 1.4rem; }
-    .features-grid-simple { grid-template-columns: 1fr; gap: 10px; }
-}
-
-@media (max-width: 600px) {
-    .chapter-card { flex: 1 1 100%; max-width: 100%; }
-    .dpe-wrapper { gap: 20px; }
-    .dpe-card { max-width: 100%; }
-}
-
-/* =========================================
-   5. DIAGNOSTICS (ÉCHELLE A-G + LABELS)
-   ========================================= */
-.diagnostics-container {
-    margin-top: 60px;
-    margin-bottom: 40px;
-}
-.diag-header { text-align: center; margin-bottom: 40px; }
-.center-divider { width: 50%; margin: 0 auto 30px auto; }
-
-.spectrum-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-    flex-wrap: wrap;
-}
-
-.spectrum-column {
-    flex: 1;
-    min-width: 300px;
-    max-width: 400px;
-}
-
-.spectrum-column h4 {
-    text-align: center; margin-bottom: 15px; font-size: 1.1rem;
-    font-weight: 800; color: #111; text-transform: uppercase;
-}
-
-/* --- NOUVEAUX LABELS (Haut et Bas) --- */
-.spectrum-label-top {
-    font-size: 0.75rem; font-weight: 700; margin-bottom: 5px; margin-left: 2px;
-}
-.spectrum-label-bottom {
-    font-size: 0.75rem; font-weight: 700; margin-top: 8px; margin-left: 2px;
-}
-
-/* Couleurs des textes */
-.text-green { color: #009c6d; }
-.text-red { color: #d7221f; }
-.text-blue { color: #8cb4d9; }
-.text-dark { color: #2d263b; }
-
-/* --- BARRES --- */
-.spectrum-bars {
-    display: flex; flex-direction: column; gap: 4px; 
-    font-family: Arial, sans-serif;
-}
-
-.bar-row {
-    display: flex; align-items: center; height: 26px;
-}
-
-.bar {
-    height: 100%; display: flex; align-items: center; padding-left: 10px;
-    color: white; font-weight: bold; font-size: 0.9rem;
-    clip-path: polygon(0% 0%, 92% 0%, 100% 50%, 92% 100%, 0% 100%);
-    border-radius: 2px 0 0 2px;
-}
-
-/* Largeurs */
-.class-a, .ges-a { width: 30%; }
-.class-b, .ges-b { width: 37%; }
-.class-c, .ges-c { width: 44%; }
-.class-d, .ges-d { width: 51%; }
-.class-e, .ges-e { width: 58%; }
-.class-f, .ges-f { width: 65%; }
-.class-g, .ges-g { width: 72%; }
-
-/* Couleurs Énergie */
-.class-a { background-color: #009c6d; }
-.class-b { background-color: #52b153; }
-.class-c { background-color: #78bd76; }
-.class-d { background-color: #f4e70f; color: #111; }
-.class-e { background-color: #f4b400; }
-.class-f { background-color: #eb8235; }
-.class-g { background-color: #d7221f; }
-
-/* Couleurs GES */
-.ges-a { background-color: #f0f7fb; color: #333; }
-.ges-b { background-color: #bdcde3; color: #333; }
-.ges-c { background-color: #9cb3d3; color: #333; }
-.ges-d { background-color: #778496; }
-.ges-e { background-color: #585d75; }
-.ges-f { background-color: #45475a; }
-.ges-g { background-color: #2d263b; }
-
-/* Score affiché à droite */
-.active-row .bar-value {
-    margin-left: 15px; display: flex; align-items: baseline; gap: 5px;
-    color: #111; position: relative;
-}
-.active-row .bar-value::before {
-    content: ""; display: block; width: 10px; height: 2px; background: #111;
-    position: absolute; left: -12px; top: 50%; transform: translateY(-50%);
-}
-.active-row .bar-value strong { font-size: 1.6rem; font-weight: 800; line-height: 1; }
-.active-row .bar-value span { font-size: 0.75rem; color: #666; font-weight: 500; }
-
-/* Responsive */
-@media (max-width: 600px) {
-    .spectrum-column { width: 100%; margin-bottom: 40px; }
-    .class-d, .ges-d { width: 45%; } 
-}
-/* =========================================
-   MISE EN PAGE GRID (TEXTE GAUCHE / FORM DROITE)
-   ========================================= */
-.listing-body-grid {
-    display: flex;
-    gap: 50px; /* Espace entre texte et formulaire */
-    align-items: flex-start;
-}
-
-.main-content-col {
-    flex: 2; /* Le texte prend 2/3 de la largeur */
-}
-
-.sidebar-col {
-    flex: 1; /* Le formulaire prend 1/3 */
-    position: sticky; /* Le formulaire reste accroché quand on scrolle ! */
-    top: 20px;
-    min-width: 350px;
-}
-
-/* =========================================
-   STYLE CARTE AGENT (STYLE PROPRIETES-PRIVEES)
-   ========================================= */
-.agent-card {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 25px;
-    background-color: #ffffff;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    text-align: center;
-}
-
-.agent-header { margin-bottom: 20px; }
-.presented-by { display: block; font-size: 0.9rem; color: #666; margin-bottom: 5px; }
-.agent-name { 
-    font-size: 1.2rem; 
-    font-weight: 800; 
-    color: #EA1D54; /* Rouge PP */
-    margin: 0; 
-    text-transform: uppercase; 
-}
-
-.agent-photo-wrapper { margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.agent-photo { 
-    width: 100px; height: 100px; 
-    border-radius: 50%; object-fit: cover; 
-    border: 3px solid #f5f5f5; 
-}
-.agent-location { font-size: 0.85rem; font-weight: 600; color: #444; }
-
-.btn-call-agent {
-    display: flex; justify-content: center; align-items: center; gap: 10px;
-    background-color: #EA1D54; color: white;
-    width: 100%; padding: 12px; border-radius: 4px;
-    text-decoration: none; font-weight: 700; text-transform: uppercase;
-    transition: background 0.3s;
-}
-.btn-call-agent:hover { background-color: #c41240; }
-
-.divider-mini { border: 0; height: 1px; background: #eee; margin: 20px 0; }
-
-/* STYLE DU FORMULAIRE */
-.agent-form { display: flex; flex-direction: column; gap: 12px; }
-.agent-form input, .agent-form textarea {
-    width: 100%; padding: 12px;
-    border: 1px solid #ddd; border-radius: 4px;
-    font-family: 'Inter', sans-serif; font-size: 0.9rem;
-}
-.agent-form input:focus, .agent-form textarea:focus {
-    border-color: #EA1D54; outline: none;
-}
-.btn-submit-form {
-    background-color: #EA1D54; color: white;
-    border: none; padding: 12px; border-radius: 4px;
-    font-weight: 700; text-transform: uppercase; cursor: pointer;
-    font-size: 0.9rem; margin-top: 5px;
-}
-.btn-submit-form:hover { background-color: #c41240; }
-
-/* RESPONSIVE MOBILE */
-@media (max-width: 1000px) {
-    .listing-body-grid { flex-direction: column; } /* On empile tout sur mobile */
-    .sidebar-col { width: 100%; min-width: auto; position: static; margin-top: 40px; }
-    .agent-card { padding: 20px; border: 2px solid #f0f0f0; } /* On renforce le cadre sur mobile pour qu'il se voie bien */
-}
-/* =========================================
-   PIED DE PAGE LÉGAL (FOOTER)
-   ========================================= */
-.legal-footer {
-    background-color: #f4f4f4;
-    padding: 30px 20px;
-    border-top: 1px solid #e0e0e0;
-    font-size: 0.75rem; /* Texte petit */
-    color: #666;
-    text-align: center;
-    margin-top: 0;
-}
-
-.footer-content {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.footer-content p {
-    margin: 0;
-    line-height: 1.5;
-}
-
-.footer-content strong {
-    color: #333;
-}
-
-.legal-small {
-    font-size: 0.65rem; /* Encore plus petit pour le pavé juridique */
-    color: #999;
-}
-
-.footer-logo {
-    margin-top: 10px;
-    filter: grayscale(100%); /* Logo en noir et blanc pour la discrétion */
+    .listing-body-grid { flex-direction: column; }
+    .sidebar-col { position: static; width: 100%; margin-top: 40px; }
+    .key-metrics-grid { flex-wrap: wrap; }
+    .metric-box { flex: 1 1 45%; margin-bottom: 20px; }
+    .hero-title { font-size: 2.5rem; }
+    .spectrum-wrapper { flex-direction: column; }
 }
