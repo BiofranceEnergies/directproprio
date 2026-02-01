@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if(el) el.innerText = txt; 
     }
     
-    // 1. HEADER HERO VIDEO (CORRECTION DU BUG DE CHARGEMENT)
+    // 1. HEADER HERO VIDEO
     document.title = HouseData.title + " - Visite Privée";
     setTxt('page-title', HouseData.title);
     setTxt('data-main-title', HouseData.title);
@@ -66,9 +66,9 @@ document.addEventListener("DOMContentLoaded", function() {
     
     const videoHero = document.getElementById('data-hero-video');
     if(videoHero) {
-        // Force le chargement de la source
+        // Force le chargement de la source pour lancer l'autoplay
         videoHero.src = HouseData.heroVideoUrl;
-        videoHero.load(); // Indispensable pour rafraîchir le player
+        videoHero.load(); 
         videoHero.play().catch(e => console.log("Autoplay bloqué par le navigateur (normal sur mobile)"));
     }
 
@@ -155,4 +155,30 @@ document.addEventListener("DOMContentLoaded", function() {
         HouseData.chapters.forEach((c, i) => {
             const num = (i+1).toString().padStart(2, '0');
             const div = document.createElement('div');
-            div.className
+            div.className = (i===0) ? "chapter-card active" : "chapter-card";
+            div.setAttribute('onclick', `jumpToTime(${c.time}, this)`);
+            div.innerHTML = `<div class="chapter-indicator"></div><div class="card-content"><span class="chapter-num">${num}</span><div class="text-group"><h3>${c.title}</h3><span class="duration">${c.subtitle}</span></div></div>`;
+            chapContainer.appendChild(div);
+        });
+    }
+});
+
+// FONCTION SAUT VIDÉO (Celle qui manquait !)
+function jumpToTime(seconds, element) {
+    var iframe = document.getElementById("myYoutubePlayer");
+    if(iframe) {
+        iframe.contentWindow.postMessage(JSON.stringify({
+            "event": "command",
+            "func": "seekTo",
+            "args": [seconds, true]
+        }), "*");
+        iframe.contentWindow.postMessage(JSON.stringify({
+            "event": "command",
+            "func": "playVideo",
+            "args": []
+        }), "*");
+    }
+    // Mise à jour visuelle du bouton actif
+    document.querySelectorAll('.chapter-card').forEach(c => c.classList.remove('active'));
+    element.classList.add('active');
+}
