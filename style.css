@@ -309,3 +309,48 @@ body {
     .dpe-container { flex-direction: column; align-items: center; gap: 40px; }
     .dpe-column { width: 100%; }
 }
+/* =========================================
+   BLOC JURIDIQUE (COMPLIANCE)
+   ========================================= */
+.legal-compliance-block {
+    margin-top: 50px;
+    padding-top: 20px;
+}
+
+.legal-compliance-block h4 {
+    font-family: var(--font-body); /* On repasse en police simple pour le légal */
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.legal-text {
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.legal-text-dense {
+    font-size: 0.8rem; /* Plus petit pour le gros pavé */
+    color: #666;       /* Gris pour être discret */
+    text-align: justify; /* Justifié comme sur les contrats */
+    line-height: 1.5;
+    margin-bottom: 20px;
+    background-color: #fafafa; /* Léger fond pour le distinguer */
+    padding: 15px;
+    border-left: 3px solid #ddd;
+}
+
+.legal-text-small {
+    font-size: 0.75rem;
+    color: #888;
+    font-style: italic;
+}
+
+.legal-text-small a {
+    color: #888;
+    text-decoration: underline;
+}
