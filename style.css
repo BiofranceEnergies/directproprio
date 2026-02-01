@@ -57,7 +57,7 @@ body {
 .txt-white { color: #ffffff; }
 .txt-red { color: var(--pp-red); }
 
-/* TITRE FLOTTANT (NOUVEAU) */
+/* TITRE FLOTTANT SUR VIDÉO */
 .hero-overlay-content {
     position: absolute;
     bottom: 80px; left: 40px; z-index: 5;
@@ -144,7 +144,82 @@ body {
 .immo-icon { width: 20px; height: 20px; stroke: var(--pp-red); fill: none; stroke-width: 2; }
 
 /* =========================================
-   CARTE AGENT (STYLE CARTE DE VISITE)
+   5. DIAGNOSTICS DPE (CORRIGÉ ESCALIER)
+   ========================================= */
+.dpe-container {
+    display: flex;
+    justify-content: center;
+    gap: 60px; 
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.dpe-column {
+    flex: 1;
+    max-width: 400px;
+}
+
+.dpe-column h4 {
+    text-align: center; text-transform: uppercase; font-size: 0.9rem;
+    margin-bottom: 15px; color: #333; font-weight: 700;
+}
+
+.dpe-ladder {
+    display: flex; flex-direction: column; gap: 4px;
+}
+
+/* LIGNE CONTENEUR (Barre + Texte) */
+.dpe-row {
+    display: flex; align-items: center; height: 28px;
+}
+
+/* LA BARRE DE COULEUR */
+.dpe-bar {
+    height: 100%; color: white; font-weight: 700; font-size: 0.8rem;
+    display: flex; align-items: center; padding-left: 10px;
+    border-radius: 0 4px 4px 0;
+}
+
+/* GESTION DES LARGEURS */
+.w-1 { width: 30%; } .w-2 { width: 40%; } .w-3 { width: 50%; } .w-4 { width: 60%; }
+.w-5 { width: 70%; } .w-6 { width: 80%; } .w-7 { width: 90%; }
+
+/* LE TEXTE A CÔTÉ (Pour l'élément actif) */
+.active-row .dpe-value {
+    margin-left: 15px; font-size: 1.4rem; font-weight: 800;
+    color: #111; line-height: 1; white-space: nowrap;
+}
+.active-row .dpe-value span { font-size: 0.7rem; color: #666; font-weight: 500; }
+
+/* EFFET VISUEL SUR LA BARRE ACTIVE */
+.active-row .dpe-bar {
+    transform: scale(1.05); box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    position: relative; z-index: 2; border: 2px solid #333;
+}
+
+/* COULEURS DPE */
+.class-a { background-color: #009c6d; }
+.class-b { background-color: #52b153; }
+.class-c { background-color: #78bd76; }
+.class-d { background-color: #f4e70f; color: #111; }
+.class-e { background-color: #f4b400; }
+.class-f { background-color: #eb8235; }
+.class-g { background-color: #d7221f; }
+
+/* COULEURS GES */
+.ges-a { background-color: #f0f7fb; color: #333; }
+.ges-b { background-color: #bdcde3; color: #333; }
+.ges-c { background-color: #9cb3d3; color: #333; }
+.ges-d { background-color: #778496; }
+.ges-e { background-color: #585d75; }
+.ges-f { background-color: #45475a; }
+.ges-g { background-color: #2d263b; }
+
+.legal-mention-energy { font-size: 0.75rem; text-align: center; color: #888; font-style: italic; }
+
+
+/* =========================================
+   6. CARTE AGENT (STYLE CARTE DE VISITE)
    ========================================= */
 .agent-card {
     background: #fff; padding: 30px;
@@ -177,18 +252,26 @@ body {
 .agent-form input:focus { border-color: var(--pp-red); outline: none; background: #fff; }
 
 /* =========================================
-   5. VISITE GUIDÉE (VIDÉO) & CHAPITRES
+   7. VISITE GUIDÉE (VIDÉO) & CHAPITRES
    ========================================= */
 .video-experience { background-color: #111; color: white; padding: 80px 20px; } /* FOND NOIR POUR CINÉMA */
 .section-title h2 { color: white; font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 10px; }
 .section-title p { color: #888; margin-bottom: 40px; }
+
+.container-player { max-width: 1000px; margin: 0 auto; }
+.main-player-wrapper {
+    width: 100%; aspect-ratio: 16 / 9; background: black;
+    border-radius: 0; /* Plus carré, plus pro */
+    margin-bottom: 30px;
+}
+.main-player-wrapper iframe { width: 100%; height: 100%; border: none; }
 
 .chapter-scroller { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 
 .chapter-card {
     background: #222; /* Gris foncé */
     width: 220px; padding: 15px; cursor: pointer;
-    border-left: 3px solid #444; /* Bordure par défaut */
+    border-left: 3px solid #444;
     transition: all 0.3s;
 }
 .chapter-card:hover { background: #333; }
@@ -196,7 +279,7 @@ body {
 /* ETAT ACTIF : ROUGE PP */
 .chapter-card.active { 
     background: #2a2a2a; 
-    border-left: 3px solid var(--pp-red); /* L'indicateur actif est ROUGE */
+    border-left: 3px solid var(--pp-red);
 }
 .chapter-card.active h3 { color: white; }
 .chapter-num { font-size: 2rem; font-weight: 700; color: #444; display: block; margin-bottom: 5px; line-height: 1; }
@@ -206,34 +289,23 @@ body {
 .duration { font-size: 0.7rem; color: #666; text-transform: uppercase; }
 
 /* =========================================
-   6. DIAGNOSTICS & FOOTER
+   8. FOOTER
    ========================================= */
-.spectrum-wrapper { display: flex; gap: 40px; margin-bottom: 20px; }
-.spectrum-column { flex: 1; }
-.spectrum-column h4 { font-size: 0.9rem; text-transform: uppercase; text-align: center; margin-bottom: 10px; }
-
-/* Barres DPE (Style propre) */
-.bar-row { height: 20px; margin-bottom: 2px; }
-.bar { height: 100%; color: white; font-size: 0.7rem; display: flex; align-items: center; padding-left: 5px; font-weight: bold; }
-.active-row .bar { border: 2px solid #333; transform: scale(1.05); position: relative; z-index: 2; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-.active-row .bar-value { margin-left: 10px; font-size: 1.2rem; font-weight: 800; color: #333; }
-
-/* Couleurs DPE Standards */
-.class-a { background:#009c6d; width:20%; } .class-b { background:#52b153; width:30%; } .class-c { background:#78bd76; width:40%; }
-.class-d { background:#f4e70f; width:50%; color:#333; } .class-e { background:#f4b400; width:60%; } .class-f { background:#eb8235; width:70%; } .class-g { background:#d7221f; width:80%; }
-.ges-d { background:#778496; width:50%; } /* Gris bleuté pour GES */
-
-.legal-mention-energy { font-size: 0.75rem; text-align: center; color: #888; font-style: italic; }
-
 .legal-footer { background-color: #f9f9f9; padding: 40px 20px; font-size: 0.7rem; color: #888; text-align: center; border-top: 1px solid #eee; }
 .footer-logo img { height: 25px; opacity: 0.4; margin-bottom: 15px; }
 
-/* RESPONSIVE */
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
 @media (max-width: 900px) {
     .listing-body-grid { flex-direction: column; }
     .sidebar-col { position: static; width: 100%; margin-top: 40px; }
     .key-metrics-grid { flex-wrap: wrap; }
     .metric-box { flex: 1 1 45%; margin-bottom: 20px; }
     .hero-title { font-size: 2.5rem; }
-    .spectrum-wrapper { flex-direction: column; }
+    
+    /* FIX RESPONSIVE DPE */
+    .dpe-container { flex-direction: column; align-items: center; gap: 40px; }
+    .dpe-column { width: 100%; }
 }
