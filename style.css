@@ -359,3 +359,74 @@ body {
     text-decoration: underline;
     font-weight: 600;
 }
+/* =========================================
+   BLOC ANALYSE EXPERT (STYLE DOSSIER)
+   ========================================= */
+.expert-analysis-box {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-top: 4px solid var(--pp-red);
+    padding: 30px;
+    margin-bottom: 50px;
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.expert-icon {
+    flex-shrink: 0;
+    background-color: #fff;
+    padding: 12px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.expert-content {
+    flex: 1;
+}
+
+.expert-content h4 {
+    font-family: var(--font-body);
+    color: #111;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.expert-content p {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.expert-content strong {
+    color: #111;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.separator-light {
+    border: 0;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 20px 0;
+}
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 700px) {
+    .expert-analysis-box { 
+        flex-direction: column; 
+        padding: 20px;
+    }
+    .expert-icon { margin-bottom: 15px; }
+}
