@@ -371,3 +371,42 @@ body {
     /* Textes légaux minuscules sur mobile */
     .legal-text, .legal-text-dense { font-size: 0.75rem; }
 }
+/* =========================================
+   MOBILE UNIQUEMENT : CENTRAGE "STYLE APP"
+   ========================================= */
+@media (max-width: 900px) {
+    
+    /* 1. On centre les paragraphes de texte */
+    .description-text, 
+    .description-text p,
+    .lead-paragraph {
+        text-align: center;
+    }
+
+    /* 2. On centre le bloc Verdict/Expert */
+    .expert-analysis-box {
+        text-align: center;
+        align-items: center; /* Centre les éléments verticalement */
+    }
+    
+    /* 3. On centre les mentions légales */
+    .legal-compliance-block,
+    .legal-text, 
+    .legal-text-dense,
+    .legal-text-small {
+        text-align: center;
+    }
+
+    /* 4. On centre aussi la carte Agent sur mobile */
+    .agent-header-clean {
+        flex-direction: column; /* Photo au dessus du nom */
+        text-align: center;
+        justify-content: center;
+    }
+    
+    /* Petit ajustement pour que les listes à puces (caractéristiques) restent jolies */
+    .feature-item {
+        justify-content: center;
+    }
+}
+
