@@ -50,16 +50,12 @@ const HouseData = {
    MOTEUR DU SITE (NE PAS TOUCHER)
    ========================================================================== */
 
-// Variable globale pour le lecteur YouTube
+// --- GESTION DU LECTEUR YOUTUBE (API) ---
 var player;
-
-// Fonction appelée automatiquement par l'API YouTube quand elle est prête
 function onYouTubeIframeAPIReady() {
-    // On cible le conteneur et on crée un div temporaire pour ne pas casser le CSS
     var container = document.getElementById('youtube-injector');
     if (!container) return;
     
-    // On nettoie le conteneur et on ajoute une cible propre
     container.innerHTML = '<div id="yt-player-target"></div>';
 
     player = new YT.Player('yt-player-target', {
@@ -67,12 +63,12 @@ function onYouTubeIframeAPIReady() {
         width: '100%',
         videoId: HouseData.youtubeID,
         playerVars: {
-            'autoplay': 0,        // Pas de démarrage auto (ton choix)
-            'rel': 0,             // Pas de vidéos suggérées à la fin
+            'autoplay': 0,        // RESTE À 0 (Pas de démarrage auto)
+            'rel': 0,
             'showinfo': 0,
             'modestbranding': 1,
             'loop': 1,
-            'playlist': HouseData.youtubeID // Nécessaire pour boucler
+            'playlist': HouseData.youtubeID
         },
         events: {
             'onReady': onPlayerReady
@@ -81,23 +77,21 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-    // Le lecteur est prêt à recevoir des ordres
+    // Lecteur prêt
 }
 
-// Fonction pour sauter au chapitre (Celle qui posait problème)
+// Fonction pour les boutons chapitres
 function jumpToTime(seconds, element) {
     if (player && typeof player.seekTo === 'function') {
-        player.seekTo(seconds, true); // Saute au moment
-        player.playVideo();           // FORCE la lecture
-    } else {
-        console.error("Le lecteur YouTube n'est pas encore prêt.");
+        player.seekTo(seconds, true);
+        player.playVideo(); 
     }
-
-    // Mise à jour visuelle des boutons
     document.querySelectorAll('.chapter-card').forEach(c => c.classList.remove('active'));
     element.classList.add('active');
 }
 
+
+// --- CHARGEMENT DU DOM ---
 document.addEventListener("DOMContentLoaded", function() {
     
     // Helper texte
@@ -106,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if(el) el.innerText = txt; 
     }
     
-    // 1. HEADER HERO VIDEO (MODE FORCE BRUTE)
+    // 1. HEADER HERO VIDEO (LE RÉANIMATEUR)
     document.title = HouseData.title + " - Visite Privée";
     setTxt('page-title', HouseData.title);
     setTxt('data-main-title', HouseData.title);
@@ -114,18 +108,36 @@ document.addEventListener("DOMContentLoaded", function() {
     
     const videoHero = document.getElementById('data-hero-video');
     if(videoHero) {
+        // Configuration de base
         videoHero.muted = true;
         videoHero.loop = true;
         videoHero.playsInline = true;
+        videoHero.setAttribute('preload', 'auto'); // Force le préchargement
         videoHero.src = HouseData.heroVideoUrl;
         
-        var playPromise = videoHero.play();
-        if (playPromise !== undefined) {
-            playPromise.then(_ => {}).catch(error => {
-                videoHero.muted = true;
-                videoHero.play();
+        // Démarrage initial
+        var p = videoHero.play();
+        if(p !== undefined) { p.catch(e => { videoHero.muted=true; videoHero.play(); }); }
+
+        // LE RÉANIMATEUR (IntersectionObserver)
+        // Dès que la vidéo revient à l'écran, on force la lecture
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Si la vidéo est visible (même un petit bout)
+                if (entry.isIntersecting) {
+                    // On vérifie si elle est en pause
+                    if (videoHero.paused) {
+                        videoHero.play().catch(e => console.log("Relance auto"));
+                    }
+                }
             });
-        }
+        });
+        observer.observe(videoHero);
+
+        // SECURITÉ SUPPLÉMENTAIRE : Si la vidéo s'arrête (fin de buffer), on relance
+        videoHero.addEventListener('ended', function() {
+            this.play();
+        });
     }
 
     // 2. TEXTES ET CHIFFRES
@@ -194,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // 6. CHAPITRES (VISUELS UNIQUEMENT, LE CLICK EST GÉRÉ PAR jumpToTime)
+    // 6. CHAPITRES (AFFICHAGE)
     const chapContainer = document.getElementById('data-chapters');
     if(chapContainer) {
         chapContainer.innerHTML = '';
@@ -202,7 +214,6 @@ document.addEventListener("DOMContentLoaded", function() {
             const num = (i+1).toString().padStart(2, '0');
             const div = document.createElement('div');
             div.className = (i===0) ? "chapter-card active" : "chapter-card";
-            // On appelle la fonction jumpToTime qui utilise maintenant le player API
             div.setAttribute('onclick', `jumpToTime(${c.time}, this)`);
             div.innerHTML = `<div class="chapter-indicator"></div><div class="card-content"><span class="chapter-num">${num}</span><div class="text-group"><h3>${c.title}</h3><span class="duration">${c.subtitle}</span></div></div>`;
             chapContainer.appendChild(div);
