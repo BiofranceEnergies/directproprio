@@ -7,6 +7,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 <body>
 
@@ -19,7 +20,7 @@
                 </div>
             </div>
             
-            <video autoplay loop muted playsinline preload="auto" id="data-hero-video"></video>
+            <video autoplay loop muted playsinline id="data-hero-video"></video>
 
             <div class="hero-overlay-content">
                 <h1 class="hero-title" id="data-main-title">Chargement...</h1>
@@ -70,10 +71,8 @@
             <div class="listing-body-grid">
                 
                 <div class="main-content-col">
-                    
                     <div class="description-text">
                         <h3>L'Art de Vivre</h3>
-                        
                         <p class="lead-paragraph">
                             Située dans un environnement calme et préservé, cette magnifique propriété de caractère offre une alliance parfaite entre le charme de l'ancien et l'élégance contemporaine.
                         </p>
@@ -102,9 +101,8 @@
                                 <div class="dpe-ladder" id="dpe-ladder-ges"></div>
                             </div>
                         </div>
-                        <p class="legal-mention-energy" id="data-energy-cost">Montant estimé des dépenses annuelles d'énergie : ...</p>
+                        <p class="legal-mention-energy" id="data-energy-cost">...</p>
                     </div>
-
                 </div>
 
                 <div class="sidebar-col">
@@ -138,9 +136,10 @@
                 <h2>Visite Privée Guidée</h2>
                 <p>Découvrez chaque espace dans ses moindres détails.</p>
             </div>
-            <div class="main-player-wrapper">
-                <div id="youtube-injector"></div>
-            </div>
+            
+            <div class="main-player-wrapper" id="youtube-injector">
+                </div>
+            
             <div class="chapter-scroller text-only-mode" id="data-chapters"></div>
         </div>
     </section>
@@ -154,12 +153,11 @@
                 </div>
                 <div class="expert-content">
                     <h4 style="margin-bottom: 5px;">Le Verdict de Sylvain</h4>
-                    
                     <p style="margin-bottom: 0;">
                         "C'est simple : pour trouver ce niveau de calme à 10 minutes de Sarlat, il faut se lever tôt. 
                         <strong>Le rapport emplacement/prix est excellent.</strong> N'attendez pas pour visiter, c'est une valeur sûre."
                     </p>
-                    </div>
+                </div>
             </div>
 
             <div class="legal-compliance-block">
@@ -195,6 +193,5 @@
     </footer>
 
     <script src="script.js"></script>
-
 </body>
 </html>
