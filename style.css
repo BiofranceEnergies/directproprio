@@ -1,18 +1,14 @@
 /* =========================================
-   1. RESET & VARIABLES GLOBALES (STYLE LUXE)
+   1. RESET & VARIABLES GLOBALES
    ========================================= */
 :root {
     --bg-color: #ffffff;
     --bg-alt: #f8f8f8;
-    
-    /* COULEURS CHARTE PROPRIETES-PRIVEES */
-    --pp-red: #EA1D54;         /* Le Rouge officiel */
-    --pp-grey-dark: #2c2c2c;   /* Gris Anthracite foncé */
-    --pp-grey-light: #f1f1f1;  /* Gris très clair pour les fonds */
-    
-    /* TYPOGRAPHIE */
+    --pp-red: #EA1D54;
+    --pp-grey-dark: #2c2c2c;
+    --pp-grey-light: #f1f1f1;
     --font-body: 'Inter', sans-serif;
-    --font-title: 'Playfair Display', serif; /* LA TOUCHE "PRESTIGE" */
+    --font-title: 'Playfair Display', serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,10 +22,10 @@ body {
 }
 
 /* =========================================
-   2. HERO SPLIT (VIDÉO GITHUB)
+   2. HERO SPLIT
    ========================================= */
 .hero-split {
-    height: 90vh; /* Un peu moins que 100vh pour inviter au scroll */
+    height: 90vh;
     width: 100%;
     position: relative;
     background-color: #000;
@@ -43,10 +39,9 @@ body {
 .video-zone video {
     width: 100%; height: 100%;
     object-fit: cover; 
-    opacity: 0.85; /* Légèrement assombri pour lire le texte */
+    opacity: 0.85;
 }
 
-/* LOGO HEADER */
 .brand-header-horizontal {
     position: absolute; top: 30px; left: 40px; z-index: 10;
     display: flex; align-items: center; gap: 15px;
@@ -57,23 +52,19 @@ body {
 .txt-white { color: #ffffff; }
 .txt-red { color: var(--pp-red); }
 
-/* TITRE FLOTTANT SUR VIDÉO */
 .hero-overlay-content {
     position: absolute;
     bottom: 80px; left: 40px; z-index: 5;
     color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 .hero-title {
-    font-family: var(--font-title); /* Police Serif */
+    font-family: var(--font-title);
     font-size: 3.5rem; margin-bottom: 10px; font-weight: 400;
 }
 .hero-subtitle {
     font-size: 1.2rem; font-weight: 300; letter-spacing: 1px; text-transform: uppercase;
 }
 
-/* =========================================
-   BANDEAU "NOUVEAUTÉ" FIN
-   ========================================= */
 .info-band-slim {
     background-color: var(--pp-red);
     color: white; text-align: center;
@@ -82,12 +73,11 @@ body {
 }
 
 /* =========================================
-   3. DÉTAILS IMMO (PRESTIGE)
+   3. DÉTAILS IMMO
    ========================================= */
 .property-details { padding: 80px 20px; background-color: #fff; }
 .container-immo { max-width: 1000px; margin: 0 auto; }
 
-/* HEADER ANNONCE */
 .listing-header { text-align: center; margin-bottom: 60px; }
 .location-tag { 
     color: #888; text-transform: uppercase; letter-spacing: 2px; 
@@ -102,7 +92,6 @@ body {
 }
 .hai { font-style: italic; color: #666; font-family: var(--font-title); }
 
-/* INFOS CLÉS (GRID MODERNE) */
 .key-metrics-grid {
     display: flex; justify-content: space-between; gap: 20px;
     padding: 30px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee;
@@ -118,14 +107,11 @@ body {
 
 .divider-elegant { border: 0; height: 1px; background: #eee; width: 100px; margin: 50px auto; }
 
-/* =========================================
-   4. LAYOUT GRID (TEXTE vs AGENT)
-   ========================================= */
+/* LAYOUT GRID */
 .listing-body-grid { display: flex; gap: 60px; align-items: flex-start; }
 .main-content-col { flex: 2; }
 .sidebar-col { flex: 1; position: sticky; top: 30px; }
 
-/* TEXTE DESCRIPTION */
 .description-text h3, .features-list-container h3, .diagnostics-container h3 {
     font-family: var(--font-title); font-size: 1.6rem; color: #111;
     margin-bottom: 25px; border-bottom: 2px solid var(--pp-red);
@@ -134,7 +120,6 @@ body {
 .lead-paragraph { font-size: 1.15rem; color: #333; font-weight: 500; }
 .description-text p { margin-bottom: 20px; text-align: justify; color: #555; }
 
-/* CARACTÉRISTIQUES */
 .features-grid-simple { 
     display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 50px;
 }
@@ -143,61 +128,34 @@ body {
 }
 .immo-icon { width: 20px; height: 20px; stroke: var(--pp-red); fill: none; stroke-width: 2; }
 
-/* =========================================
-   5. DIAGNOSTICS DPE (CORRIGÉ ESCALIER)
-   ========================================= */
+/* DPE CORRIGÉ */
 .dpe-container {
-    display: flex;
-    justify-content: center;
-    gap: 60px; 
-    margin-top: 30px;
-    margin-bottom: 30px;
+    display: flex; justify-content: center; gap: 60px; 
+    margin-top: 30px; margin-bottom: 30px;
 }
-
-.dpe-column {
-    flex: 1;
-    max-width: 400px;
-}
-
+.dpe-column { flex: 1; max-width: 400px; }
 .dpe-column h4 {
     text-align: center; text-transform: uppercase; font-size: 0.9rem;
     margin-bottom: 15px; color: #333; font-weight: 700;
 }
-
-.dpe-ladder {
-    display: flex; flex-direction: column; gap: 4px;
-}
-
-/* LIGNE CONTENEUR (Barre + Texte) */
-.dpe-row {
-    display: flex; align-items: center; height: 28px;
-}
-
-/* LA BARRE DE COULEUR */
+.dpe-ladder { display: flex; flex-direction: column; gap: 4px; }
+.dpe-row { display: flex; align-items: center; height: 28px; }
 .dpe-bar {
     height: 100%; color: white; font-weight: 700; font-size: 0.8rem;
     display: flex; align-items: center; padding-left: 10px;
     border-radius: 0 4px 4px 0;
 }
-
-/* GESTION DES LARGEURS */
 .w-1 { width: 30%; } .w-2 { width: 40%; } .w-3 { width: 50%; } .w-4 { width: 60%; }
 .w-5 { width: 70%; } .w-6 { width: 80%; } .w-7 { width: 90%; }
-
-/* LE TEXTE A CÔTÉ (Pour l'élément actif) */
 .active-row .dpe-value {
     margin-left: 15px; font-size: 1.4rem; font-weight: 800;
     color: #111; line-height: 1; white-space: nowrap;
 }
 .active-row .dpe-value span { font-size: 0.7rem; color: #666; font-weight: 500; }
-
-/* EFFET VISUEL SUR LA BARRE ACTIVE */
 .active-row .dpe-bar {
     transform: scale(1.05); box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
     position: relative; z-index: 2; border: 2px solid #333;
 }
-
-/* COULEURS DPE */
 .class-a { background-color: #009c6d; }
 .class-b { background-color: #52b153; }
 .class-c { background-color: #78bd76; }
@@ -206,7 +164,6 @@ body {
 .class-f { background-color: #eb8235; }
 .class-g { background-color: #d7221f; }
 
-/* COULEURS GES */
 .ges-a { background-color: #f0f7fb; color: #333; }
 .ges-b { background-color: #bdcde3; color: #333; }
 .ges-c { background-color: #9cb3d3; color: #333; }
@@ -217,17 +174,13 @@ body {
 
 .legal-mention-energy { font-size: 0.75rem; text-align: center; color: #888; font-style: italic; }
 
-
-/* =========================================
-   6. CARTE AGENT (STYLE CARTE DE VISITE)
-   ========================================= */
+/* AGENT */
 .agent-card {
     background: #fff; padding: 30px;
     border: 1px solid #eee; 
-    border-top: 4px solid var(--pp-red); /* LA TOUCHE PP */
+    border-top: 4px solid var(--pp-red);
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
-
 .agent-header-clean { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; text-align: left; }
 .agent-photo { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; }
 .agent-info { display: flex; flex-direction: column; }
@@ -252,180 +205,71 @@ body {
 .agent-form input:focus { border-color: var(--pp-red); outline: none; background: #fff; }
 
 /* =========================================
-   7. VISITE GUIDÉE (VIDÉO) & CHAPITRES
+   7. VIDÉO PLAYER FIX (CORRIGÉ 100%)
    ========================================= */
-.video-experience { background-color: #111; color: white; padding: 80px 20px; } /* FOND NOIR POUR CINÉMA */
+.video-experience { background-color: #111; color: white; padding: 80px 20px; }
 .section-title h2 { color: white; font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 10px; }
 .section-title p { color: #888; margin-bottom: 40px; }
 
 .container-player { max-width: 1000px; margin: 0 auto; }
+
+/* LE HACK 16:9 RESPONSIVE */
 .main-player-wrapper {
-    width: 100%; aspect-ratio: 16 / 9; background: black;
-    border-radius: 0; /* Plus carré, plus pro */
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Ratio 16:9 (9/16 = 0.5625) */
+    height: 0;
+    background: #000;
     margin-bottom: 30px;
 }
-.main-player-wrapper iframe { width: 100%; height: 100%; border: none; }
+.main-player-wrapper iframe { 
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none; 
+}
 
 .chapter-scroller { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-
 .chapter-card {
-    background: #222; /* Gris foncé */
-    width: 220px; padding: 15px; cursor: pointer;
-    border-left: 3px solid #444;
-    transition: all 0.3s;
+    background: #222; width: 220px; padding: 15px; cursor: pointer;
+    border-left: 3px solid #444; transition: all 0.3s;
 }
 .chapter-card:hover { background: #333; }
-
-/* ETAT ACTIF : ROUGE PP */
-.chapter-card.active { 
-    background: #2a2a2a; 
-    border-left: 3px solid var(--pp-red);
-}
-.chapter-card.active h3 { color: white; }
+.chapter-card.active { background: #2a2a2a; border-left: 3px solid var(--pp-red); }
 .chapter-num { font-size: 2rem; font-weight: 700; color: #444; display: block; margin-bottom: 5px; line-height: 1; }
 .chapter-card.active .chapter-num { color: var(--pp-red); opacity: 0.4; }
-
 .chapter-card h3 { font-size: 0.9rem; color: #ccc; margin: 0; font-weight: 600; }
 .duration { font-size: 0.7rem; color: #666; text-transform: uppercase; }
 
 /* =========================================
-   8. FOOTER
+   FOOTER & BLOCS
    ========================================= */
 .legal-footer { background-color: #f9f9f9; padding: 40px 20px; font-size: 0.7rem; color: #888; text-align: center; border-top: 1px solid #eee; }
 .footer-logo img { height: 25px; opacity: 0.4; margin-bottom: 15px; }
 
+.expert-analysis-box {
+    background-color: #f8f9fa; border: 1px solid #e0e0e0;
+    border-top: 4px solid var(--pp-red); padding: 30px; margin-bottom: 50px;
+    display: flex; gap: 25px; align-items: flex-start; border-radius: 4px;
+}
+.expert-icon { flex-shrink: 0; background-color: #fff; padding: 12px; border-radius: 50%; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; }
+.expert-content { flex: 1; }
+.expert-content h4 { font-family: var(--font-body); color: #111; font-size: 1.1rem; text-transform: uppercase; font-weight: 800; margin-bottom: 15px; }
+.expert-content p { font-size: 0.95rem; color: #444; line-height: 1.7; }
 
-/* =========================================
-   RESPONSIVE
-   ========================================= */
+.legal-compliance-block { margin-top: 20px; padding-top: 20px; }
+.legal-compliance-block h4 { font-family: var(--font-body); font-size: 1.4rem; text-transform: uppercase; color: #111; margin-bottom: 25px; font-weight: 800; }
+.legal-text { font-size: 1.1rem; color: #000; line-height: 1.6; margin-bottom: 25px; }
+.legal-text-dense { font-size: 1rem; color: #333; text-align: justify; line-height: 1.6; margin-bottom: 25px; background-color: #f4f4f4; padding: 25px; border-left: 5px solid #ccc; border-radius: 4px; }
+.legal-text-small { font-size: 0.9rem; color: #666; font-style: italic; margin-top: 20px; }
+
 @media (max-width: 900px) {
     .listing-body-grid { flex-direction: column; }
     .sidebar-col { position: static; width: 100%; margin-top: 40px; }
     .key-metrics-grid { flex-wrap: wrap; }
     .metric-box { flex: 1 1 45%; margin-bottom: 20px; }
     .hero-title { font-size: 2.5rem; }
-    
-    /* FIX RESPONSIVE DPE */
     .dpe-container { flex-direction: column; align-items: center; gap: 40px; }
     .dpe-column { width: 100%; }
-}
-
-/* =========================================
-   BLOC ANALYSE EXPERT (STYLE DOSSIER)
-   ========================================= */
-.expert-analysis-box {
-    background-color: #f8f9fa;
-    border: 1px solid #e0e0e0;
-    border-top: 4px solid var(--pp-red);
-    padding: 30px;
-    margin-bottom: 50px;
-    display: flex;
-    gap: 25px;
-    align-items: flex-start;
-    border-radius: 4px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-}
-
-.expert-icon {
-    flex-shrink: 0;
-    background-color: #fff;
-    padding: 12px;
-    border-radius: 50%;
-    border: 1px solid #eee;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.expert-content {
-    flex: 1;
-}
-
-.expert-content h4 {
-    font-family: var(--font-body);
-    color: #111;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    font-weight: 800;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-}
-
-.expert-content p {
-    font-size: 0.95rem;
-    color: #444;
-    line-height: 1.7;
-    margin-bottom: 10px;
-}
-
-.expert-content strong {
-    color: #111;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-}
-
-.separator-light {
-    border: 0;
-    height: 1px;
-    background: #e0e0e0;
-    margin: 20px 0;
-}
-
-@media (max-width: 700px) {
-    .expert-analysis-box { 
-        flex-direction: column; 
-        padding: 20px;
-    }
-    .expert-icon { margin-bottom: 15px; }
-}
-
-/* =========================================
-   BLOC JURIDIQUE (VERSION LISIBLE & REMPLIE)
-   ========================================= */
-.legal-compliance-block {
-    margin-top: 20px;
-    padding-top: 20px;
-}
-
-.legal-compliance-block h4 {
-    font-family: var(--font-body); 
-    font-size: 1.4rem; 
-    text-transform: uppercase;
-    color: #111; 
-    margin-bottom: 25px;
-    font-weight: 800;
-}
-
-.legal-text {
-    font-size: 1.1rem; 
-    color: #000;       
-    line-height: 1.6;
-    margin-bottom: 25px;
-}
-
-.legal-text-dense {
-    font-size: 1rem;   
-    color: #333;       
-    text-align: justify; 
-    line-height: 1.6;
-    margin-bottom: 25px;
-    background-color: #f4f4f4; 
-    padding: 25px;     
-    border-left: 5px solid #ccc; 
-    border-radius: 4px;
-}
-
-.legal-text-small {
-    font-size: 0.9rem; 
-    color: #666;
-    font-style: italic;
-    margin-top: 20px;
-}
-
-.legal-text-small a {
-    color: #333;
-    text-decoration: underline;
-    font-weight: 600;
+    .expert-analysis-box { flex-direction: column; }
 }
