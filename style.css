@@ -309,56 +309,7 @@ body {
     .dpe-container { flex-direction: column; align-items: center; gap: 40px; }
     .dpe-column { width: 100%; }
 }
-/* =========================================
-   BLOC JURIDIQUE (VERSION LISIBLE & REMPLIE)
-   ========================================= */
-.legal-compliance-block {
-    margin-top: 20px;
-    padding-top: 20px;
-    /* On peut limiter la largeur pour que ça ne fasse pas trop "étiré" si tu veux, 
-       mais ici on garde la largeur du conteneur */
-}
 
-.legal-compliance-block h4 {
-    font-family: var(--font-body); 
-    font-size: 1.4rem; /* TITRE PLUS GROS */
-    text-transform: uppercase;
-    color: #111; /* NOIR */
-    margin-bottom: 25px;
-    font-weight: 800;
-}
-
-.legal-text {
-    font-size: 1.1rem; /* TEXTE PRIX PLUS GROS (Taille normale) */
-    color: #000;       /* NOIR INTENSE */
-    line-height: 1.6;
-    margin-bottom: 25px;
-}
-
-.legal-text-dense {
-    font-size: 1rem;   /* TEXTE MANDAT PLUS GROS (Taille lecture standard) */
-    color: #333;       /* GRIS FONCÉ (plus lisible que le gris clair) */
-    text-align: justify; 
-    line-height: 1.6;
-    margin-bottom: 25px;
-    background-color: #f4f4f4; 
-    padding: 25px;     /* PLUS D'ESPACE DANS LA BOITE */
-    border-left: 5px solid #ccc; /* BORDURE PLUS ÉPAISSE */
-    border-radius: 4px;
-}
-
-.legal-text-small {
-    font-size: 0.9rem; /* UN PEU PLUS GROS */
-    color: #666;
-    font-style: italic;
-    margin-top: 20px;
-}
-
-.legal-text-small a {
-    color: #333;
-    text-decoration: underline;
-    font-weight: 600;
-}
 /* =========================================
    BLOC ANALYSE EXPERT (STYLE DOSSIER)
    ========================================= */
@@ -422,11 +373,59 @@ body {
     margin: 20px 0;
 }
 
-/* RESPONSIVE MOBILE */
 @media (max-width: 700px) {
     .expert-analysis-box { 
         flex-direction: column; 
         padding: 20px;
     }
     .expert-icon { margin-bottom: 15px; }
+}
+
+/* =========================================
+   BLOC JURIDIQUE (VERSION LISIBLE & REMPLIE)
+   ========================================= */
+.legal-compliance-block {
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.legal-compliance-block h4 {
+    font-family: var(--font-body); 
+    font-size: 1.4rem; 
+    text-transform: uppercase;
+    color: #111; 
+    margin-bottom: 25px;
+    font-weight: 800;
+}
+
+.legal-text {
+    font-size: 1.1rem; 
+    color: #000;       
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.legal-text-dense {
+    font-size: 1rem;   
+    color: #333;       
+    text-align: justify; 
+    line-height: 1.6;
+    margin-bottom: 25px;
+    background-color: #f4f4f4; 
+    padding: 25px;     
+    border-left: 5px solid #ccc; 
+    border-radius: 4px;
+}
+
+.legal-text-small {
+    font-size: 0.9rem; 
+    color: #666;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+.legal-text-small a {
+    color: #333;
+    text-decoration: underline;
+    font-weight: 600;
 }
