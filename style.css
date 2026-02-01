@@ -247,29 +247,128 @@ body {
 .legal-footer { background-color: #f9f9f9; padding: 40px 20px; font-size: 0.7rem; color: #888; text-align: center; border-top: 1px solid #eee; }
 .footer-logo img { height: 25px; opacity: 0.4; margin-bottom: 15px; }
 
+/* =========================================
+   FOOTER & BLOCS (CORRECTIF FINESSE)
+   ========================================= */
+
+/* 1. LE BLOC VERDICT (Rose) */
 .expert-analysis-box {
-    background-color: #f8f9fa; border: 1px solid #e0e0e0;
-    border-top: 4px solid var(--pp-red); padding: 30px; margin-bottom: 50px;
-    display: flex; gap: 25px; align-items: flex-start; border-radius: 4px;
+    background-color: #fff4f7;
+    border: 1px solid #ffe0e9;
+    border-top: 3px solid var(--pp-red);
+    padding: 25px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start; /* Aligné en haut */
+    border-radius: 4px;
 }
-.expert-icon { flex-shrink: 0; background-color: #fff; padding: 12px; border-radius: 50%; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; }
-.expert-content { flex: 1; }
-.expert-content h4 { font-family: var(--font-body); color: #111; font-size: 1.1rem; text-transform: uppercase; font-weight: 800; margin-bottom: 15px; }
-.expert-content p { font-size: 0.95rem; color: #444; line-height: 1.7; }
 
-.legal-compliance-block { margin-top: 20px; padding-top: 20px; }
-.legal-compliance-block h4 { font-family: var(--font-body); font-size: 1.4rem; text-transform: uppercase; color: #111; margin-bottom: 25px; font-weight: 800; }
-.legal-text { font-size: 1.1rem; color: #000; line-height: 1.6; margin-bottom: 25px; }
-.legal-text-dense { font-size: 1rem; color: #333; text-align: justify; line-height: 1.6; margin-bottom: 25px; background-color: #f4f4f4; padding: 25px; border-left: 5px solid #ccc; border-radius: 4px; }
-.legal-text-small { font-size: 0.9rem; color: #666; font-style: italic; margin-top: 20px; }
+.expert-icon {
+    flex-shrink: 0;
+    background-color: #fff;
+    width: 50px; height: 50px; /* Taille fixe */
+    border-radius: 50%;
+    border: 1px solid #ffe0e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.expert-content h4 {
+    font-family: var(--font-body);
+    color: #111;
+    font-size: 0.95rem; /* Plus petit, plus chic */
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.expert-content p {
+    font-size: 0.95rem; /* Taille standard */
+    color: #444;
+    line-height: 1.6;
+}
+
+/* 2. LE BLOC LÉGAL (C'est ici qu'on réduit tout !) */
+.legal-compliance-block {
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+/* Le Titre "Mentions Légales" */
+.legal-compliance-block h4 {
+    font-family: var(--font-body); 
+    font-size: 0.9rem; /* TRES PETIT (Style H5) */
+    text-transform: uppercase;
+    color: #444; 
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* Le texte Prix / Honoraires */
+.legal-text {
+    font-size: 0.85rem; /* Petites lignes */
+    color: #333;       
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+/* Le bloc gris "Mandat" */
+.legal-text-dense {
+    font-size: 0.8rem;   /* Encore plus petit */
+    color: #555;       
+    text-align: justify; 
+    line-height: 1.4;
+    margin-bottom: 15px;
+    background-color: #f9f9f9; 
+    padding: 15px;     
+    border-left: 3px solid #ddd; 
+    border-radius: 4px;
+}
+
+/* Le lien Géorisques */
+.legal-text-small {
+    font-size: 0.7rem; /* Minuscule */
+    color: #999;
+    font-style: italic;
+    margin-top: 10px;
+}
+.legal-text-small a { color: #777; text-decoration: underline; }
+
+/* 3. FOOTER */
+.legal-footer { 
+    background-color: #fff; 
+    padding: 30px 20px; 
+    font-size: 0.7rem; 
+    color: #aaa; 
+    text-align: center; 
+    border-top: 1px solid #f0f0f0; 
+}
+.footer-logo img { height: 20px; opacity: 0.3; margin-bottom: 10px; }
+
+
+/* =========================================
+   AJUSTEMENTS GÉNÉRAUX (POUR EVITER L'EFFET "GROS")
+   ========================================= */
+
+/* On réduit un peu les titres H1 et H2 partout */
+.prestige-title { font-size: 2.5rem; } /* Au lieu de 3rem */
+.hero-title { font-size: 3rem; } /* Au lieu de 3.5rem */
+
+/* On réduit un peu le texte de description principal */
+.description-text p { font-size: 0.95rem; color: #555; }
+.lead-paragraph { font-size: 1.05rem; }
+
+/* Mobile : On réduit encore pour que ça rentre */
 @media (max-width: 900px) {
-    .listing-body-grid { flex-direction: column; }
-    .sidebar-col { position: static; width: 100%; margin-top: 40px; }
-    .key-metrics-grid { flex-wrap: wrap; }
-    .metric-box { flex: 1 1 45%; margin-bottom: 20px; }
-    .hero-title { font-size: 2.5rem; }
-    .dpe-container { flex-direction: column; align-items: center; gap: 40px; }
-    .dpe-column { width: 100%; }
-    .expert-analysis-box { flex-direction: column; }
+    .prestige-title { font-size: 2rem; }
+    .hero-title { font-size: 2.2rem; }
+    .legal-text, .legal-text-dense { font-size: 0.75rem; } /* Très petit sur mobile */
 }
+
