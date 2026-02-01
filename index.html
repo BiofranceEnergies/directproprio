@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Domaine des Deux Cèdres - Visite Privée</title>
+    <title id="page-title">Visite Privée - Chargement...</title> 
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -12,21 +12,18 @@
 
     <header class="hero-split">
         <div class="video-zone">
-            
             <div class="brand-header-horizontal">
-                <img class="brand-icon" src="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/25f57ebd3b22387598936912917eb0042ab36e8a/assets/video/logo%202%20ppcom.webp" alt="Logo Direct Proprio">
+                <img class="brand-icon" src="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/25f57ebd3b22387598936912917eb0042ab36e8a/assets/video/logo%202%20ppcom.webp" alt="Logo">
                 <div class="brand-text-horizontal">
                     <span class="txt-white">Proprietes-</span><span class="txt-red">privees.com</span>
                 </div>
             </div>
             
-            <video autoplay loop muted playsinline preload="auto">
-                <source src="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/448ea69e534288cafa7204c71ed6da4df8c49eee/assets/video/sabouret%2012.mp4" type="video/mp4">
-            </video>
+            <video autoplay loop muted playsinline preload="auto" id="data-hero-video"></video>
 
             <div class="hero-overlay-content">
-                <h1 class="hero-title">Le Domaine des Deux Cèdres</h1>
-                <p class="hero-subtitle">Sarlat-la-Canéda • 4 Hectares de Sérénité</p>
+                <h1 class="hero-title" id="data-main-title">Chargement...</h1>
+                <p class="hero-subtitle" id="data-subtitle">...</p>
             </div>
         </div>
     </header>
@@ -41,30 +38,30 @@
         <div class="container-immo">
             
             <div class="listing-header">
-                <div class="location-tag">Sarlat-la-Canéda (24200)</div>
-                <h2 class="prestige-title">Maison de caractère rénovée</h2>
+                <div class="location-tag" id="data-location">Ville</div>
+                <h2 class="prestige-title" id="data-type-title">Type de bien</h2>
                 <div class="price-wrapper">
-                    <span class="price-tag">695 000 €</span>
+                    <span class="price-tag" id="data-price">0 €</span>
                     <span class="hai">Honoraires d'Agence Inclus</span>
                 </div>
             </div>
 
             <div class="key-metrics-grid">
                 <div class="metric-box">
-                    <span class="value">240</span>
+                    <span class="value" id="data-surface">-</span>
                     <span class="label">m² Habitables</span>
                 </div>
                 <div class="metric-box">
-                    <span class="value">7</span>
+                    <span class="value" id="data-rooms">-</span>
                     <span class="label">Pièces</span>
                 </div>
                 <div class="metric-box">
-                    <span class="value">4</span>
+                    <span class="value" id="data-bedrooms">-</span>
                     <span class="label">Chambres</span>
                 </div>
                 <div class="metric-box">
-                    <span class="value">4</span>
-                    <span class="label">Hectares</span>
+                    <span class="value" id="data-land">-</span>
+                    <span class="label">Terrain</span>
                 </div>
             </div>
 
@@ -76,6 +73,7 @@
                     
                     <div class="description-text">
                         <h3>L'Art de Vivre</h3>
+                        
                         <p class="lead-paragraph">
                             Située dans un environnement calme et préservé, cette magnifique propriété de caractère offre une alliance parfaite entre le charme de l'ancien et l'élégance contemporaine.
                         </p>
@@ -85,32 +83,11 @@
                         <p>
                             À l'extérieur, le parc de 4 hectares accueille une piscine au sel (10x4m) chauffée, avec une vue dégagée sur la vallée, sans aucun vis-à-vis. Une dépendance de 40 m² (garage double) complète ce bien d'exception.
                         </p>
-                    </div>
+                        </div>
 
                     <div class="features-list-container">
                         <h3>Caractéristiques Techniques</h3>
-                        <div class="features-grid-simple">
-                            <div class="feature-item">
-                                <svg class="immo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-                                <span>7 pièces</span>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="immo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>
-                                <span>4 chambres</span>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="immo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="10" y1="5" x2="8" y2="7"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-                                <span>3 salles d'eau</span>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="immo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>
-                                <span>Pompe à Chaleur</span>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="immo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
-                                <span>Piscine 10x4m (Sel)</span>
-                            </div>
-                        </div>
+                        <div class="features-grid-simple" id="data-features-list"></div>
                     </div>
 
                     <div class="diagnostics-container">
@@ -118,55 +95,30 @@
                         <div class="dpe-container">
                             <div class="dpe-column">
                                 <h4>Consommation</h4>
-                                <div class="dpe-ladder">
-                                    <div class="dpe-row"><div class="dpe-bar class-a w-1">A</div></div>
-                                    <div class="dpe-row"><div class="dpe-bar class-b w-2">B</div></div>
-                                    <div class="dpe-row"><div class="dpe-bar class-c w-3">C</div></div>
-                                    <div class="dpe-row active-row">
-                                        <div class="dpe-bar class-d w-4">D</div>
-                                        <div class="dpe-value">195 <span>kWh/m²</span></div>
-                                    </div>
-                                    <div class="dpe-row"><div class="dpe-bar class-e w-5">E</div></div>
-                                    <div class="dpe-row"><div class="dpe-bar class-f w-6">F</div></div>
-                                    <div class="dpe-row"><div class="dpe-bar class-g w-7">G</div></div>
-                                </div>
+                                <div class="dpe-ladder" id="dpe-ladder-conso"></div> 
                             </div>
                             <div class="dpe-column">
                                 <h4>Émissions (GES)</h4>
-                                <div class="dpe-ladder">
-                                    <div class="dpe-row"><div class="dpe-bar ges-a w-1">A</div></div>
-                                    <div class="dpe-row"><div class="dpe-bar ges-b w-2">B</div></div>
-                                    <div class="dpe-row"><div class="dpe-bar ges-c w-3">C</div></div>
-                                    <div class="dpe-row active-row">
-                                        <div class="dpe-bar ges-d w-4">D</div>
-                                        <div class="dpe-value">38 <span>kg CO₂/m²</span></div>
-                                    </div>
-                                    <div class="dpe-row"><div class="dpe-bar ges-e w-5">E</div></div>
-                                    <div class="dpe-row"><div class="dpe-bar ges-f w-6">F</div></div>
-                                    <div class="dpe-row"><div class="dpe-bar ges-g w-7">G</div></div>
-                                </div>
+                                <div class="dpe-ladder" id="dpe-ladder-ges"></div>
                             </div>
                         </div>
-                        <p class="legal-mention-energy">Montant estimé des dépenses annuelles d'énergie : entre 1500 € et 2100 €.</p>
+                        <p class="legal-mention-energy" id="data-energy-cost">Montant estimé des dépenses annuelles d'énergie : ...</p>
                     </div>
 
-                </div> <div class="sidebar-col">
+                </div>
+
+                <div class="sidebar-col">
                     <div class="agent-card">
                         <div class="agent-header-clean">
                             <img src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/05855fb2c8325231e8bcfeabd7f1737355e8c812/AVATAR%20MOI.png" alt="Sylvain Matignon" class="agent-photo">
                             <div class="agent-info">
                                 <span class="agent-role">Votre Conseiller</span>
                                 <h3 class="agent-name">SYLVAIN MATIGNON</h3>
-                                <span class="agent-location">📍 SARLAT-LA-CANÉDA</span>
+                                <span class="agent-location">📍 <span id="data-agent-city">SARLAT</span></span>
                             </div>
                         </div>
-
-                        <a href="tel:0600000000" class="btn-call-agent">
-                            Appeler le conseiller
-                        </a>
-                        
+                        <a href="#" class="btn-call-agent" id="data-agent-tel">Appeler le conseiller</a>
                         <div class="or-divider"><span>OU</span></div>
-
                         <form class="agent-form">
                             <input type="text" placeholder="Votre Nom" required>
                             <input type="tel" placeholder="Votre Téléphone" required>
@@ -174,112 +126,57 @@
                             <button type="submit" class="btn-submit-form">Demander une visite</button>
                         </form>
                     </div>
-                </div> </div> </div>
+                </div>
+
+            </div>
+        </div>
     </section>
 
     <section id="experience" class="video-experience">
         <div class="container-player">
-            
             <div class="section-title">
                 <h2>Visite Privée Guidée</h2>
                 <p>Découvrez chaque espace dans ses moindres détails.</p>
             </div>
-
             <div class="main-player-wrapper">
-                <iframe 
-                    id="myYoutubePlayer"
-                    src="https://www.youtube.com/embed/e2gSjrCwafQ?enablejsapi=1&rel=0&modestbranding=1&showinfo=0&loop=1&playlist=e2gSjrCwafQ" 
-                    title="Visite Privée" 
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
+                <div id="youtube-injector"></div>
             </div>
-
-            <div class="chapter-scroller text-only-mode">
-                <div class="chapter-card active" onclick="jumpToTime(0, this)">
-                    <div class="chapter-indicator"></div>
-                    <div class="card-content">
-                        <span class="chapter-num">01</span>
-                        <div class="text-group">
-                            <h3>Le Grand Salon</h3>
-                            <span class="duration">Rez-de-chaussée</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="chapter-card" onclick="jumpToTime(45, this)">
-                    <div class="chapter-indicator"></div>
-                    <div class="card-content">
-                        <span class="chapter-num">02</span>
-                        <div class="text-group">
-                            <h3>Cuisine & Repas</h3>
-                            <span class="duration">Espace de vie</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="chapter-card" onclick="jumpToTime(90, this)">
-                    <div class="chapter-indicator"></div>
-                    <div class="card-content">
-                        <span class="chapter-num">03</span>
-                        <div class="text-group">
-                            <h3>Suite Parentale</h3>
-                            <span class="duration">Espace nuit</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="chapter-card" onclick="jumpToTime(140, this)">
-                    <div class="chapter-indicator"></div>
-                    <div class="card-content">
-                        <span class="chapter-num">04</span>
-                        <div class="text-group">
-                            <h3>Parc & Piscine</h3>
-                            <span class="duration">Extérieurs</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="chapter-scroller text-only-mode" id="data-chapters"></div>
         </div>
     </section>
 
     <section style="background-color: #fff; padding-bottom: 60px; padding-top: 60px;">
         <div class="container-immo">
             
-            <div class="expert-analysis-box">
+            <div class="expert-analysis-box" style="align-items: center; background-color: #fff4f7; border-color: #EA1D54;">
                 <div class="expert-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#EA1D54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-1 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#EA1D54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                 </div>
                 <div class="expert-content">
-                    <h4>L'Analyse du Pro</h4>
-                    <p>
-                        <strong>📍 Le Contexte :</strong> Cette propriété bénéficie d'un emplacement premium, au calme absolu tout en restant à 10 min des commodités. Le bâti principal est sain et la toiture révisée.
+                    <h4 style="margin-bottom: 5px;">Le Verdict de Sylvain</h4>
+                    
+                    <p style="margin-bottom: 0;">
+                        "C'est simple : pour trouver ce niveau de calme à 10 minutes de Sarlat, il faut se lever tôt. 
+                        <strong>Le rapport emplacement/prix est excellent.</strong> N'attendez pas pour visiter, c'est une valeur sûre."
                     </p>
-                    <hr class="separator-light">
-                    <p>
-                        <strong>💎 Le rapport Qualité/Prix :</strong> Un ajustement technique sur les extérieurs est à prévoir (dossier devis complet disponible sur demande). <span style="color: #EA1D54; font-weight: 700;">C'est un atout pour vous :</span> le prix de vente tient déjà compte de ces travaux et positionne ce bien en dessous de sa valeur de marché réelle. Une opportunité rare d'acquérir une propriété de ce standing à ce prix.
-                    </p>
-                </div>
+                    </div>
             </div>
+
             <div class="legal-compliance-block">
                 <hr class="divider-elegant">
-                
                 <h4>Mentions Légales & Financières</h4>
-                
                 <p class="legal-text">
-                    <strong>Prix de vente :</strong> 695 000 euros Honoraires Agence Inclus (HAI).<br>
-                    Honoraires : 3.99 % TTC inclus à la charge de l'acquéreur (soit 26 660 euros TTC).<br>
-                    Prix hors honoraires : 668 340 euros.
+                    <strong>Prix de vente :</strong> <span id="legal-price"></span> euros Honoraires Agence Inclus (HAI).<br>
+                    Honoraires : <span id="legal-fees"></span> % TTC inclus à la charge de l'acquéreur.<br>
+                    Prix hors honoraires : <span id="legal-net-price"></span> euros.
                 </p>
-
                 <p class="legal-text-dense">
-                    Pour visiter et vous accompagner dans votre projet, contactez <strong>Sylvain MATIGNON</strong>, au 06.00.00.00.00 ou par courriel à s.matignon@proprietes-privees.com.
+                    Pour visiter, contactez Sylvain MATIGNON.
                     <br><br>
-                    Cette présente annonce a été rédigée sous la responsabilité éditoriale de Sylvain MATIGNON agissant sous le statut d'agent commercial immatriculé au RSAC PERIGUEUX 000 000 000 auprès de la SAS PROPRIETES PRIVEES, Réseau national immobilier, au capital de 40000 €, 44 ALLÉE DES CINQ CONTINENTS - ZAC LE CHÊNE FERRÉ, 44120 VERTOU, RCS Nantes n° 487 624 777 00040, Carte professionnelle T et G n° CPI 4401 2016 000 010 388 CCI Nantes-Saint Nazaire. Garantie GALIAN - 89 rue de la Boétie, 75008 Paris.
-                    <br><br>
-                    <strong>Mandat réf : XXXXXX</strong> - Le professionnel garantit et sécurise votre projet immobilier.
+                    <strong>Mandat réf : <span id="legal-mandat">XXXXXX</span></strong> - Le professionnel garantit et sécurise votre projet immobilier.
                 </p>
-
                 <p class="legal-text-small">
-                    Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques : <a href="https://www.georisques.gouv.fr" target="_blank">www.georisques.gouv.fr</a>
+                    Les informations sur les risques sont disponibles sur <a href="https://www.georisques.gouv.fr" target="_blank">www.georisques.gouv.fr</a>
                 </p>
             </div>
 
@@ -291,9 +188,8 @@
             <div class="footer-logo">
                 <img src="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/a06bc67f5ee3d3623138470f14f7a1e0aeea4345/assets/video/icone%20pp.com.webp" alt="Logo PP">
             </div>
-            
             <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">
-                © 2024 Sylvain MATIGNON - Mandataire indépendant Proprietes-privees.com
+                © 2026 Sylvain MATIGNON - Mandataire indépendant Proprietes-privees.com
             </p>
         </div>
     </footer>
