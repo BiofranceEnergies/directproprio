@@ -114,73 +114,139 @@
                     </div>
 
                     <div class="diagnostics-container">
-    <h3>Performance Énergétique</h3>
-    
-    <div class="dpe-container">
-        
-        <div class="dpe-column">
-            <h4>Consommation</h4>
-            <div class="dpe-ladder">
-                <div class="dpe-row">
-                    <div class="dpe-bar class-a w-1">A</div>
+                        <h3>Performance Énergétique</h3>
+                        <div class="dpe-container">
+                            <div class="dpe-column">
+                                <h4>Consommation</h4>
+                                <div class="dpe-ladder">
+                                    <div class="dpe-row"><div class="dpe-bar class-a w-1">A</div></div>
+                                    <div class="dpe-row"><div class="dpe-bar class-b w-2">B</div></div>
+                                    <div class="dpe-row"><div class="dpe-bar class-c w-3">C</div></div>
+                                    <div class="dpe-row active-row">
+                                        <div class="dpe-bar class-d w-4">D</div>
+                                        <div class="dpe-value">195 <span>kWh/m²</span></div>
+                                    </div>
+                                    <div class="dpe-row"><div class="dpe-bar class-e w-5">E</div></div>
+                                    <div class="dpe-row"><div class="dpe-bar class-f w-6">F</div></div>
+                                    <div class="dpe-row"><div class="dpe-bar class-g w-7">G</div></div>
+                                </div>
+                            </div>
+                            <div class="dpe-column">
+                                <h4>Émissions (GES)</h4>
+                                <div class="dpe-ladder">
+                                    <div class="dpe-row"><div class="dpe-bar ges-a w-1">A</div></div>
+                                    <div class="dpe-row"><div class="dpe-bar ges-b w-2">B</div></div>
+                                    <div class="dpe-row"><div class="dpe-bar ges-c w-3">C</div></div>
+                                    <div class="dpe-row active-row">
+                                        <div class="dpe-bar ges-d w-4">D</div>
+                                        <div class="dpe-value">38 <span>kg CO₂/m²</span></div>
+                                    </div>
+                                    <div class="dpe-row"><div class="dpe-bar ges-e w-5">E</div></div>
+                                    <div class="dpe-row"><div class="dpe-bar ges-f w-6">F</div></div>
+                                    <div class="dpe-row"><div class="dpe-bar ges-g w-7">G</div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="legal-mention-energy">Montant estimé des dépenses annuelles d'énergie : entre 1500 € et 2100 €.</p>
+                    </div>
+
+                </div> <div class="sidebar-col">
+                    <div class="agent-card">
+                        <div class="agent-header-clean">
+                            <img src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/05855fb2c8325231e8bcfeabd7f1737355e8c812/AVATAR%20MOI.png" alt="Sylvain Matignon" class="agent-photo">
+                            <div class="agent-info">
+                                <span class="agent-role">Votre Conseiller</span>
+                                <h3 class="agent-name">SYLVAIN MATIGNON</h3>
+                                <span class="agent-location">📍 SARLAT-LA-CANÉDA</span>
+                            </div>
+                        </div>
+
+                        <a href="tel:0600000000" class="btn-call-agent">
+                            Appeler le conseiller
+                        </a>
+                        
+                        <div class="or-divider"><span>OU</span></div>
+
+                        <form class="agent-form">
+                            <input type="text" placeholder="Votre Nom" required>
+                            <input type="tel" placeholder="Votre Téléphone" required>
+                            <textarea placeholder="Bonjour, je souhaiterais visiter ce bien..." rows="3"></textarea>
+                            <button type="submit" class="btn-submit-form">Demander une visite</button>
+                        </form>
+                    </div>
+                </div> </div> </div>
+    </section>
+
+    <section id="experience" class="video-experience">
+        <div class="container-player">
+            
+            <div class="section-title">
+                <h2>Visite Privée Guidée</h2>
+                <p>Découvrez chaque espace dans ses moindres détails.</p>
+            </div>
+
+            <div class="main-player-wrapper">
+                <iframe 
+                    id="myYoutubePlayer"
+                    src="https://www.youtube.com/embed/e2gSjrCwafQ?enablejsapi=1&rel=0&modestbranding=1&showinfo=0&loop=1&playlist=e2gSjrCwafQ" 
+                    title="Visite Privée" 
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="chapter-scroller text-only-mode">
+                
+                <div class="chapter-card active" onclick="jumpToTime(0, this)">
+                    <div class="chapter-indicator"></div>
+                    <div class="card-content">
+                        <span class="chapter-num">01</span>
+                        <div class="text-group">
+                            <h3>Le Grand Salon</h3>
+                            <span class="duration">Rez-de-chaussée</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="dpe-row">
-                    <div class="dpe-bar class-b w-2">B</div>
+
+                <div class="chapter-card" onclick="jumpToTime(45, this)">
+                    <div class="chapter-indicator"></div>
+                    <div class="card-content">
+                        <span class="chapter-num">02</span>
+                        <div class="text-group">
+                            <h3>Cuisine & Repas</h3>
+                            <span class="duration">Espace de vie</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="dpe-row">
-                    <div class="dpe-bar class-c w-3">C</div>
+
+                <div class="chapter-card" onclick="jumpToTime(90, this)">
+                    <div class="chapter-indicator"></div>
+                    <div class="card-content">
+                        <span class="chapter-num">03</span>
+                        <div class="text-group">
+                            <h3>Suite Parentale</h3>
+                            <span class="duration">Espace nuit</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="dpe-row active-row">
-                    <div class="dpe-bar class-d w-4">D</div>
-                    <div class="dpe-value">195 <span>kWh/m²</span></div>
+
+                <div class="chapter-card" onclick="jumpToTime(140, this)">
+                    <div class="chapter-indicator"></div>
+                    <div class="card-content">
+                        <span class="chapter-num">04</span>
+                        <div class="text-group">
+                            <h3>Parc & Piscine</h3>
+                            <span class="duration">Extérieurs</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="dpe-row">
-                    <div class="dpe-bar class-e w-5">E</div>
-                </div>
-                <div class="dpe-row">
-                    <div class="dpe-bar class-f w-6">F</div>
-                </div>
-                <div class="dpe-row">
-                    <div class="dpe-bar class-g w-7">G</div>
-                </div>
+
             </div>
         </div>
+    </section>
 
-        <div class="dpe-column">
-            <h4>Émissions (GES)</h4>
-            <div class="dpe-ladder">
-                <div class="dpe-row">
-                    <div class="dpe-bar ges-a w-1">A</div>
-                </div>
-                <div class="dpe-row">
-                    <div class="dpe-bar ges-b w-2">B</div>
-                </div>
-                <div class="dpe-row">
-                    <div class="dpe-bar ges-c w-3">C</div>
-                </div>
-                <div class="dpe-row active-row">
-                    <div class="dpe-bar ges-d w-4">D</div>
-                    <div class="dpe-value">38 <span>kg CO₂/m²</span></div>
-                </div>
-                <div class="dpe-row">
-                    <div class="dpe-bar ges-e w-5">E</div>
-                </div>
-                <div class="dpe-row">
-                    <div class="dpe-bar ges-f w-6">F</div>
-                </div>
-                <div class="dpe-row">
-                    <div class="dpe-bar ges-g w-7">G</div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    
-    <p class="legal-mention-energy">Montant estimé des dépenses annuelles d'énergie : entre 1500 € et 2100 €.</p>
-</div>
-</section>
-
-    <section style="background-color: #fff; padding-bottom: 60px;">
+    <section style="background-color: #fff; padding-bottom: 60px; padding-top: 60px;">
         <div class="container-immo">
             
             <div class="legal-compliance-block">
@@ -209,119 +275,18 @@
 
         </div>
     </section>
-                </div>
 
-                <div class="sidebar-col">
-                    <div class="agent-card">
-                        <div class="agent-header-clean">
-                            <img src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/05855fb2c8325231e8bcfeabd7f1737355e8c812/AVATAR%20MOI.png" alt="Sylvain Matignon" class="agent-photo">
-                            <div class="agent-info">
-                                <span class="agent-role">Votre Conseiller</span>
-                                <h3 class="agent-name">SYLVAIN MATIGNON</h3>
-                                <span class="agent-location">📍 SARLAT-LA-CANÉDA</span>
-                            </div>
-                        </div>
-
-                        <a href="tel:0600000000" class="btn-call-agent">
-                            Appeler le conseiller
-                        </a>
-                        
-                        <div class="or-divider"><span>OU</span></div>
-
-                        <form class="agent-form">
-                            <input type="text" placeholder="Votre Nom" required>
-                            <input type="tel" placeholder="Votre Téléphone" required>
-                            <textarea placeholder="Bonjour, je souhaiterais visiter ce bien..." rows="3"></textarea>
-                            <button type="submit" class="btn-submit-form">Demander une visite</button>
-                        </form>
-                    </div>
-                </div>
-
-            </div> 
-        </div>
-    </section>
-
-    <section id="experience" class="video-experience">
-    <div class="container-player">
-        
-        <div class="section-title">
-            <h2>Visite Privée Guidée</h2>
-            <p>Découvrez chaque espace dans ses moindres détails.</p>
-        </div>
-
-<div class="main-player-wrapper">
-    <iframe 
-        id="myYoutubePlayer"
-        /* On ajoute loop=1 et playlist=ID_VIDEO pour forcer la boucle et empêcher l'écran de fin */
-        src="https://www.youtube.com/embed/e2gSjrCwafQ?enablejsapi=1&rel=0&modestbranding=1&showinfo=0&loop=1&playlist=e2gSjrCwafQ" 
-        title="Visite Privée" 
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-    </iframe>
-</div>
-
-        <div class="chapter-scroller text-only-mode">
+    <footer class="legal-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/a06bc67f5ee3d3623138470f14f7a1e0aeea4345/assets/video/icone%20pp.com.webp" alt="Logo PP">
+            </div>
             
-            <div class="chapter-card active" onclick="jumpToTime(0, this)">
-                <div class="chapter-indicator"></div>
-                <div class="card-content">
-                    <span class="chapter-num">01</span>
-                    <div class="text-group">
-                        <h3>Le Grand Salon</h3>
-                        <span class="duration">Rez-de-chaussée</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="chapter-card" onclick="jumpToTime(45, this)">
-                <div class="chapter-indicator"></div>
-                <div class="card-content">
-                    <span class="chapter-num">02</span>
-                    <div class="text-group">
-                        <h3>Cuisine & Repas</h3>
-                        <span class="duration">Espace de vie</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="chapter-card" onclick="jumpToTime(90, this)">
-                <div class="chapter-indicator"></div>
-                <div class="card-content">
-                    <span class="chapter-num">03</span>
-                    <div class="text-group">
-                        <h3>Suite Parentale</h3>
-                        <span class="duration">Espace nuit</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="chapter-card" onclick="jumpToTime(140, this)">
-                <div class="chapter-indicator"></div>
-                <div class="card-content">
-                    <span class="chapter-num">04</span>
-                    <div class="text-group">
-                        <h3>Parc & Piscine</h3>
-                        <span class="duration">Extérieurs</span>
-                    </div>
-                </div>
-            </div>
-
+            <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">
+                © 2024 Sylvain MATIGNON - Mandataire indépendant Proprietes-privees.com
+            </p>
         </div>
-    </div>
-    </section>
-
-   <footer class="legal-footer">
-    <div class="footer-content">
-        <div class="footer-logo">
-            <img src="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/a06bc67f5ee3d3623138470f14f7a1e0aeea4345/assets/video/icone%20pp.com.webp" alt="Logo PP">
-        </div>
-        
-        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">
-            © 2024 Sylvain MATIGNON - Mandataire indépendant Proprietes-privees.com
-        </p>
-    </div>
-</footer>
+    </footer>
 
     <script src="script.js"></script>
 
