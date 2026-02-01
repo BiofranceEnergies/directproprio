@@ -50,6 +50,54 @@ const HouseData = {
    MOTEUR DU SITE (NE PAS TOUCHER)
    ========================================================================== */
 
+// Variable globale pour le lecteur YouTube
+var player;
+
+// Fonction appelée automatiquement par l'API YouTube quand elle est prête
+function onYouTubeIframeAPIReady() {
+    // On cible le conteneur et on crée un div temporaire pour ne pas casser le CSS
+    var container = document.getElementById('youtube-injector');
+    if (!container) return;
+    
+    // On nettoie le conteneur et on ajoute une cible propre
+    container.innerHTML = '<div id="yt-player-target"></div>';
+
+    player = new YT.Player('yt-player-target', {
+        height: '100%',
+        width: '100%',
+        videoId: HouseData.youtubeID,
+        playerVars: {
+            'autoplay': 0,        // Pas de démarrage auto (ton choix)
+            'rel': 0,             // Pas de vidéos suggérées à la fin
+            'showinfo': 0,
+            'modestbranding': 1,
+            'loop': 1,
+            'playlist': HouseData.youtubeID // Nécessaire pour boucler
+        },
+        events: {
+            'onReady': onPlayerReady
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    // Le lecteur est prêt à recevoir des ordres
+}
+
+// Fonction pour sauter au chapitre (Celle qui posait problème)
+function jumpToTime(seconds, element) {
+    if (player && typeof player.seekTo === 'function') {
+        player.seekTo(seconds, true); // Saute au moment
+        player.playVideo();           // FORCE la lecture
+    } else {
+        console.error("Le lecteur YouTube n'est pas encore prêt.");
+    }
+
+    // Mise à jour visuelle des boutons
+    document.querySelectorAll('.chapter-card').forEach(c => c.classList.remove('active'));
+    element.classList.add('active');
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     
     // Helper texte
@@ -58,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if(el) el.innerText = txt; 
     }
     
-    // 1. HEADER HERO VIDEO (MODE FORCE BRUTE - OK)
+    // 1. HEADER HERO VIDEO (MODE FORCE BRUTE)
     document.title = HouseData.title + " - Visite Privée";
     setTxt('page-title', HouseData.title);
     setTxt('data-main-title', HouseData.title);
@@ -146,17 +194,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // 6. YOUTUBE INJECTOR (CORRECTIF : AUTOPLAY BLOQUÉ)
-    const playerDiv = document.getElementById('youtube-injector');
-    if(playerDiv) {
-        playerDiv.innerHTML = `
-            <iframe id="myYoutubePlayer" 
-            src="https://www.youtube.com/embed/${HouseData.youtubeID}?autoplay=0&enablejsapi=1&rel=0&modestbranding=1&showinfo=0&loop=1&playlist=${HouseData.youtubeID}" 
-            title="Visite Privée" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        `;
-    }
-
-    // 7. CHAPITRES
+    // 6. CHAPITRES (VISUELS UNIQUEMENT, LE CLICK EST GÉRÉ PAR jumpToTime)
     const chapContainer = document.getElementById('data-chapters');
     if(chapContainer) {
         chapContainer.innerHTML = '';
@@ -164,28 +202,10 @@ document.addEventListener("DOMContentLoaded", function() {
             const num = (i+1).toString().padStart(2, '0');
             const div = document.createElement('div');
             div.className = (i===0) ? "chapter-card active" : "chapter-card";
+            // On appelle la fonction jumpToTime qui utilise maintenant le player API
             div.setAttribute('onclick', `jumpToTime(${c.time}, this)`);
             div.innerHTML = `<div class="chapter-indicator"></div><div class="card-content"><span class="chapter-num">${num}</span><div class="text-group"><h3>${c.title}</h3><span class="duration">${c.subtitle}</span></div></div>`;
             chapContainer.appendChild(div);
         });
     }
 });
-
-// FONCTION SAUT VIDÉO
-function jumpToTime(seconds, element) {
-    var iframe = document.getElementById("myYoutubePlayer");
-    if(iframe) {
-        iframe.contentWindow.postMessage(JSON.stringify({
-            "event": "command",
-            "func": "seekTo",
-            "args": [seconds, true]
-        }), "*");
-        iframe.contentWindow.postMessage(JSON.stringify({
-            "event": "command",
-            "func": "playVideo",
-            "args": []
-        }), "*");
-    }
-    document.querySelectorAll('.chapter-card').forEach(c => c.classList.remove('active'));
-    element.classList.add('active');
-}
