@@ -19,7 +19,7 @@ const HouseData = {
     // ID Youtube de votre vidéo de visite (à remplacer par le bon ID plus tard)
     youtubeID: "e2gSjrCwafQ", 
     // Chemin vers la vidéo de fond
-    heroVideoUrl: "/assets/video/sabouret-12.mp4",
+    heroVideoUrl: "sabouret-12.mp4",
 
     dpeLetter: "D",
     dpeValue: "180",
