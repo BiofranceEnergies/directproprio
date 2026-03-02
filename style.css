@@ -39,8 +39,7 @@ body {
 .video-zone video {
     width: 100%; height: 100%;
     object-fit: cover; 
-    opacity: 1
-   ;
+    opacity: 1;
 }
 
 .brand-header-horizontal {
@@ -60,7 +59,6 @@ body {
 }
 .hero-title {
     font-family: var(--font-title);
-    /* Réduit pour plus de finesse (était 3.5rem) */
     font-size: 3rem; 
     margin-bottom: 10px; font-weight: 400;
 }
@@ -88,7 +86,6 @@ body {
 }
 .prestige-title {
     font-family: var(--font-title);
-    /* Réduit pour plus de finesse (était 3rem) */
     font-size: 2.5rem; 
     margin-bottom: 20px; color: #111;
 }
@@ -122,7 +119,6 @@ body {
     margin-bottom: 25px; border-bottom: 2px solid var(--pp-red);
     display: inline-block; padding-bottom: 5px;
 }
-/* Réduction légère du texte courant */
 .lead-paragraph { font-size: 1.05rem; color: #333; font-weight: 500; }
 .description-text p { margin-bottom: 20px; text-align: justify; color: #555; font-size: 0.95rem; }
 
@@ -134,7 +130,7 @@ body {
 }
 .immo-icon { width: 20px; height: 20px; stroke: var(--pp-red); fill: none; stroke-width: 2; }
 
-/* DPE CORRIGÉ */
+/* DPE */
 .dpe-container {
     display: flex; justify-content: center; gap: 60px; 
     margin-top: 30px; margin-bottom: 30px;
@@ -211,7 +207,7 @@ body {
 .agent-form input:focus { border-color: var(--pp-red); outline: none; background: #fff; }
 
 /* =========================================
-   7. VIDÉO PLAYER FIX (CORRIGÉ 100%)
+   7. VIDÉO PLAYER FIX (ACCENT ROUGE UNIFORME)
    ========================================= */
 .video-experience { background-color: #111; color: white; padding: 80px 20px; }
 .section-title h2 { color: white; font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 10px; }
@@ -219,11 +215,10 @@ body {
 
 .container-player { max-width: 1000px; margin: 0 auto; }
 
-/* LE HACK 16:9 RESPONSIVE */
 .main-player-wrapper {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* Ratio 16:9 (9/16 = 0.5625) */
+    padding-bottom: 56.25%; 
     height: 0;
     background: #000;
     margin-bottom: 30px;
@@ -236,22 +231,38 @@ body {
 }
 
 .chapter-scroller { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+
 .chapter-card {
-    background: #222; width: 220px; padding: 15px; cursor: pointer;
-    border-left: 3px solid #444; transition: all 0.3s;
+    background: #222; 
+    width: 220px; 
+    padding: 15px; 
+    cursor: pointer;
+    /* Barre rouge vertical sur TOUS les blocs par défaut */
+    border-left: 4px solid var(--pp-red) !important; 
+    transition: all 0.3s ease;
+    /* Légère transparence pour les blocs non-actifs */
+    opacity: 0.7; 
 }
-.chapter-card:hover { background: #333; }
-.chapter-card.active { background: #2a2a2a; border-left: 3px solid var(--pp-red); }
+
+.chapter-card:hover { 
+    background: #333; 
+    opacity: 0.9;
+}
+
+.chapter-card.active { 
+    background: #2a2a2a; 
+    /* Pleine opacité pour le bloc sélectionné */
+    opacity: 1; 
+}
+
 .chapter-num { font-size: 2rem; font-weight: 700; color: #444; display: block; margin-bottom: 5px; line-height: 1; }
 .chapter-card.active .chapter-num { color: var(--pp-red); opacity: 0.4; }
 .chapter-card h3 { font-size: 0.9rem; color: #ccc; margin: 0; font-weight: 600; }
 .duration { font-size: 0.7rem; color: #666; text-transform: uppercase; }
 
 /* =========================================
-   FOOTER & BLOCS (CORRECTIF FINESSE FINALE)
+   FOOTER & BLOCS
    ========================================= */
-
-/* 1. LE BLOC VERDICT (Rose) */
 .expert-analysis-box {
     background-color: #fff4f7;
     border: 1px solid #ffe0e9;
@@ -278,7 +289,7 @@ body {
 .expert-content h4 {
     font-family: var(--font-body);
     color: #111;
-    font-size: 0.95rem; /* Plus petit, plus chic */
+    font-size: 0.95rem;
     text-transform: uppercase;
     font-weight: 800;
     margin-bottom: 8px;
@@ -291,16 +302,14 @@ body {
     line-height: 1.6;
 }
 
-/* 2. LE BLOC LÉGAL (Version Miniaturisée) */
 .legal-compliance-block {
     margin-top: 20px;
     padding-top: 10px;
 }
 
-/* Le Titre "Mentions Légales" */
 .legal-compliance-block h4 {
     font-family: var(--font-body); 
-    font-size: 0.9rem; /* TRES PETIT (Style H5) */
+    font-size: 0.9rem; 
     text-transform: uppercase;
     color: #444; 
     margin-bottom: 15px;
@@ -311,37 +320,33 @@ body {
     display: inline-block;
 }
 
-/* Le texte Prix / Honoraires */
 .legal-text {
-    font-size: 0.85rem; /* Petites lignes */
+    font-size: 0.85rem; 
     color: #333;       
     line-height: 1.5;
     margin-bottom: 15px;
 }
 
-/* Le bloc gris "Mandat" */
 .legal-text-dense {
-    font-size: 0.8rem;   /* Encore plus petit */
+    font-size: 0.8rem;   
     color: #555;       
     text-align: justify; 
     line-height: 1.4;
     margin-bottom: 15px;
     background-color: #f9f9f9; 
-    padding: 15px;     
+    padding: 15px;      
     border-left: 3px solid #ddd; 
     border-radius: 4px;
 }
 
-/* Le lien Géorisques */
 .legal-text-small {
-    font-size: 0.7rem; /* Minuscule */
+    font-size: 0.7rem; 
     color: #999;
     font-style: italic;
     margin-top: 10px;
 }
 .legal-text-small a { color: #777; text-decoration: underline; }
 
-/* 3. FOOTER */
 .legal-footer { 
     background-color: #fff; 
     padding: 30px 20px; 
@@ -361,7 +366,6 @@ body {
     .key-metrics-grid { flex-wrap: wrap; }
     .metric-box { flex: 1 1 45%; margin-bottom: 20px; }
     
-    /* Ajustement des gros titres sur mobile */
     .hero-title { font-size: 2.2rem; }
     .prestige-title { font-size: 2rem; }
     
@@ -369,28 +373,19 @@ body {
     .dpe-column { width: 100%; }
     .expert-analysis-box { flex-direction: column; }
     
-    /* Textes légaux minuscules sur mobile */
     .legal-text, .legal-text-dense { font-size: 0.75rem; }
-}
-/* =========================================
-   MOBILE UNIQUEMENT : CENTRAGE "STYLE APP"
-   ========================================= */
-@media (max-width: 900px) {
-    
-    /* 1. On centre les paragraphes de texte */
+
     .description-text, 
     .description-text p,
     .lead-paragraph {
         text-align: center;
     }
 
-    /* 2. On centre le bloc Verdict/Expert */
     .expert-analysis-box {
         text-align: center;
-        align-items: center; /* Centre les éléments verticalement */
+        align-items: center; 
     }
     
-    /* 3. On centre les mentions légales */
     .legal-compliance-block,
     .legal-text, 
     .legal-text-dense,
@@ -398,27 +393,25 @@ body {
         text-align: center;
     }
 
-    /* 4. On centre aussi la carte Agent sur mobile */
     .agent-header-clean {
-        flex-direction: column; /* Photo au dessus du nom */
+        flex-direction: column; 
         text-align: center;
         justify-content: center;
     }
     
-    /* Petit ajustement pour que les listes à puces (caractéristiques) restent jolies */
     .feature-item {
         justify-content: center;
     }
 }
 
-/* Styles pour la fenêtre Mentions Légales */
+/* MODALE MENTIONS LÉGALES */
 .modal-overlay {
-    display: none; /* Caché par défaut */
+    display: none; 
     position: fixed;
     z-index: 9999;
     left: 0; top: 0;
     width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.7); /* Fond sombre transparent */
+    background-color: rgba(0,0,0,0.7); 
 }
 
 .modal-content {
