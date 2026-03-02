@@ -2,22 +2,40 @@
    MOTEUR DE LANDING PAGE - VERSION FINALE INTEGRALE AVEC MODALE
    ========================================================================== */
 
-// --- 1. GESTION YOUTUBE ---
+// --- 1. GESTION YOUTUBE (MODE NO-COOKIE ACTIVÉ) ---
 var player;
 function onYouTubeIframeAPIReady() {
     var container = document.getElementById('youtube-injector');
     if (!container || !HouseData.youtubeID) return;
     container.innerHTML = '<div id="yt-player-target"></div>';
+    
     player = new YT.Player('yt-player-target', {
-        height: '100%', width: '100%', videoId: HouseData.youtubeID,
-        playerVars: { 'autoplay': 0, 'rel': 0, 'modestbranding': 1, 'loop': 1, 'playlist': HouseData.youtubeID },
+        host: 'https://www.youtube-nocookie.com', // <--- FORCE LE MODE SANS COOKIE ICI
+        height: '100%', 
+        width: '100%', 
+        videoId: HouseData.youtubeID,
+        playerVars: { 
+            'autoplay': 0, 
+            'rel': 0, 
+            'modestbranding': 1, 
+            'loop': 1, 
+            'playlist': HouseData.youtubeID 
+        },
         events: { 'onReady': function(e) {} }
     });
 }
+
 function jumpToTime(seconds, element) {
     if (player && typeof player.seekTo === 'function') { player.seekTo(seconds, true); player.playVideo(); }
     document.querySelectorAll('.chapter-card').forEach(c => c.classList.remove('active'));
     element.classList.add('active');
+}
+
+// --- FONCTION POUR LE BOUTON COOKIE (DOIT ÊTRE À L'EXTÉRIEUR) ---
+function acceptCookies() {
+    localStorage.setItem('cioo_cookies_accepted', 'true');
+    const banner = document.getElementById('cookie-banner');
+    if(banner) banner.style.display = 'none';
 }
 
 // --- 2. REMPLISSAGE AUTOMATIQUE ---
@@ -61,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- 3. BLOC LÉGAL IMMOBILIER (PRO) ---
+    // --- 3. BLOC LÉGAL IMMOBILIER ---
     const legalContainer = document.getElementById('full-legal-text');
     if(legalContainer) {
         let textHonoraires = "";
@@ -152,26 +170,28 @@ document.addEventListener("DOMContentLoaded", function() {
                     4 rue du Pont Saint Jean, 27530 Ézy-sur-Eure<br>
                     SIRET : 422 231 928 00025<br>
                     Email : contact.cioo.io@gmail.com</p>
-                    
                     <p style="margin-bottom:15px;"><strong>Hébergement :</strong><br>
                     GitHub Pages<br>
                     88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA</p>
-                    
                     <p style="font-style:italic; font-size:0.8rem; border-top:1px solid #eee; padding-top:10px;">
-                        Ce site est une interface de présentation immobilière destinée à faciliter la mise en relation. 
+                        Ce site est une interface de présentation immobilière destinée à faciliter la mise en relation. 
                         Tous les contenus sont protégés par le droit d'auteur.
                     </p>
                 </div>
             `;
             modal.style.display = "block";
         }
-
-        // Fermer au clic sur la croix
         span.onclick = function() { modal.style.display = "none"; }
-
-        // Fermer au clic en dehors de la fenêtre
         window.onclick = function(event) {
             if (event.target == modal) { modal.style.display = "none"; }
+        }
+    }
+
+    // --- 6. LOGIQUE D'AFFICHAGE DU BANDEAU COOKIE ---
+    if(!localStorage.getItem('cioo_cookies_accepted')) {
+        const banner = document.getElementById('cookie-banner');
+        if(banner) {
+            banner.style.display = 'flex'; // Affiche le bandeau s'il n'est pas accepté
         }
     }
 });
