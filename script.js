@@ -1,8 +1,8 @@
 /* ==========================================================================
-   MOTEUR DE LANDING PAGE - VERSION FINALE INTEGRALE AVEC MODALE
+   MOTEUR DE LANDING PAGE - VERSION FINALE INTEGRALE
    ========================================================================== */
 
-// --- 1. GESTION YOUTUBE (MODE NO-COOKIE ACTIVÉ) ---
+// --- 1. GESTION YOUTUBE (MODE NO-COOKIE & API) ---
 var player;
 function onYouTubeIframeAPIReady() {
     var container = document.getElementById('youtube-injector');
@@ -10,7 +10,7 @@ function onYouTubeIframeAPIReady() {
     container.innerHTML = '<div id="yt-player-target"></div>';
     
     player = new YT.Player('yt-player-target', {
-        host: 'https://www.youtube-nocookie.com', // <--- FORCE LE MODE SANS COOKIE ICI
+        host: 'https://www.youtube-nocookie.com', 
         height: '100%', 
         width: '100%', 
         videoId: HouseData.youtubeID,
@@ -31,14 +31,14 @@ function jumpToTime(seconds, element) {
     element.classList.add('active');
 }
 
-// --- FONCTION POUR LE BOUTON COOKIE (DOIT ÊTRE À L'EXTÉRIEUR) ---
+// --- FONCTION POUR LE BOUTON COOKIE (DOIT RESTER GLOBALE) ---
 function acceptCookies() {
     localStorage.setItem('cioo_cookies_accepted', 'true');
     const banner = document.getElementById('cookie-banner');
     if(banner) banner.style.display = 'none';
 }
 
-// --- 2. REMPLISSAGE AUTOMATIQUE ---
+// --- 2. REMPLISSAGE AUTOMATIQUE & LOGIQUE ---
 document.addEventListener("DOMContentLoaded", function() {
     function setTxt(id, txt) { const el = document.getElementById(id); if(el) el.innerText = txt; }
 
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setTxt('data-agent-city', HouseData.agentCity);
     setTxt('data-verdict', HouseData.verdict);
 
-    // Vidéo Hero
+    // Vidéo Hero (Background)
     const videoHero = document.getElementById('data-hero-video');
     if(videoHero && HouseData.heroVideoUrl) {
         videoHero.src = HouseData.heroVideoUrl;
@@ -63,14 +63,24 @@ document.addEventListener("DOMContentLoaded", function() {
         videoHero.play().catch(e => console.log("Lecture auto bloquée"));
     }
 
-    // Prix et Contact
+    // --- GESTION DES PRIX (TOTAL + CALCUL M²) ---
     const formattedPrice = new Intl.NumberFormat('fr-FR').format(HouseData.price);
     setTxt('data-price', formattedPrice + " €");
+
+    // Calcul automatique du prix au m²
+    const elPriceM2 = document.getElementById('data-price-m2');
+    if(elPriceM2 && HouseData.price && HouseData.surface) {
+        const m2Value = Math.round(HouseData.price / HouseData.surface);
+        const m2Formatted = new Intl.NumberFormat('fr-FR').format(m2Value);
+        elPriceM2.innerText = `(${m2Formatted} €/m²)`;
+    }
+
+    // Contact & Énergie
     setTxt('data-energy-cost', "Montant estimé des dépenses annuelles : " + HouseData.energyCost);
     const btnCall = document.getElementById('data-agent-tel');
     if(btnCall) btnCall.href = "tel:" + HouseData.agentPhone.replace(/\./g, '');
 
-    // Description (Paragraphes)
+    // Description (Paragraphes dynamiques)
     const descContainer = document.getElementById('data-description');
     if(descContainer && HouseData.description) {
         descContainer.innerHTML = '';
@@ -79,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- 3. BLOC LÉGAL IMMOBILIER ---
+    // --- 3. BLOC LÉGAL IMMOBILIER (CALCUL NET VENDEUR) ---
     const legalContainer = document.getElementById('full-legal-text');
     if(legalContainer) {
         let textHonoraires = "";
@@ -103,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
     }
 
-    // --- 4. DPE / PICTOGRAMMES / CHAPITRES ---
+    // --- 4. DPE / GES / PICTOGRAMMES ---
     const letters = ['A','B','C','D','E','F','G'];
     function generateLadder(targetId, activeLetter, val, unit, prefixClass) {
         const container = document.getElementById(targetId);
@@ -125,6 +135,7 @@ document.addEventListener("DOMContentLoaded", function() {
     generateLadder('dpe-ladder-conso', HouseData.dpeLetter, HouseData.dpeValue, 'kWh/m²', 'class');
     generateLadder('dpe-ladder-ges', HouseData.gesLetter, HouseData.gesValue, 'kg CO₂/m²', 'ges');
 
+    // Pictogrammes Techniques
     const featContainer = document.getElementById('data-features-list');
     if(featContainer) {
         featContainer.innerHTML = '';
@@ -136,12 +147,14 @@ document.addEventListener("DOMContentLoaded", function() {
             else if(f.icon === "sun") svgPath = '<path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/><circle cx="12" cy="12" r="4"/>';
             else if(f.icon === "pool") svgPath = '<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>';
             else svgPath = '<circle cx="12" cy="12" r="10"/>';
+            
             const div = document.createElement('div'); div.className = 'feature-item';
             div.innerHTML = `<svg class="immo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${svgPath}</svg><span>${f.text}</span>`;
             featContainer.appendChild(div);
         });
     }
 
+    // Chapitres Vidéo
     const chapContainer = document.getElementById('data-chapters');
     if(chapContainer) {
         chapContainer.innerHTML = '';
@@ -174,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     GitHub Pages<br>
                     88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA</p>
                     <p style="font-style:italic; font-size:0.8rem; border-top:1px solid #eee; padding-top:10px;">
-                        Ce site est une interface de présentation immobilière destinée à faciliter la mise en relation. 
+                        Ce site est une interface de présentation immobilière destinée à faciliter la mise en relation. 
                         Tous les contenus sont protégés par le droit d'auteur.
                     </p>
                 </div>
@@ -182,16 +195,12 @@ document.addEventListener("DOMContentLoaded", function() {
             modal.style.display = "block";
         }
         span.onclick = function() { modal.style.display = "none"; }
-        window.onclick = function(event) {
-            if (event.target == modal) { modal.style.display = "none"; }
-        }
+        window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } }
     }
 
     // --- 6. LOGIQUE D'AFFICHAGE DU BANDEAU COOKIE ---
     if(!localStorage.getItem('cioo_cookies_accepted')) {
         const banner = document.getElementById('cookie-banner');
-        if(banner) {
-            banner.style.display = 'flex'; // Affiche le bandeau s'il n'est pas accepté
-        }
+        if(banner) banner.style.display = 'flex';
     }
 });
