@@ -2,19 +2,19 @@
    DONNÉES DU BIEN - MANDAT 7890
    ========================================================================== */
 const HouseData = {
-    title: "Propriété de Caractère",
+    title: "Maison de Caractère",
     subtitle: "Saint Martial De Valette • Calme & Élégance",
     location: "Saint Martial De Valette (24300)",
-    type: "Propriété de Caractère",
+    type: "Belle maison moderne",
     
-    price: 450000,
+    price: 310000,
     feesPercent: 3.9,
     mandatRef: "7890",
 
-    surface: "180",
+    surface: "130",
     rooms: "5",
     bedrooms: "3",
-    land: "40 000 m²",
+    land: "5 900 m²",
 
     // ID Youtube de votre vidéo de visite (à remplacer par le bon ID plus tard)
     youtubeID: "e2gSjrCwafQ", 
