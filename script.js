@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MOTEUR DU SITE (NE PAS TOUCHER)
+   MOTEUR DU SITE (VERSION MISE À JOUR - FIX VIDÉO)
    ========================================================================== */
 
 // --- GESTION DU LECTEUR YOUTUBE (API) ---
@@ -15,7 +15,7 @@ function onYouTubeIframeAPIReady() {
         width: '100%',
         videoId: HouseData.youtubeID,
         playerVars: {
-            'autoplay': 0,        // RESTE À 0 (Pas de démarrage auto)
+            'autoplay': 0,
             'rel': 0,
             'showinfo': 0,
             'modestbranding': 1,
@@ -28,11 +28,8 @@ function onYouTubeIframeAPIReady() {
     });
 }
 
-function onPlayerReady(event) {
-    // Lecteur prêt
-}
+function onPlayerReady(event) {}
 
-// Fonction pour les boutons chapitres
 function jumpToTime(seconds, element) {
     if (player && typeof player.seekTo === 'function') {
         player.seekTo(seconds, true);
@@ -42,17 +39,15 @@ function jumpToTime(seconds, element) {
     element.classList.add('active');
 }
 
-
 // --- CHARGEMENT DU DOM ---
 document.addEventListener("DOMContentLoaded", function() {
     
-    // Helper texte
     function setTxt(id, txt) { 
         const el = document.getElementById(id); 
         if(el) el.innerText = txt; 
     }
     
-    // 1. HEADER HERO VIDEO (LE RÉANIMATEUR)
+    // 1. HEADER HERO VIDEO (LE FIX EST ICI)
     document.title = HouseData.title + " - Visite Privée";
     setTxt('page-title', HouseData.title);
     setTxt('data-main-title', HouseData.title);
@@ -60,32 +55,33 @@ document.addEventListener("DOMContentLoaded", function() {
     
     const videoHero = document.getElementById('data-hero-video');
     if(videoHero) {
-        // Configuration de base
         videoHero.muted = true;
         videoHero.loop = true;
         videoHero.playsInline = true;
-        videoHero.setAttribute('preload', 'auto'); // Force le préchargement
+        
+        // On injecte la source depuis data.js
         videoHero.src = HouseData.heroVideoUrl;
         
-        // Démarrage initial
-        var p = videoHero.play();
-        if(p !== undefined) { p.catch(e => { videoHero.muted=true; videoHero.play(); }); }
+        // --- LA LIGNE MAGIQUE ---
+        // On force le navigateur à charger le nouveau fichier vidéo
+        videoHero.load(); 
+        
+        // On tente de lancer la vidéo
+        videoHero.play().catch(e => {
+            console.log("Lecture auto bloquée, nouvel essai...");
+            videoHero.muted = true;
+            videoHero.play();
+        });
 
-        // LE RÉANIMATEUR (IntersectionObserver)
+        // Relance la vidéo si on scrolle et qu'elle s'était mise en pause
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (videoHero.paused) {
-                        videoHero.play().catch(e => console.log("Relance auto"));
-                    }
+                if (entry.isIntersecting && videoHero.paused) {
+                    videoHero.play().catch(e => {});
                 }
             });
         });
         observer.observe(videoHero);
-
-        videoHero.addEventListener('ended', function() {
-            this.play();
-        });
     }
 
     // 2. TEXTES ET CHIFFRES
@@ -93,13 +89,12 @@ document.addEventListener("DOMContentLoaded", function() {
     setTxt('data-type-title', HouseData.type);
     const formattedPrice = new Intl.NumberFormat('fr-FR').format(HouseData.price);
     setTxt('data-price', formattedPrice + " €");
-
     setTxt('data-surface', HouseData.surface);
     setTxt('data-rooms', HouseData.rooms);
     setTxt('data-bedrooms', HouseData.bedrooms);
     setTxt('data-land', HouseData.land);
-
     setTxt('data-agent-city', HouseData.agentCity);
+    
     const btnCall = document.getElementById('data-agent-tel');
     if(btnCall) btnCall.href = "tel:" + HouseData.agentPhone.replace(/\./g, '');
 
