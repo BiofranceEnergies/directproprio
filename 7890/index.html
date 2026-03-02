@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">Visite Privée</title> 
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -15,12 +14,10 @@
             <div class="brand-header-horizontal">
                 <img class="brand-icon" src="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/25f57ebd3b22387598936912917eb0042ab36e8a/assets/video/logo%202%20ppcom.webp" alt="Logo">
                 <div class="brand-text-horizontal">
-                    <span class="txt-white">Proprietes-</span><span class="txt-red">privees</span>
+                    <span class="txt-white">Proprietes-</span><span class="txt-red">privees.com</span>
                 </div>
             </div>
-            
             <video autoplay loop muted playsinline id="data-hero-video"></video>
-
             <div class="hero-overlay-content">
                 <h1 class="hero-title" id="data-main-title">Chargement...</h1>
                 <p class="hero-subtitle" id="data-subtitle">...</p>
@@ -28,15 +25,10 @@
         </div>
     </header>
 
-    <div class="info-band-slim">
-        <div class="container-slim">
-            <span>NOUVEAUTÉ EXCLUSIVE</span>
-        </div>
-    </div>
+    <div class="info-band-slim"><div class="container-slim"><span>NOUVEAUTÉ EXCLUSIVE</span></div></div>
 
-    <section id="details" class="property-details">
+    <section class="property-details">
         <div class="container-immo">
-            
             <div class="listing-header">
                 <div class="location-tag" id="data-location">...</div>
                 <h2 class="prestige-title" id="data-type-title">...</h2>
@@ -47,59 +39,37 @@
             </div>
 
             <div class="key-metrics-grid">
-                <div class="metric-box">
-                    <span class="value" id="data-surface">...</span>
-                    <span class="label">m² Habitables</span>
-                </div>
-                <div class="metric-box">
-                    <span class="value" id="data-rooms">...</span>
-                    <span class="label">Pièces</span>
-                </div>
-                <div class="metric-box">
-                    <span class="value" id="data-bedrooms">...</span>
-                    <span class="label">Chambres</span>
-                </div>
-                <div class="metric-box">
-                    <span class="value" id="data-land">...</span>
-                    <span class="label">Terrain</span>
-                </div>
+                <div class="metric-box"><span class="value" id="data-surface">...</span><span class="label">m² Habitables</span></div>
+                <div class="metric-box"><span class="value" id="data-rooms">...</span><span class="label">Pièces</span></div>
+                <div class="metric-box"><span class="value" id="data-bedrooms">...</span><span class="label">Chambres</span></div>
+                <div class="metric-box"><span class="value" id="data-land">...</span><span class="label">Terrain</span></div>
             </div>
 
             <hr class="divider-elegant">
 
             <div class="listing-body-grid">
-                
                 <div class="main-content-col">
                     <div class="description-text">
                         <h3>L'Art de Vivre</h3>
                         <div id="data-description"></div>
                     </div>
-
                     <div class="features-list-container">
                         <h3>Caractéristiques Techniques</h3>
                         <div class="features-grid-simple" id="data-features-list"></div>
                     </div>
-
                     <div class="diagnostics-container">
                         <h3>Performance Énergétique</h3>
                         <div class="dpe-container">
-                            <div class="dpe-column">
-                                <h4>Consommation</h4>
-                                <div class="dpe-ladder" id="dpe-ladder-conso"></div> 
-                            </div>
-                            <div class="dpe-column">
-                                <h4>Émissions (GES)</h4>
-                                <div class="dpe-ladder" id="dpe-ladder-ges"></div>
-                            </div>
+                            <div class="dpe-column"><h4>Consommation</h4><div class="dpe-ladder" id="dpe-ladder-conso"></div></div>
+                            <div class="dpe-column"><h4>Émissions (GES)</h4><div class="dpe-ladder" id="dpe-ladder-ges"></div></div>
                         </div>
                         <p class="legal-mention-energy" id="data-energy-cost">...</p>
                     </div>
                 </div>
-
                 <div class="sidebar-col">
                     <div class="agent-card">
                         <div class="agent-header-clean">
-                            <img src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/05855fb2c8325231e8bcfeabd7f1737355e8c812/AVATAR%20MOI.png" alt="Sylvain Matignon" class="agent-photo">
+                            <img src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/05855fb2c8325231e8bcfeabd7f1737355e8c812/AVATAR%20MOI.png" alt="Sylvain" class="agent-photo">
                             <div class="agent-info">
                                 <span class="agent-role">Votre Conseiller</span>
                                 <h3 class="agent-name">SYLVAIN MATIGNON</h3>
@@ -116,61 +86,39 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
     <section id="experience" class="video-experience">
         <div class="container-player">
-            <div class="section-title">
-                <h2>Visite Privée Guidée</h2>
-                <p>Découvrez chaque espace dans ses moindres détails.</p>
-            </div>
-            
+            <div class="section-title"><h2>Visite Privée Guidée</h2><p>Découvrez chaque espace dans ses moindres détails.</p></div>
             <div class="main-player-wrapper" id="youtube-injector"></div>
-            
             <div class="chapter-scroller text-only-mode" id="data-chapters"></div>
         </div>
     </section>
 
-    <section style="background-color: #fff; padding-bottom: 60px; padding-top: 60px;">
+    <section style="background-color: #fff; padding-bottom: 80px; padding-top: 40px;">
         <div class="container-immo">
-            
-            <div class="expert-analysis-box" style="align-items: center; background-color: #fff4f7; border-color: #EA1D54;">
-                <div class="expert-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#EA1D54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                </div>
+            <div class="expert-analysis-box" style="display:flex; align-items: center; background-color: #fff4f7; border-color: #EA1D54; padding: 25px; border-radius: 8px; border-left: 5px solid #EA1D54; margin-bottom: 40px;">
                 <div class="expert-content">
-                    <h4 style="margin-bottom: 5px;">Le Verdict de Sylvain</h4>
-                    <p id="data-verdict" style="margin-bottom: 0;">...</p>
+                    <h4 style="color:#EA1D54; margin-bottom: 8px;">Le Verdict de Sylvain</h4>
+                    <p id="data-verdict" style="margin-bottom: 0; font-style: italic; line-height: 1.6;"></p>
                 </div>
             </div>
 
             <div class="legal-compliance-block">
-                <hr class="divider-elegant">
-                <h4>Mentions Légales & Financières</h4>
-                <p class="legal-text">
-                    <strong>Prix de vente :</strong> <span id="legal-price">...</span> euros HAI.<br>
-                    Honoraires : <span id="legal-fees">...</span> % TTC inclus.<br>
-                    Prix hors honoraires : <span id="legal-net-price">...</span> euros.
-                </p>
-                <p class="legal-text-dense">
-                    Pour visiter, contactez Sylvain MATIGNON.
-                    <br><br>
-                    <strong>Mandat réf : <span id="legal-mandat">...</span></strong>
-                </p>
+                <hr class="divider-elegant" style="margin-bottom: 30px; opacity: 0.1;">
+                <h4 style="font-size: 1.1rem; margin-bottom: 20px; color: #333;">Mentions Légales & Informations Professionnelles</h4>
+                <div id="full-legal-text" style="font-size: 0.85rem; color: #666; line-height: 1.7;"></div>
             </div>
-
         </div>
     </section>
 
     <footer class="legal-footer">
-        <div class="footer-content">
-            <img src="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/a06bc67f5ee3d3623138470f14f7a1e0aeea4345/assets/video/icone%20pp.com.webp" alt="Logo PP" style="width:40px;">
-            <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">
-                © 2026 Sylvain MATIGNON - Mandataire indépendant Proprietes-privees.com
-            </p>
+        <div class="footer-content" style="text-align: center; padding: 40px 0;">
+            <img src="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/a06bc67f5ee3d3623138470f14f7a1e0aeea4345/assets/video/icone%20pp.com.webp" alt="Logo" style="width:40px; margin-bottom: 15px;">
+            <p style="font-size: 0.75rem; opacity: 0.6;">© 2026 Sylvain MATIGNON - Mandataire indépendant Proprietes-privees.com</p>
         </div>
     </footer>
 
