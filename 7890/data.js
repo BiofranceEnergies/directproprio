@@ -50,9 +50,10 @@ const HouseData = {
     ],
 
     // Chapitres de la vidéo YouTube
-    chapters: [
+   chapters: [
         { time: 0, title: "L'Arrivée", subtitle: "Extérieurs & Parc" },
-        { time: 30, title: "Espace de Vie", subtitle: "Salon & Cuisine" }
+        { time: 30, title: "Espace de Vie", subtitle: "Salon & Cuisine" }, // <--- La virgule est ICI
+        { time: 60, title: "Côté Nuit", subtitle: "Chambres & Salles d'eau" }
     ],
     
     // Vos coordonnées
