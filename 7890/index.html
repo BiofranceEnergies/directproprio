@@ -66,6 +66,7 @@
                         <p class="legal-mention-energy" id="data-energy-cost">...</p>
                     </div>
                 </div>
+
                 <div class="sidebar-col">
                     <div class="agent-card">
                         <div class="agent-header-clean">
@@ -115,24 +116,28 @@
         </div>
     </section>
 
-  <footer class="legal-footer" style="padding: 40px 0; border-top: 1px solid #eee; text-align: center;">
-    <div class="container-immo">
-        <p style="font-size: 0.8rem; margin-bottom: 10px;">
-            <a href="javascript:void(0)" id="open-legal" style="color: #666; text-decoration: underline;">Mentions Légales du Site</a>
-        </p>
-        <p style="font-size: 0.7rem; opacity: 0.6;">
-            © 2026 Sylvain MATIGNON - Mandataire indépendant Proprietes-privees.com
-        </p>
-    </div>
-</footer>
+    <footer class="legal-footer" style="padding: 40px 0; border-top: 1px solid #eee; text-align: center;">
+        <div class="container-immo">
+            <p style="font-size: 0.8rem; margin-bottom: 10px;">
+                <a href="javascript:void(0)" id="open-legal" style="color: #666; text-decoration: underline;">Mentions Légales du Site</a>
+            </p>
+            <p style="font-size: 0.7rem; opacity: 0.6;">
+                © 2026 Sylvain MATIGNON - Mandataire indépendant Proprietes-privees.com
+            </p>
+        </div>
+    </footer>
 
-<div id="legal-modal" class="modal-overlay">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <div id="modal-text-content">
-            </div>
+    <div id="legal-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-text-content"></div>
+        </div>
     </div>
-</div>
+
+    <div id="cookie-banner" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#fff; padding:15px 25px; border-radius:50px; box-shadow:0 10px 40px rgba(0,0,0,0.2); z-index:10001; width:90%; max-width:500px; border:1px solid #eee; align-items:center; justify-content:space-between;">
+        <p style="font-size:0.8rem; color:#333; margin:0; flex-grow:1;">🍪 Nous utilisons des cookies pour optimiser votre visite.</p>
+        <button onclick="acceptCookies()" style="background:#EA1D54; color:#fff; border:none; padding:8px 20px; border-radius:25px; cursor:pointer; font-weight:600; font-size:0.75rem; margin-left:15px; white-space: nowrap;">Accepter</button>
+    </div>
 
     <script src="data.js"></script>
     <script src="../script.js"></script>
