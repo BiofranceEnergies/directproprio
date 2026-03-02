@@ -3,19 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title id="page-title">Visite Privée : Propriété de Caractère - Saint Martial De Valette</title> 
-    <meta name="description" content="Découvrez cette propriété d'exception à Saint Martial De Valette via notre visite vidéo guidée exclusive. Présentée par Sylvain Matignon.">
-    
+    <meta name="description" content="Découvrez cette propriété d'exception à Saint Martial De Valette via notre visite vidéo guidée exclusive.">
     <link rel="canonical" href="https://sylvain-immo-dordogne.cioo.io/7890/" />
 
     <meta property="og:title" content="Visite Privée : Propriété de Caractère - Saint Martial De Valette" />
-    <meta property="og:description" content="180m² habitables • Parc de 4 Hectares • Piscine au sel. Découvrez le reportage vidéo complet." />
+    <meta property="og:description" content="180m² habitables • Parc de 4 Hectares • Piscine au sel. Découvrez le reportage vidéo." />
     <meta property="og:url" content="https://sylvain-immo-dordogne.cioo.io/7890/" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/main/assets/img/fb-share-7890.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
@@ -42,16 +38,14 @@
 
     <section class="property-details">
         <div class="container-immo">
-            <div class="listing-header">
+            <div class="listing-header" style="text-align: center;">
                 <div class="location-tag" id="data-location">...</div>
                 <h2 class="prestige-title" id="data-type-title">...</h2>
-               <div class="price-wrapper" style="display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px;">
-    <span class="price-tag" id="data-price" style="font-size: 1.8rem; font-weight: 700; color: #EA1D54;">...</span>
-    
-    <span id="data-price-m2" style="font-size: 1.05rem; color: #888; font-weight: 400; font-family: 'Inter', sans-serif;"></span>
-    
-    <span class="hai" style="font-style: italic; color: #666;">Honoraires d'Agence Inclus</span>
-</div>
+                
+                <div class="price-wrapper" style="display: flex; align-items: baseline; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 10px;">
+                    <span class="price-tag" id="data-price" style="font-size: 1.8rem; font-weight: 700; color: #EA1D54;">...</span>
+                    <span id="data-price-m2" style="font-size: 1.05rem; color: #888; font-weight: 400; font-family: 'Inter', sans-serif;"></span>
+                    <span class="hai" style="font-style: italic; color: #666;">Honoraires d'Agence Inclus</span>
                 </div>
             </div>
 
@@ -59,11 +53,11 @@
                 <div class="metric-box"><span class="value" id="data-surface">...</span><span class="label">m² Habitables</span></div>
                 <div class="metric-box"><span class="value" id="data-rooms">...</span><span class="label">Pièces</span></div>
                 <div class="metric-box"><span class="value" id="data-bedrooms">...</span><span class="label">Chambres</span></div>
-                <div class="metric-box"><span class="value" id="data-land">...</span><span class="label">Terrain</span></div>
+                <div class="metric-box"><span class="value" id="data-land">...</span><span class="label">m² Terrain</span></div>
             </div>
 
             <hr class="divider-elegant">
-
+            
             <div class="listing-body-grid">
                 <div class="main-content-col">
                     <div class="description-text">
@@ -112,7 +106,7 @@
         <div class="container-player">
             <div class="section-title"><h2>Visite Privée Guidée</h2><p>Découvrez chaque espace dans ses moindres détails.</p></div>
             <div class="main-player-wrapper" id="youtube-injector"></div>
-            <div class="chapter-scroller text-only-mode" id="data-chapters"></div>
+            <div class="chapter-scroller" id="data-chapters" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: stretch;"></div>
         </div>
     </section>
 
@@ -124,7 +118,6 @@
                     <p id="data-verdict"></p>
                 </div>
             </div>
-
             <div class="legal-compliance-block">
                 <hr class="divider-elegant" style="margin-bottom: 30px; opacity: 0.1;">
                 <h4>Mentions Légales & Informations Professionnelles</h4>
@@ -135,12 +128,8 @@
 
     <footer class="legal-footer">
         <div class="container-immo">
-            <p style="margin-bottom: 10px;">
-                <a href="javascript:void(0)" id="open-legal" style="color: #666; text-decoration: underline;">Mentions Légales du Site</a>
-            </p>
-            <p style="opacity: 0.6;">
-                © 2026 Sylvain MATIGNON - Mandataire indépendant Proprietes-privees.com
-            </p>
+            <p style="margin-bottom: 10px;"><a href="javascript:void(0)" id="open-legal" style="color: #666; text-decoration: underline;">Mentions Légales du Site</a></p>
+            <p style="opacity: 0.6;">© 2026 Sylvain MATIGNON - Mandataire indépendant Proprietes-privees.com</p>
         </div>
     </footer>
 
@@ -152,8 +141,8 @@
     </div>
 
     <div id="cookie-banner" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#fff; padding:15px 25px; border-radius:50px; box-shadow:0 10px 40px rgba(0,0,0,0.2); z-index:10001; width:90%; max-width:500px; border:1px solid #eee; align-items:center; justify-content:space-between;">
-        <p style="font-size:0.8rem; color:#333; margin:0; flex-grow:1;">🍪 Nous utilisons des cookies pour optimiser votre visite.</p>
-        <button onclick="acceptCookies()" style="background:#EA1D54; color:#fff; border:none; padding:8px 20px; border-radius:25px; cursor:pointer; font-weight:600; font-size:0.75rem; margin-left:15px; white-space: nowrap;">Accepter</button>
+        <p style="font-size:0.8rem; color:#333; margin:0; flex-grow:1;">🍪 Cookies optimisés pour votre visite.</p>
+        <button onclick="acceptCookies()" style="background:#EA1D54; color:#fff; border:none; padding:8px 20px; border-radius:25px; cursor:pointer; font-weight:600; font-size:0.75rem; margin-left:15px;">Accepter</button>
     </div>
 
     <script src="data.js"></script>
