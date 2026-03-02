@@ -1,52 +1,4 @@
 /* ==========================================================================
-   CONSOLE DE COMMANDE - MODIFIE LES DONNÉES DE LA MAISON ICI
-   ========================================================================== */
-const HouseData = {
-    title: "Le Domaine des Deux Cèdres",
-    subtitle: "Sarlat-la-Canéda • 4 000 m² de Sérénité",
-    location: "Sarlat-la-Canéda (24200)",
-    type: "Maison de caractère rénovée",
-    
-    price: 695000,
-    feesPercent: 3.99,
-    mandatRef: "358412",
-
-    surface: "240",
-    rooms: "7",
-    bedrooms: "4",
-    land: "4000 m2",
-
-    // ID Youtube (publique)
-    youtubeID: "e2gSjrCwafQ", 
-    // Lien vidéo fond (MP4 direct)
-    heroVideoUrl: "https://raw.githubusercontent.com/BiofranceEnergies/directproprio/448ea69e534288cafa7204c71ed6da4df8c49eee/assets/video/sabouret%2012.mp4",
-
-    dpeLetter: "D",
-    dpeValue: "195",
-    gesLetter: "D",
-    gesValue: "38",
-    energyCost: "entre 1500 € et 2100 €",
-
-    features: [
-        { icon: "rect", text: "7 pièces" },
-        { icon: "bed", text: "4 chambres" },
-        { icon: "bath", text: "3 salles d'eau" },
-        { icon: "sun", text: "Pompe à Chaleur" },
-        { icon: "pool", text: "Piscine 10x4m (Sel)" }
-    ],
-
-    chapters: [
-        { time: 0, title: "Le Grand Salon", subtitle: "Rez-de-chaussée" },
-        { time: 45, title: "Cuisine & Repas", subtitle: "Espace de vie" },
-        { time: 90, title: "Suite Parentale", subtitle: "Espace nuit" },
-        { time: 140, title: "Parc & Piscine", subtitle: "Extérieurs" }
-    ],
-    
-    agentCity: "SARLAT-LA-CANÉDA",
-    agentPhone: "06.00.00.00.00"
-};
-
-/* ==========================================================================
    MOTEUR DU SITE (NE PAS TOUCHER)
    ========================================================================== */
 
@@ -120,12 +72,9 @@ document.addEventListener("DOMContentLoaded", function() {
         if(p !== undefined) { p.catch(e => { videoHero.muted=true; videoHero.play(); }); }
 
         // LE RÉANIMATEUR (IntersectionObserver)
-        // Dès que la vidéo revient à l'écran, on force la lecture
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // Si la vidéo est visible (même un petit bout)
                 if (entry.isIntersecting) {
-                    // On vérifie si elle est en pause
                     if (videoHero.paused) {
                         videoHero.play().catch(e => console.log("Relance auto"));
                     }
@@ -134,7 +83,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         observer.observe(videoHero);
 
-        // SECURITÉ SUPPLÉMENTAIRE : Si la vidéo s'arrête (fin de buffer), on relance
         videoHero.addEventListener('ended', function() {
             this.play();
         });
