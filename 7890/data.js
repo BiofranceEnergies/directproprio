@@ -11,7 +11,7 @@ const HouseData = {
     // --- SECTION PRIX ET MANDAT (MODIFIÉE ICI) ---
     price: 450000,
     feesPercent: 6.00,        // Le pourcentage
-    feesSide: "vendeur",      // "vendeur" ou "acquéreur"
+    feesSide: "acquéreur",      // "vendeur" ou "acquéreur"
     mandatRef: "437095",
     // ----------------------------------------------
 
