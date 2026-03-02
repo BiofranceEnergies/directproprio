@@ -1,93 +1,94 @@
 /* ==========================================================================
-   MOTEUR DE LANDING PAGE IMMOBILIÈRE - VERSION INTEGRALE & INTELLIGENTE
+   MOTEUR DE LANDING PAGE - VERSION FINALE & INTÉGRALE
    ========================================================================== */
 
-// --- 1. GESTION DU LECTEUR YOUTUBE (API OFFICIELLE) ---
+// --- 1. GESTION YOUTUBE ---
 var player;
 function onYouTubeIframeAPIReady() {
     var container = document.getElementById('youtube-injector');
     if (!container || !HouseData.youtubeID) return;
-    
     container.innerHTML = '<div id="yt-player-target"></div>';
     player = new YT.Player('yt-player-target', {
-        height: '100%',
-        width: '100%',
-        videoId: HouseData.youtubeID,
-        playerVars: { 
-            'autoplay': 0, // Ne se lance pas tout seul
-            'rel': 0, 
-            'modestbranding': 1, 
-            'loop': 1, 
-            'playlist': HouseData.youtubeID 
-        },
+        height: '100%', width: '100%', videoId: HouseData.youtubeID,
+        playerVars: { 'autoplay': 0, 'rel': 0, 'modestbranding': 1, 'loop': 1, 'playlist': HouseData.youtubeID },
         events: { 'onReady': function(e) {} }
     });
 }
-
-// Fonction pour sauter à un moment précis de la vidéo
 function jumpToTime(seconds, element) {
-    if (player && typeof player.seekTo === 'function') {
-        player.seekTo(seconds, true);
-        player.playVideo(); 
-    }
-    // Gère l'apparence active des cartes de chapitres
+    if (player && typeof player.seekTo === 'function') { player.seekTo(seconds, true); player.playVideo(); }
     document.querySelectorAll('.chapter-card').forEach(c => c.classList.remove('active'));
     element.classList.add('active');
 }
 
-// --- 2. CHARGEMENT ET REMPLISSAGE DES DONNÉES ---
+// --- 2. REMPLISSAGE AUTOMATIQUE ---
 document.addEventListener("DOMContentLoaded", function() {
-    
-    // Aide pour injecter du texte simplement
-    function setTxt(id, txt) { 
-        const el = document.getElementById(id); 
-        if(el) el.innerText = txt; 
-    }
-    
-    // A. IDENTITÉ DU BIEN
+    function setTxt(id, txt) { const el = document.getElementById(id); if(el) el.innerText = txt; }
+
+    // Textes de base
     document.title = HouseData.title + " - Visite Privée";
     setTxt('data-main-title', HouseData.title);
     setTxt('data-subtitle', HouseData.subtitle);
     setTxt('data-location', HouseData.location);
     setTxt('data-type-title', HouseData.type);
-    
-    // B. VIDÉO DE FOND (HERO)
-    const videoHero = document.getElementById('data-hero-video');
-    if(videoHero && HouseData.heroVideoUrl) {
-        videoHero.src = HouseData.heroVideoUrl;
-        videoHero.load();
-        videoHero.play().catch(e => console.log("Lecture auto bloquée par le navigateur"));
-    }
-
-    // C. CHIFFRES CLÉS
-    const formattedPrice = new Intl.NumberFormat('fr-FR').format(HouseData.price);
-    setTxt('data-price', formattedPrice + " €");
     setTxt('data-surface', HouseData.surface);
     setTxt('data-rooms', HouseData.rooms);
     setTxt('data-bedrooms', HouseData.bedrooms);
     setTxt('data-land', HouseData.land);
-    setTxt('data-energy-cost', "Montant estimé des dépenses annuelles : " + HouseData.energyCost);
-
-    // D. CONTACT AGENT
     setTxt('data-agent-city', HouseData.agentCity);
+    setTxt('data-verdict', HouseData.verdict);
+
+    // Vidéo Hero
+    const videoHero = document.getElementById('data-hero-video');
+    if(videoHero && HouseData.heroVideoUrl) {
+        videoHero.src = HouseData.heroVideoUrl;
+        videoHero.load();
+        videoHero.play().catch(e => console.log("Lecture auto bloquée"));
+    }
+
+    // Prix et Contact
+    const formattedPrice = new Intl.NumberFormat('fr-FR').format(HouseData.price);
+    setTxt('data-price', formattedPrice + " €");
+    setTxt('data-energy-cost', "Montant estimé des dépenses annuelles : " + HouseData.energyCost);
     const btnCall = document.getElementById('data-agent-tel');
     if(btnCall) btnCall.href = "tel:" + HouseData.agentPhone.replace(/\./g, '');
 
-    // E. DESCRIPTION MULTI-PARAGRAPHES
+    // Description (Paragraphes)
     const descContainer = document.getElementById('data-description');
     if(descContainer && HouseData.description) {
         descContainer.innerHTML = '';
         HouseData.description.forEach(txt => {
-            const p = document.createElement('p');
-            p.innerText = txt;
-            descContainer.appendChild(p);
+            const p = document.createElement('p'); p.innerText = txt; descContainer.appendChild(p);
         });
     }
 
-    // F. LE VERDICT DE SYLVAIN
-    setTxt('data-verdict', HouseData.verdict);
+    // --- 3. BLOC LÉGAL COMPLET (TA VERSION PROFESSIONNELLE) ---
+    const legalContainer = document.getElementById('full-legal-text');
+    if(legalContainer) {
+        let textHonoraires = "";
+        if(HouseData.feesSide === "vendeur") {
+            textHonoraires = `Honoraires à la charge du vendeur.`;
+        } else {
+            const netVendeur = Math.round(HouseData.price / (1 + (HouseData.feesPercent/100)));
+            const netVendeurFmt = new Intl.NumberFormat('fr-FR').format(netVendeur);
+            textHonoraires = `(${HouseData.feesPercent}% honoraires TTC à la charge de l'acquéreur.) Prix hors honoraires : ${netVendeurFmt} €.`;
+        }
 
-    // --- 3. GÉNÉRATEUR VISUEL DPE / GES ---
+        legalContainer.innerHTML = `
+            <p style="margin-bottom:15px;">Pour visiter et vous accompagner dans votre projet, contactez <strong>Sylvain MATIGNON</strong>, au <strong>${HouseData.agentPhone}</strong> ou, par courriel à <a href="mailto:${HouseData.agentEmail}" style="color:#EA1D54; text-decoration:none; font-weight:bold;">${HouseData.agentEmail}</a>.</p>
+            
+            <p style="margin-bottom:15px;">Selon l'article L.561.5 du Code Monétaire et Financier, pour l'organisation de la visite, la présentation d'une pièce d'identité vous sera demandée.</p>
+            
+            <p style="margin-bottom:15px; font-size:0.8rem; opacity:0.8; text-align:justify;">
+                Cette présente annonce a été rédigée sous la responsabilité éditoriale de Sylvain MATIGNON agissant sous le statut d'agent commercial immatriculé au 422 231 928 R.S.A.C. Evreux auprès de SAS PROPRIETES PRIVEES, au capital de 44 920 euros, ZAC LE CHÊNE FERRÉ - 44 ALLÉE DES CINQ CONTINENTS 44120 VERTOU ; SIRET 487 624 777 00040, RCS Nantes. Carte Professionnelle Transactions sur immeubles et fonds de commerce (T) et Gestion immobilière (G) n°CPI 4401 2016 000 010 388 délivrée par la CCI Nantes - Saint Nazaire. Compte séquestre n°30932508467 BPA SAINT-SEBASTIEN-SUR-LOIRE (44230). Garantie GALIAN-SMABTP - 89 rue de la Boétie, 75008 Paris - n°28137 J pour 2 000 000 euros pour T et 120 000 euros pour G. Assurance responsabilité civile professionnelle par GALIAN-SMABTP n° de police 28137.J.
+            </p>
+            
+            <p style="padding-top:15px; border-top:1px solid #eee; font-weight: 500;">
+                <strong>Mandat réf : ${HouseData.mandatRef}</strong> - Le professionnel garantit et sécurise votre projet immobilier. ${textHonoraires}
+            </p>
+        `;
+    }
+
+    // --- 4. DPE / PICTOGRAMMES / CHAPITRES ---
     const letters = ['A','B','C','D','E','F','G'];
     function generateLadder(targetId, activeLetter, val, unit, prefixClass) {
         const container = document.getElementById(targetId);
@@ -95,14 +96,13 @@ document.addEventListener("DOMContentLoaded", function() {
         container.innerHTML = '';
         letters.forEach((l) => {
             const index = letters.indexOf(l);
-            const widthClass = "w-" + (index + 1);
             const row = document.createElement('div');
             if (l === activeLetter) {
                 row.className = "dpe-row active-row";
-                row.innerHTML = `<div class="dpe-bar ${prefixClass}-${l.toLowerCase()} ${widthClass}">${l}</div><div class="dpe-value">${val} <span>${unit}</span></div>`;
+                row.innerHTML = `<div class="dpe-bar ${prefixClass}-${l.toLowerCase()} w-${index+1}">${l}</div><div class="dpe-value">${val} <span>${unit}</span></div>`;
             } else {
                 row.className = "dpe-row";
-                row.innerHTML = `<div class="dpe-bar ${prefixClass}-${l.toLowerCase()} ${widthClass}">${l}</div>`;
+                row.innerHTML = `<div class="dpe-bar ${prefixClass}-${l.toLowerCase()} w-${index+1}">${l}</div>`;
             }
             container.appendChild(row);
         });
@@ -110,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function() {
     generateLadder('dpe-ladder-conso', HouseData.dpeLetter, HouseData.dpeValue, 'kWh/m²', 'class');
     generateLadder('dpe-ladder-ges', HouseData.gesLetter, HouseData.gesValue, 'kg CO₂/m²', 'ges');
 
-    // --- 4. GÉNÉRATEUR D'ICÔNES (FEATURES) ---
     const featContainer = document.getElementById('data-features-list');
     if(featContainer) {
         featContainer.innerHTML = '';
@@ -122,15 +121,12 @@ document.addEventListener("DOMContentLoaded", function() {
             else if(f.icon === "sun") svgPath = '<path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/><circle cx="12" cy="12" r="4"/>';
             else if(f.icon === "pool") svgPath = '<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>';
             else svgPath = '<circle cx="12" cy="12" r="10"/>';
-
-            const div = document.createElement('div');
-            div.className = 'feature-item';
+            const div = document.createElement('div'); div.className = 'feature-item';
             div.innerHTML = `<svg class="immo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${svgPath}</svg><span>${f.text}</span>`;
             featContainer.appendChild(div);
         });
     }
 
-    // --- 5. GÉNÉRATEUR DE CHAPITRES VIDÉO ---
     const chapContainer = document.getElementById('data-chapters');
     if(chapContainer) {
         chapContainer.innerHTML = '';
@@ -141,30 +137,5 @@ document.addEventListener("DOMContentLoaded", function() {
             div.innerHTML = `<div class="card-content"><h3>${c.title}</h3><span>${c.subtitle}</span></div>`;
             chapContainer.appendChild(div);
         });
-    }
-
-    // --- 6. LOGIQUE DU BLOC LÉGAL (VENDEUR vs ACQUÉREUR) ---
-    const legalContainer = document.getElementById('full-legal-text');
-    if(legalContainer) {
-        let textHonoraires = "";
-
-        if(HouseData.feesSide === "vendeur") {
-            textHonoraires = `Honoraires à la charge du vendeur.`;
-        } else {
-            const netVendeur = Math.round(HouseData.price / (1 + (HouseData.feesPercent/100)));
-            const netVendeurFmt = new Intl.NumberFormat('fr-FR').format(netVendeur);
-            textHonoraires = `${HouseData.feesPercent}% honoraires TTC à la charge de l'acquéreur. Prix hors honoraires : ${netVendeurFmt} €.`;
-        }
-
-        legalContainer.innerHTML = `
-            <p style="margin-bottom:15px;">Pour visiter et vous accompagner dans votre projet, contactez <strong>Sylvain MATIGNON</strong>, au <strong>${HouseData.agentPhone}</strong> ou, par courriel à <a href="mailto:${HouseData.agentEmail}" style="color:#EA1D54; text-decoration:none; font-weight:bold;">${HouseData.agentEmail}</a>.</p>
-            <p style="margin-bottom:15px;">Selon l'article L.561.5 du Code Monétaire et Financier, pour l'organisation de la visite, la présentation d'une pièce d'identité vous sera demandée.</p>
-            <p style="margin-bottom:15px; font-size:0.8rem; opacity:0.8; text-align:justify;">
-                Cette présente annonce a été rédigée sous la responsabilité éditoriale de Sylvain MATIGNON agissant sous le statut d'agent commercial immatriculé au 422 231 928 R.S.A.C. Evreux auprès de SAS PROPRIETES PRIVEES, au capital de 44 920 euros, ZAC LE CHÊNE FERRÉ - 44 ALLÉE DES CINQ CONTINENTS 44120 VERTOU ; SIRET 487 624 777 00040, RCS Nantes. Carte Professionnelle Transactions sur immeubles et fonds de commerce (T) et Gestion immobilière (G) n°CPI 4401 2016 000 010 388 délivrée par la CCI Nantes - Saint Nazaire. Compte séquestre n°30932508467 BPA SAINT-SEBASTIEN-SUR-LOIRE (44230). Garantie GALIAN-SMABTP - 89 rue de la Boétie, 75008 Paris - n°28137 J pour 2 000 000 euros pour T et 120 000 euros pour G. Assurance responsabilité civile professionnelle par GALIAN-SMABTP n° de police 28137.J.
-            </p>
-            <p style="padding-top:15px; border-top:1px solid #eee; font-weight: 500;">
-                <strong>Mandat réf : ${HouseData.mandatRef}</strong> - Le professionnel garantit et sécurise votre projet immobilier. ${textHonoraires}
-            </p>
-        `;
     }
 });
