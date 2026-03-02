@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MOTEUR DE LANDING PAGE - VERSION FUSIONNÉE INTÉGRALE (SANS COUPURES)
+   MOTEUR DE LANDING PAGE - VERSION ABSOLUE (DESCRIPTION + ICONES + PRIX)
    ========================================================================== */
 
 // --- 1. GESTION YOUTUBE ---
@@ -28,7 +28,7 @@ function acceptCookies() {
     if(banner) banner.style.display = 'none';
 }
 
-// --- 2. REMPLISSAGE ET LOGIQUE ---
+// --- 2. REMPLISSAGE AUTOMATIQUE ---
 document.addEventListener("DOMContentLoaded", function() {
     function setTxt(id, txt) { const el = document.getElementById(id); if(el) el.innerText = txt; }
 
@@ -68,60 +68,21 @@ document.addEventListener("DOMContentLoaded", function() {
     const btnCall = document.getElementById('data-agent-tel');
     if(btnCall) btnCall.href = "tel:" + HouseData.agentPhone.replace(/\./g, '');
 
-    // Description
+    // --- DESCRIPTION (L'ART DE VIVRE) ---
     const descContainer = document.getElementById('data-description');
     if(descContainer && HouseData.description) {
-        descContainer.innerHTML = '';
-        HouseData.description.forEach(txt => {
-            const p = document.createElement('p'); p.innerText = txt; descContainer.appendChild(p);
+        descContainer.innerHTML = ''; // On vide avant d'injecter
+        HouseData.description.forEach(paragraphe => {
+            const p = document.createElement('p'); 
+            p.innerText = paragraphe; 
+            p.style.marginBottom = "15px";
+            descContainer.appendChild(p);
         });
     }
 
-    // --- 3. BLOC LÉGAL IMMOBILIER COMPLET ---
-    const legalContainer = document.getElementById('full-legal-text');
-    if(legalContainer) {
-        let textHonoraires = "";
-        if(HouseData.feesSide === "vendeur") {
-            textHonoraires = `Honoraires à la charge du vendeur.`;
-        } else {
-            const netVendeur = Math.round(HouseData.price / (1 + (HouseData.feesPercent/100)));
-            const netVendeurFmt = new Intl.NumberFormat('fr-FR').format(netVendeur);
-            textHonoraires = `(${HouseData.feesPercent}% honoraires TTC à la charge de l'acquéreur.) Prix hors honoraires : ${netVendeurFmt} €.`;
-        }
-
-        legalContainer.innerHTML = `
-            <p style="margin-bottom:15px;">Pour visiter et vous accompagner dans votre projet, contactez <strong>Sylvain MATIGNON</strong>, au <strong>${HouseData.agentPhone}</strong> ou, par courriel à <a href="mailto:${HouseData.agentEmail}" style="color:#EA1D54; text-decoration:none; font-weight:bold;">${HouseData.agentEmail}</a>.</p>
-            <p style="margin-bottom:15px;">Selon l'article L.561.5 du Code Monétaire et Financier, pour l'organisation de la visite, la présentation d'une pièce d'identité vous sera demandée.</p>
-            <p style="margin-bottom:15px; font-size:0.8rem; opacity:0.8; text-align:justify;">Cette présente annonce a été rédigée sous la responsabilité éditoriale de Sylvain MATIGNON agissant sous le statut d'agent commercial immatriculé au 422 231 928 R.S.A.C. Evreux auprès de SAS PROPRIETES PRIVEES, au capital de 44 920 euros, ZAC LE CHÊNE FERRÉ - 44 ALLÉE DES CINQ CONTINENTS 44120 VERTOU ; SIRET 487 624 777 00040, RCS Nantes. Carte Professionnelle Transactions sur immeubles et fonds de commerce (T) et Gestion immobilière (G) n°CPI 4401 2016 000 010 388 délivrée par la CCI Nantes - Saint Nazaire. Compte séquestre n°30932508467 BPA SAINT-SEBASTIEN-SUR-LOIRE (44230). Garantie GALIAN-SMABTP - 89 rue de la Boétie, 75008 Paris - n°28137 J pour 2 000 000 euros pour T et 120 000 euros pour G. Assurance responsabilité civile professionnelle par GALIAN-SMABTP n° de police 28137.J.</p>
-            <p style="padding-top:15px; border-top:1px solid #eee; font-weight: 500;"><strong>Mandat réf : ${HouseData.mandatRef}</strong> - Le professionnel garantit et sécurise votre projet immobilier. ${textHonoraires}</p>
-        `;
-    }
-
-    // --- 4. DPE & GES ---
-    const letters = ['A','B','C','D','E','F','G'];
-    function generateLadder(targetId, activeLetter, val, unit, prefixClass) {
-        const container = document.getElementById(targetId);
-        if(!container) return;
-        container.innerHTML = '';
-        letters.forEach((l) => {
-            const index = letters.indexOf(l);
-            const row = document.createElement('div');
-            if (l === activeLetter) {
-                row.className = "dpe-row active-row";
-                row.innerHTML = `<div class="dpe-bar ${prefixClass}-${l.toLowerCase()} w-${index+1}">${l}</div><div class="dpe-value">${val} <span>${unit}</span></div>`;
-            } else {
-                row.className = "dpe-row";
-                row.innerHTML = `<div class="dpe-bar ${prefixClass}-${l.toLowerCase()} w-${index+1}">${l}</div>`;
-            }
-            container.appendChild(row);
-        });
-    }
-    generateLadder('dpe-ladder-conso', HouseData.dpeLetter, HouseData.dpeValue, 'kWh/m²', 'class');
-    generateLadder('dpe-ladder-ges', HouseData.gesLetter, HouseData.gesValue, 'kg CO₂/m²', 'ges');
-
-    // --- 5. PICTOGRAMMES ---
+    // --- CARACTÉRISTIQUES TECHNIQUES (ICÔNES SVG) ---
     const featContainer = document.getElementById('data-features-list');
-    if(featContainer) {
+    if(featContainer && HouseData.features) {
         featContainer.innerHTML = '';
         HouseData.features.forEach(f => {
             let svgPath = "";
@@ -132,13 +93,44 @@ document.addEventListener("DOMContentLoaded", function() {
             else if(f.icon === "pool") svgPath = '<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>';
             else svgPath = '<circle cx="12" cy="12" r="10"/>';
             
-            const div = document.createElement('div'); div.className = 'feature-item';
-            div.innerHTML = `<svg class="immo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${svgPath}</svg><span>${f.text}</span>`;
+            const div = document.createElement('div'); 
+            div.className = 'feature-item';
+            div.style.display = "flex";
+            div.style.alignItems = "center";
+            div.style.marginBottom = "10px";
+            div.innerHTML = `<svg class="immo-icon" style="width:20px; color:#EA1D54; margin-right:10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${svgPath}</svg><span>${f.text}</span>`;
             featContainer.appendChild(div);
         });
     }
 
-    // --- 6. CHAPITRES ---
+    // --- BLOC LÉGAL COMPLET ---
+    const legalContainer = document.getElementById('full-legal-text');
+    if(legalContainer) {
+        let textHon = HouseData.feesSide === "vendeur" ? `Honoraires à la charge du vendeur.` : `(${HouseData.feesPercent}% honoraires TTC à la charge de l'acquéreur.) Prix hors honoraires : ${new Intl.NumberFormat('fr-FR').format(Math.round(HouseData.price / (1 + (HouseData.feesPercent/100))))} €.`;
+        legalContainer.innerHTML = `
+            <p style="margin-bottom:15px;">Contactez <strong>Sylvain MATIGNON</strong> au <strong>${HouseData.agentPhone}</strong> ou à <a href="mailto:${HouseData.agentEmail}" style="color:#EA1D54; font-weight:bold;">${HouseData.agentEmail}</a>.</p>
+            <p style="font-size:0.8rem; opacity:0.8; text-align:justify;">Cette présente annonce a été rédigée sous la responsabilité éditoriale de Sylvain MATIGNON agissant sous le statut d'agent commercial immatriculé au 422 231 928 R.S.A.C. Evreux auprès de SAS PROPRIETES PRIVEES. n°CPI 4401 2016 000 010 388 délivrée par la CCI Nantes. Garantie GALIAN-SMABTP - 89 rue de la Boétie, 75008 Paris.</p>
+            <p style="padding-top:15px; border-top:1px solid #eee;"><strong>Mandat réf : ${HouseData.mandatRef}</strong> - ${textHon}</p>
+        `;
+    }
+
+    // DPE & GES
+    const letters = ['A','B','C','D','E','F','G'];
+    function generateLadder(targetId, activeLetter, val, unit, prefixClass) {
+        const container = document.getElementById(targetId);
+        if(!container) return;
+        container.innerHTML = '';
+        letters.forEach((l) => {
+            const row = document.createElement('div');
+            row.className = l === activeLetter ? "dpe-row active-row" : "dpe-row";
+            row.innerHTML = `<div class="dpe-bar ${prefixClass}-${l.toLowerCase()} w-${letters.indexOf(l)+1}">${l}</div>` + (l === activeLetter ? `<div class="dpe-value">${val} <span>${unit}</span></div>` : '');
+            container.appendChild(row);
+        });
+    }
+    generateLadder('dpe-ladder-conso', HouseData.dpeLetter, HouseData.dpeValue, 'kWh/m²', 'class');
+    generateLadder('dpe-ladder-ges', HouseData.gesLetter, HouseData.gesValue, 'kg CO₂/m²', 'ges');
+
+    // Chapitres Vidéo
     const chapContainer = document.getElementById('data-chapters');
     if(chapContainer) {
         chapContainer.innerHTML = '';
@@ -152,30 +144,16 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- 7. MODALE MENTIONS LÉGALES ---
+    // Modale & Cookies
     const modal = document.getElementById("legal-modal");
-    const btn = document.getElementById("open-legal");
-    const modalText = document.getElementById("modal-text-content");
-
-    if(btn && modal) {
-        btn.onclick = function() {
-            modalText.innerHTML = `
-                <h2 style="margin-bottom:20px; color:#EA1D54; font-family:'Playfair Display', serif;">Mentions Légales du Site</h2>
-                <div style="font-size:0.9rem; color:#444;">
-                    <p style="margin-bottom:15px;"><strong>Éditeur du site :</strong><br>cioo.io / Sylvain Matignon<br>4 rue du Pont Saint Jean, 27530 Ézy-sur-Eure<br>SIRET : 422 231 928 00025<br>Email : contact.cioo.io@gmail.com</p>
-                    <p style="margin-bottom:15px;"><strong>Hébergement :</strong><br>GitHub Pages<br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA</p>
-                    <p style="font-style:italic; font-size:0.8rem; border-top:1px solid #eee; padding-top:10px;">Ce site est une interface de présentation immobilière. Tous les contenus sont protégés par le droit d'auteur.</p>
-                </div>
-            `;
+    if(document.getElementById("open-legal") && modal) {
+        document.getElementById("open-legal").onclick = function() {
+            document.getElementById("modal-text-content").innerHTML = `<h2 style="color:#EA1D54; margin-bottom:20px;">Mentions Légales</h2><p>Éditeur : cioo.io / Sylvain Matignon. Hébergement : GitHub Pages. SIRET : 422 231 928 00025.</p>`;
             modal.style.display = "block";
         }
         document.querySelector(".close-modal").onclick = function() { modal.style.display = "none"; }
-        window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } }
     }
-
-    // --- 8. COOKIES ---
     if(!localStorage.getItem('cioo_cookies_accepted')) {
-        const banner = document.getElementById('cookie-banner');
-        if(banner) banner.style.display = 'flex';
+        document.getElementById('cookie-banner').style.display = 'flex';
     }
 });
