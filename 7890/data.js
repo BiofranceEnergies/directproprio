@@ -3,21 +3,21 @@
    ========================================================================== */
 const HouseData = {
     // En-tête et Titres
-    title: "Propriété de Caractère",
+    title: "Maison moderne",
     subtitle: "Saint Martial De Valette • Calme & Élégance",
     location: "Saint Martial De Valette (24300)",
-    type: "Propriété de Caractère",
+    type: "Maison de Caractère",
     
     // Prix et Mandat
-    price: 450000,
-    feesPercent: 5.00,
+    price: 310000,
+    feesPercent: 6.00,
     mandatRef: "437095",
 
     // Chiffres Clés
-    surface: "180",
+    surface: "130",
     rooms: "5",
     bedrooms: "3",
-    land: "40 000 m²",
+    land: "5 990 m²",
 
     // Vidéos (Fichier local pour le haut, ID Youtube pour la visite)
     heroVideoUrl: "sabouret-12.mp4",
