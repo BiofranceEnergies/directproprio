@@ -30,7 +30,7 @@ const HouseData = {
     description: [
         "Située dans un environnement calme et préservé, cette magnifique propriété de caractère offre une alliance parfaite entre le charme de l'ancien et l'élégance contemporaine.",
         "La pièce de vie principale de 54 m², avec sa cuisine ouverte et sa belle hauteur sous plafond, est le véritable cœur de la maison.",
-        "À l'extérieur, le parc de 3 500m² accueille une piscine au sel (8x4m) chauffée, avec une vue dégagée sur la vallée."
+        "À l'extérieur, le parc de 5 950m² accueille une piscine au sel (8x4m) chauffée, avec une vue dégagée sur la vallée."
     ],
 
     // Le Verdict de Sylvain
