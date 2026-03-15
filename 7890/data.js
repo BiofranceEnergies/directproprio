@@ -23,7 +23,7 @@ const HouseData = {
 
     // Vidéos
     heroVideoUrl: "sabouret-12.mp4",
-    youtubeID: "e2gSjrCwafQ", 
+    youtubeID: "r11Gv9wzanI", 
 
     // Description "L'Art de Vivre"
     description: [
@@ -50,10 +50,12 @@ const HouseData = {
     ],
 
     // Chapitres de la vidéo YouTube
-   chapters: [
-        { time: 0, title: "L'Arrivée", subtitle: "Extérieurs & Parc" },
-        { time: 30, title: "Espace de Vie", subtitle: "Salon & Cuisine" }, // <--- La virgule est ICI
-        { time: 60, title: "Côté Nuit", subtitle: "Chambres & Salles d'eau" }
+ chapters: [
+        { time: 0, title: "Pièce de Vie", subtitle: "Cuisine & Salon" },
+        { time: 67, title: "Chambre Parentale", subtitle: "Espace Suite" },
+        { time: 110, title: "Chambre d'ami 1", subtitle: "Confort & Calme" },
+        { time: 128, title: "Chambre d'ami 2", subtitle: "Second Couchage" },
+        { time: 166, title: "Cellier", subtitle: "Rangements & Technique" }
     ],
     
     // Vos coordonnées
