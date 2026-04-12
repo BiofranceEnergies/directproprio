@@ -4,8 +4,8 @@
 const HouseData = {
     // En-tête et Titres
     title: "Propriété de Caractère",
-    subtitle: "Saint Martial De Valette • Calme & Élégance",
-    location: "Saint Martial De Valette (24300)",
+    subtitle: "Abjat Sur Bandiat • Calme & Élégance",
+    location: "Abjat Sur Bandiat (24300)",
     type: "Propriété de Caractère",
     
     // --- SECTION PRIX ET MANDAT (MODIFIÉE ICI) ---
