@@ -17,9 +17,9 @@ const HouseData = {
 
     // Chiffres Clés
     surface: "133",
-    rooms: "5",
-    bedrooms: "3",
-    land: "5 950 m²",
+    rooms: "6",
+    bedrooms: "4",
+    land: "1 156 m²",
 
     // Vidéos
     heroVideoUrl: "drone-446712-github.mp4",
