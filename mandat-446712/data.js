@@ -37,11 +37,11 @@ const HouseData = {
     verdict: "C'est simple : pour trouver ce niveau de calme à 3 minutes de Nontron, il faut se lever tôt. Le rapport emplacement/prix est excellent.",
 
     // Diagnostics (DPE/GES)
-    dpeLetter: "D",
-    dpeValue: "180",
-    gesLetter: "B",
-    gesValue: "8",
-    energyCost: "1 200 € et 1 650 €",
+    dpeLetter: "B",
+    dpeValue: "83",
+    gesLetter: "A",
+    gesValue: "3",
+    energyCost: "1 070 € et 1 500 €",
 
     // Liste des caractéristiques
     features: [
