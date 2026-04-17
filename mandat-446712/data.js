@@ -11,7 +11,7 @@ const HouseData = {
     // Prix et Mandat
     price: 153400,
     feesPercent: 6.00,
-    feesSide: "vendeur", // Important : Honoraires charge vendeur
+    feesSide: "vendeur",
     mandatRef: "446712",
 
     // Chiffres Clés
@@ -22,9 +22,9 @@ const HouseData = {
 
     // Vidéos
     heroVideoUrl: "drone-446712-github.mp4",
-    youtubeID: "cjE4hOI7Hsw",
+    youtubeID: "iBN8ud8X7DQ", // Ton nouvel ID YouTube
 
-    // Description détaillée
+    // Description détaillée (HTML autorisé grâce à innerHTML dans script.js)
     description: [
         "<strong>Maison de caractère avec fort potentiel à ABJAT-SUR-BANDIAT</strong><br>Prix : 153 400 € HAI (Honoraires Charge Vendeur)",
         
@@ -55,15 +55,26 @@ const HouseData = {
     gesValue: "3",
     energyCost: "1 070 € et 1 500 €",
 
-    // Chapitres de la vidéo YouTube
+    // Chapitres de la vidéo YouTube (Calculés en secondes)
     chapters: [
-        { time: 0, title: "Vue d'ensemble", subtitle: "Extérieurs & Façade" },
-        { time: 45, title: "Rez-de-chaussée", subtitle: "Premier logement" },
-        { time: 90, title: "L'Étage", subtitle: "Second logement" },
-        { time: 135, title: "Dépendances", subtitle: "Garages & Atelier" }
+        { 
+            time: 0, 
+            title: "Les extérieurs", 
+            subtitle: "De 0:00 à 1:31" 
+        },
+        { 
+            time: 92, 
+            title: "Niveau 1", 
+            subtitle: "De 1:32 à 3:44" 
+        },
+        { 
+            time: 224, 
+            title: "Rez-de-chaussée", 
+            subtitle: "De 3:44 à 5:35" 
+        }
     ],
     
-    // Coordonnées
+    // Coordonnées de l'agent
     agentCity: "Abjat-sur-Bandiat",
     agentPhone: "06.48.89.34.80",
     agentEmail: "s.matignon@proprietes-privees.com"
