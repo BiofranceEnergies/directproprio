@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MOTEUR DE LANDING PAGE - VERSION FUSIONNÉE INTÉGRALE
+   MOTEUR DE LANDING PAGE - VERSION MANDAT 7890 (CORRIGÉE)
    ========================================================================== */
 
 // --- 1. GESTION YOUTUBE ---
@@ -68,17 +68,19 @@ document.addEventListener("DOMContentLoaded", function() {
     const btnCall = document.getElementById('data-agent-tel');
     if(btnCall) btnCall.href = "tel:" + HouseData.agentPhone.replace(/\./g, '');
 
-    // Description (L'Art de Vivre)
+    // Description (L'Art de Vivre) - MODIFICATION ICI
     const descContainer = document.getElementById('data-description');
     if(descContainer && HouseData.description) {
         descContainer.innerHTML = '';
         HouseData.description.forEach(txt => {
-            const p = document.createElement('p'); p.innerText = txt; p.style.marginBottom = "15px";
+            const p = document.createElement('p'); 
+            p.innerHTML = txt; // <--- C'est ici ! innerHTML au lieu de innerText
+            p.style.marginBottom = "15px";
             descContainer.appendChild(p);
         });
     }
 
-    // --- 3. BLOC LÉGAL IMMOBILIER (TON TEXTE OFFICIEL) ---
+    // --- 3. BLOC LÉGAL IMMOBILIER ---
     const legalContainer = document.getElementById('full-legal-text');
     if(legalContainer) {
         let textHonoraires = "";
