@@ -26,11 +26,19 @@ const HouseData = {
     youtubeID:"cjE4hOI7Hsw", 
     
 
-    // Description "L'Art de Vivre"
+   // Description
     description: [
-        "Située dans un environnement calme et préservé, cette magnifique propriété de caractère offre une alliance parfaite entre le charme de l'ancien et l'élégance contemporaine.",
-        "La pièce de vie principale de 54 m², avec sa cuisine ouverte et sa belle hauteur sous plafond, est le véritable cœur de la maison.",
-        "À l'extérieur, le parc de 5 950m² accueille une piscine au sel (8x4m) chauffée, avec une vue dégagée sur la vallée."
+        "<strong>À la recherche d'un projet modulable dans un cadre verdoyant ?</strong> Située à Abjat-sur-Bandiat, cette maison des années 70 de 133 m² habitables sur une belle parcelle close et arborée de 1 156 m² offre une configuration rare sur le marché.",
+        
+        "<strong>Une configuration unique : Deux logements en un !</strong><br>Actuellement organisée en deux appartements totalement indépendants (sans communication intérieure), cette propriété est parfaite pour un investissement locatif, une profession libérale, ou pour accueillir deux familles en toute autonomie.",
+        
+        "<strong>Rez-de-chaussée (Plain-pied) :</strong> L'entrée se fait par une agréable véranda de 7,60 m² (sas d'accueil). Vous y trouverez une cuisine dînatoire lumineuse exposée Sud, deux chambres avec vue sur le jardin, une salle d'eau, un WC indépendant et un cellier. Un grand garage de 37 m² est directement accessible depuis ce niveau.",
+        
+        "<strong>À l'étage (Accès par escalier extérieur) :</strong> Ce second espace de vie complet propose une entrée, un salon-séjour baigné de lumière (Sud), une cuisine indépendante, deux chambres supplémentaires, une salle de bains et un WC.",
+        
+        "<strong>Extérieurs et Dépendances :</strong> Le terrain, entièrement clos, est un véritable havre de paix. Il dispose de nombreux atouts : un second garage de 21 m² (idéal pour un atelier), une chaufferie indépendante de 15 m² et des abris de jardin fonctionnels.",
+        
+        "<strong>Performances Énergétiques Exceptionnelles :</strong> Rare pour une maison de cette époque, ce bien affiche un <strong>DPE Classé B</strong>, gage de confort et d'économies réelles grâce à une Pompe à chaleur Air/Eau et un ballon thermodynamique."
     ],
 
     // Le Verdict de Sylvain
