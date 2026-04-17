@@ -60,13 +60,18 @@ document.addEventListener('DOMContentLoaded', () => {
 function renderLadder(type, activeLetter, value, unit) {
     const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
     const container = document.getElementById(`dpe-ladder-${type}`);
-    if(!container) return;
-    container.innerHTML = letters.map(l => `
-        <div class="dpe-row ${l === activeLetter ? 'active-row' : ''}">
-            <div class="dpe-bar ${type === 'conso' ? 'class-' : 'ges-'}${l.toLowerCase()}">${l}</div>
-            ${l === activeLetter ? `<span class="dpe-value">${value} <small style="font-size:0.6rem">${unit}</small></span>` : ''}
-        </div>
-    `).join('');
+    
+    container.innerHTML = letters.map((l, index) => {
+        // CETTE LIGNE EST LA SOLUTION : elle crée la classe w-1, w-2, etc.
+        const widthClass = `w-${index + 1}`; 
+
+        return `
+            <div class="dpe-row ${l === activeLetter ? 'active-row' : ''}">
+                <div class="dpe-bar ${type === 'conso' ? 'class-' : 'ges-'}${l.toLowerCase()} ${widthClass}">${l}</div>
+                ${l === activeLetter ? `<span class="dpe-value">${value} <span>${unit}</span></span>` : ''}
+            </div>
+        `;
+    }).join('');
 }
 
 function onYouTubeIframeAPIReady() {
