@@ -436,3 +436,17 @@ body {
 }
 
 .close-modal:hover { color: #000; }
+
+/* --- Bloc Légal Dynamique --- */
+.legal-text-content {
+    text-align: left; /* Par défaut : à gauche pour le PC */
+    line-height: 1.6;
+}
+
+/* Règle spéciale pour les écrans de téléphone (moins de 768px) */
+@media (max-width: 768px) {
+    .legal-text-content {
+        text-align: center; /* On centre uniquement sur mobile */
+        padding: 0 10px;
+    }
+}
