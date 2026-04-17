@@ -9,17 +9,17 @@ const HouseData = {
     type: "Propriété de Caractère",
     
     // --- SECTION PRIX ET MANDAT (MODIFIÉE ICI) ---
-    price: 320000,
+    price: 153400,
     feesPercent: 6.00,        // Le pourcentage
     feesSide: "acquéreur",      // "vendeur" ou "acquéreur"
-    mandatRef: "7890",
+    mandatRef: "446712",
     // ----------------------------------------------
 
     // Chiffres Clés
-    surface: "135",
-    rooms: "5",
-    bedrooms: "3",
-    land: "5 950 m²",
+    surface: "133",
+    rooms: "6",
+    bedrooms: "4",
+    land: "1 156 m²",
 
     // Vidéos
     heroVideoUrl: "drone-446712-github.mp4",
