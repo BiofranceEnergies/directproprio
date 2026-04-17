@@ -3,19 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title id="page-title">Visite Privée : Propriété de Caractère</title> 
-    <meta name="description" content="Découvrez cette propriété d'exception via notre visite vidéo guidée exclusive.">
-    <link rel="canonical" href="https://sylvain-immo-dordogne.cioo.io/7890/" />
-
-    <meta property="og:title" content="Visite Privée : Propriété de Caractère" />
-    <meta property="og:description" content="Découvrez le reportage vidéo complet de cette propriété." />
-    <meta property="og:url" content="https://sylvain-immo-dordogne.cioo.io/7890/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://raw.githubusercontent.com/BiofranceEnergies/directproprio/main/assets/img/fb-share-7890.jpg" />
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -39,14 +29,13 @@
 
     <section class="property-details">
         <div class="container-immo">
-            <div class="listing-header" style="text-align: center; margin-bottom: 40px;">
-                <div class="location-tag" id="data-location" style="display: inline-block; margin-bottom: 15px;">...</div>
-                <h2 class="prestige-title" id="data-type-title" style="margin-bottom: 20px;">...</h2>
-                
-                <div class="price-wrapper" style="display: flex; align-items: baseline; justify-content: center; flex-wrap: wrap; gap: 12px;">
-                    <span class="price-tag" id="data-price" style="font-size: 2rem; font-weight: 700; color: #EA1D54;">...</span>
-                    <span id="data-price-m2" style="font-size: 1.1rem; color: #888; font-weight: 400;"></span>
-                    <span class="hai" style="font-style: italic; color: #666; font-size: 0.9rem;">Honoraires d'Agence Inclus</span>
+            <div class="listing-header">
+                <div class="location-tag" id="data-location">...</div>
+                <h2 class="prestige-title" id="data-type-title">...</h2>
+                <div class="price-wrapper">
+                    <span class="price-tag" id="data-price">...</span>
+                    <span id="data-price-m2" class="price-m2"></span>
+                    <span class="hai">Honoraires d'Agence Inclus</span>
                 </div>
             </div>
 
@@ -62,29 +51,29 @@
             <div class="listing-body-grid">
                 <div class="main-content-col">
                     <div class="description-text">
-                        <h3 style="font-family: 'Playfair Display', serif; color: #333; margin-bottom: 20px;">L'Art de Vivre</h3>
-                        <div id="data-description" style="line-height: 1.8; color: #444;"></div>
+                        <h3>L'Art de Vivre</h3>
+                        <div id="data-description"></div>
                     </div>
                     
-                    <div class="features-list-container" style="margin-top: 50px;">
-                        <h3 style="font-family: 'Playfair Display', serif; color: #333; margin-bottom: 20px;">Caractéristiques Techniques</h3>
+                    <div class="features-list-container">
+                        <h3>Caractéristiques</h3>
                         <div class="features-grid-simple" id="data-features-list"></div>
                     </div>
 
-                    <div class="diagnostics-container" style="margin-top: 50px;">
-                        <h3 style="font-family: 'Playfair Display', serif; color: #333; margin-bottom: 20px;">Performance Énergétique</h3>
+                    <div class="diagnostics-container">
+                        <h3>Performance Énergétique</h3>
                         <div class="dpe-container">
                             <div class="dpe-column"><h4>Consommation</h4><div class="dpe-ladder" id="dpe-ladder-conso"></div></div>
-                            <div class="dpe-column"><h4>Émissions (GES)</h4><div class="dpe-ladder" id="dpe-ladder-ges"></div></div>
+                            <div class="dpe-column"><h4>Émissions</h4><div class="dpe-ladder" id="dpe-ladder-ges"></div></div>
                         </div>
-                        <p class="legal-mention-energy" id="data-energy-cost" style="margin-top: 15px; font-size: 0.85rem; color: #666;"></p>
+                        <p class="legal-mention-energy" id="data-energy-cost"></p>
                     </div>
                 </div>
 
                 <div class="sidebar-col">
                     <div class="agent-card">
                         <div class="agent-header-clean">
-                            <img src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/3a10c59fac7fffe42cb1b0874b826fb9c3079c17/photo%20de%20moi.webp" alt="Sylvain" class="agent-photo">
+                            <img src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/05855fb2c8325231e8bcfeabd7f1737355e8c812/AVATAR%20MOI.png" alt="Sylvain" class="agent-photo">
                             <div class="agent-info">
                                 <span class="agent-role">Votre Conseiller</span>
                                 <h3 class="agent-name">SYLVAIN MATIGNON</h3>
@@ -107,47 +96,35 @@
 
     <section id="experience" class="video-experience">
         <div class="container-player">
-            <div class="section-title"><h2>Visite Privée Guidée</h2><p>Découvrez chaque espace dans ses moindres détails.</p></div>
-            <div class="main-player-wrapper" id="youtube-injector"></div>
+            <div class="section-title"><h2>Visite Privée Guidée</h2><p>Cliquez sur un chapitre pour explorer une pièce.</p></div>
+            <div class="main-player-wrapper">
+                <div id="player"></div>
+            </div>
             <div class="chapter-scroller" id="data-chapters"></div>
         </div>
     </section>
 
-    <section style="background-color: #fff; padding-bottom: 80px; padding-top: 40px;">
+    <section class="final-section">
         <div class="container-immo">
-            <div class="expert-analysis-box" style="background: #fff4f7; padding: 30px; border-left: 5px solid #EA1D54; border-radius: 8px;">
-                <h4 style="color: #EA1D54; margin-bottom: 10px;">Le Verdict de Sylvain</h4>
-                <p id="data-verdict" style="font-style: italic; line-height: 1.6; color: #333; margin: 0;"></p>
+            <div class="expert-analysis-box">
+                <div class="expert-icon">💬</div>
+                <div class="expert-content">
+                    <h4>Le Verdict de Sylvain</h4>
+                    <p id="data-verdict"></p>
+                </div>
             </div>
-            <div class="legal-compliance-block" style="margin-top: 50px;">
-                <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 30px;">
-                <h4 style="margin-bottom: 20px;">Mentions Légales & Informations Professionnelles</h4>
-                <div id="full-legal-text" style="font-size: 0.85rem; color: #666; line-height: 1.7;"></div>
+            <div class="legal-compliance-block">
+                <h4>Informations Légales</h4>
+                <div id="full-legal-text" class="legal-text-dense"></div>
             </div>
         </div>
     </section>
 
-    <footer class="legal-footer" style="padding: 40px 0; border-top: 1px solid #eee; text-align: center;">
-        <div class="container-immo">
-            <p style="margin-bottom: 10px;"><a href="javascript:void(0)" id="open-legal" style="color: #666; text-decoration: underline;">Mentions Légales du Site</a></p>
-            <p style="opacity: 0.6; font-size: 0.75rem;">© 2026 Sylvain MATIGNON - Mandataire indépendant Proprietes-privees.com</p>
-        </div>
+    <footer class="legal-footer">
+        <p>© 2026 Sylvain MATIGNON - Mandataire indépendant Proprietes-privees.com</p>
     </footer>
 
-    <div id="legal-modal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div id="modal-text-content"></div>
-        </div>
-    </div>
-
-    <div id="cookie-banner" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#fff; padding:15px 25px; border-radius:50px; box-shadow:0 10px 40px rgba(0,0,0,0.2); z-index:10001; width:90%; max-width:500px; border:1px solid #eee; align-items:center; justify-content:space-between;">
-        <p style="font-size:0.8rem; color:#333; margin:0;">🍪 Cookies optimisés pour votre visite.</p>
-        <button onclick="acceptCookies()" style="background:#EA1D54; color:#fff; border:none; padding:8px 20px; border-radius:25px; cursor:pointer; font-weight:600; font-size:0.75rem; margin-left:15px;">Accepter</button>
-    </div>
-
-    <script src="data.js"></script>
-    <script src="../script.js"></script>
+    <script src="script.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
