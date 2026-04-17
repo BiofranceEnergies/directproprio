@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MOTEUR DE LANDING PAGE - VERSION MANDAT 7890 (CORRIGÉE)
+   MOTEUR DE LANDING PAGE - VERSION MANDAT 7890 (LÉGAL CORRIGÉ)
    ========================================================================== */
 
 // --- 1. GESTION YOUTUBE ---
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
         videoHero.play().catch(e => console.log("Auto-play blocked"));
     }
 
-    // Gestion des prix (Total + m²)
+    // Gestion des prix
     const formattedPrice = new Intl.NumberFormat('fr-FR').format(HouseData.price);
     setTxt('data-price', formattedPrice + " €");
 
@@ -68,19 +68,19 @@ document.addEventListener("DOMContentLoaded", function() {
     const btnCall = document.getElementById('data-agent-tel');
     if(btnCall) btnCall.href = "tel:" + HouseData.agentPhone.replace(/\./g, '');
 
-    // Description (L'Art de Vivre) - MODIFICATION ICI
+    // Description
     const descContainer = document.getElementById('data-description');
     if(descContainer && HouseData.description) {
         descContainer.innerHTML = '';
         HouseData.description.forEach(txt => {
             const p = document.createElement('p'); 
-            p.innerHTML = txt; // <--- C'est ici ! innerHTML au lieu de innerText
+            p.innerHTML = txt;
             p.style.marginBottom = "15px";
             descContainer.appendChild(p);
         });
     }
 
-    // --- 3. BLOC LÉGAL IMMOBILIER ---
+    // --- 3. BLOC LÉGAL IMMOBILIER (TEXTE EXACT) ---
     const legalContainer = document.getElementById('full-legal-text');
     if(legalContainer) {
         let textHonoraires = "";
@@ -93,10 +93,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         legalContainer.innerHTML = `
-            <p style="margin-bottom:15px;">Pour visiter et vous accompagner dans votre projet, contactez <strong>Sylvain MATIGNON</strong>, au <strong>${HouseData.agentPhone}</strong> ou, par courriel à <a href="mailto:${HouseData.agentEmail}" style="color:#EA1D54; text-decoration:none; font-weight:bold;">${HouseData.agentEmail}</a>.</p>
+            <p style="margin-bottom:15px;">Pour visiter et vous accompagner dans votre projet, contactez <strong>Sylvain MATIGNON</strong>, au <strong>${HouseData.agentPhone.replace(/\./g, '')}</strong> ou, par courriel à <a href="mailto:${HouseData.agentEmail}" style="color:#EA1D54; text-decoration:none; font-weight:bold;">${HouseData.agentEmail}</a>.</p>
             <p style="margin-bottom:15px;">Selon l'article L.561.5 du Code Monétaire et Financier, pour l'organisation de la visite, la présentation d'une pièce d'identité vous sera demandée.</p>
             <p style="margin-bottom:15px; font-size:0.8rem; opacity:0.8; text-align:justify;">
-                Cette présente annonce a été rédigée sous la responsabilité éditoriale de Sylvain MATIGNON agissant sous le statut d'agent commercial immatriculé au 422 231 928 R.S.A.C. Evreux auprès de SAS PROPRIETES PRIVEES, au capital de 44 920 euros, ZAC LE CHÊNE FERRÉ - 44 ALLÉE DES CINQ CONTINENTS 44120 VERTOU ; SIRET 487 624 777 00040, RCS Nantes. Carte Professionnelle Transactions sur immeubles et fonds de commerce (T) et Gestion immobilière (G) n°CPI 4401 2016 000 010 388 délivrée par la CCI Nantes - Saint Nazaire. Compte séquestre n°30932508467 BPA SAINT-SEBASTIEN-SUR-LOIRE (44230). Garantie GALIAN-SMABTP - 89 rue de la Boétie, 75008 Paris - n°28137 J pour 2 000 000 euros pour T et 120 000 euros pour G. Assurance responsabilité civile professionnelle par GALIAN-SMABTP n° de police 28137.J.
+                Cette présente annonce a été rédigée sous la responsabilité éditoriale de Sylvain MATIGNON agissant sous le statut d'agent commercial immatriculé au RSAC 422231928 EVREUX auprès de SAS PROPRIETES PRIVEES, au capital de 44 920€, ZAC LE CHÊNE FERRÉ - 44 ALLÉE DES CINQ CONTINENTS 44120 VERTOU; SIRET 487 624 777 00040, RCS Nantes. Carte Professionnelle Transactions sur immeubles et fonds de commerce (T) et Gestion immobilière (G) n°CPI 4401 2016 000 010 388 délivrée par la CCI Nantes - Saint Nazaire. Compte séquestre n°30932508467 BPA SAINT-SEBASTIEN-SUR-LOIRE (44230). Garantie GALIAN-SMABTP - 89 rue de la Boétie, 75008 Paris - n°28137 J pour 2 000 000€ pour T et 120 000€ pour G. Assurance responsabilité civile professionnelle par GALIAN-SMABTP n° de police 28137.J.
             </p>
             <p style="padding-top:15px; border-top:1px solid #eee; font-weight: 500;">
                 <strong>Mandat réf : ${HouseData.mandatRef}</strong> - Le professionnel garantit et sécurise votre projet immobilier. ${textHonoraires}
@@ -119,24 +119,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     generateLadder('dpe-ladder-conso', HouseData.dpeLetter, HouseData.dpeValue, 'kWh/m²', 'class');
     generateLadder('dpe-ladder-ges', HouseData.gesLetter, HouseData.gesValue, 'kg CO₂/m²', 'ges');
-
-    // --- 5. PICTOGRAMMES ---
-    const featContainer = document.getElementById('data-features-list');
-    if(featContainer && HouseData.features) {
-        featContainer.innerHTML = '';
-        HouseData.features.forEach(f => {
-            let svgPath = "";
-            if(f.icon === "rect") svgPath = '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>';
-            else if(f.icon === "bed") svgPath = '<path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/>';
-            else if(f.icon === "bath") svgPath = '<path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="10" y1="5" x2="8" y2="7"/><line x1="2" y1="12" x2="22" y2="12"/>';
-            else if(f.icon === "sun") svgPath = '<path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/><circle cx="12" cy="12" r="4"/>';
-            else if(f.icon === "pool") svgPath = '<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>';
-            else svgPath = '<circle cx="12" cy="12" r="10"/>';
-            const div = document.createElement('div'); div.className = 'feature-item';
-            div.innerHTML = `<svg class="immo-icon" style="width:20px; color:#EA1D54; margin-right:10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${svgPath}</svg><span>${f.text}</span>`;
-            featContainer.appendChild(div);
-        });
-    }
 
     // --- 6. CHAPITRES ---
     const chapContainer = document.getElementById('data-chapters');
