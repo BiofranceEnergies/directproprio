@@ -1,19 +1,18 @@
 /* ==========================================================================
-   DONNÉES DU BIEN - MANDAT 7890
+   DONNÉES DU BIEN - MANDAT 7890 (ABJAT-SUR-BANDIAT)
    ========================================================================== */
 const HouseData = {
     // En-tête et Titres
-    title: "Propriété de Caractère",
-    subtitle: "Saint Martial De Valette • Calme & Élégance",
-    location: "Saint Martial De Valette (24300)",
-    type: "Propriété de Caractère",
+    title: "Maison de caractère avec fort potentiel",
+    subtitle: "Abjat-sur-Bandiat • Deux logements indépendants",
+    location: "Abjat-sur-Bandiat (24300)",
+    type: "Maison de Caractère",
     
-    // --- SECTION PRIX ET MANDAT (MODIFIÉE ICI) ---
+    // Prix et Mandat
     price: 153400,
-    feesPercent: 6.00,        // Le pourcentage
-    feesSide: "acquéreur",      // "vendeur" ou "acquéreur"
+    feesPercent: 6.00,
+    feesSide: "vendeur",
     mandatRef: "446712",
-    // ----------------------------------------------
 
     // Chiffres Clés
     surface: "133",
@@ -23,12 +22,13 @@ const HouseData = {
 
     // Vidéos
     heroVideoUrl: "drone-446712-github.mp4",
-    youtubeID:"cjE4hOI7Hsw", 
-    
+    youtubeID: "cjE4hOI7Hsw",
 
-   // Description
+    // Description détaillée
     description: [
-        "<strong>À la recherche d'un projet modulable dans un cadre verdoyant ?</strong> Située à Abjat-sur-Bandiat, cette maison des années 70 de 133 m² habitables sur une belle parcelle close et arborée de 1 156 m² offre une configuration rare sur le marché.",
+        "<strong>Maison de caractère avec fort potentiel à ABJAT-SUR-BANDIAT</strong><br>Prix : 153 400 € HAI (Honoraires Charge Vendeur)",
+        
+        "À la recherche d'un projet modulable dans un cadre verdoyant ? Située à Abjat-sur-Bandiat, cette maison des années 70 de 133 m² habitables sur une belle parcelle close et arborée de 1 156 m² offre une configuration rare sur le marché.",
         
         "<strong>Une configuration unique : Deux logements en un !</strong><br>Actuellement organisée en deux appartements totalement indépendants (sans communication intérieure), cette propriété est parfaite pour un investissement locatif, une profession libérale, ou pour accueillir deux familles en toute autonomie.",
         
@@ -36,39 +36,33 @@ const HouseData = {
         
         "<strong>À l'étage (Accès par escalier extérieur) :</strong> Ce second espace de vie complet propose une entrée, un salon-séjour baigné de lumière (Sud), une cuisine indépendante, deux chambres supplémentaires, une salle de bains et un WC.",
         
-        "<strong>Extérieurs et Dépendances :</strong> Le terrain, entièrement clos, est un véritable havre de paix. Il dispose de nombreux atouts : un second garage de 21 m² (idéal pour un atelier), une chaufferie indépendante de 15 m² et des abris de jardin fonctionnels.",
+        "<strong>Extérieurs et Dépendances</strong><br>Le terrain, entièrement clos, est un véritable havre de paix. Il dispose de nombreux atouts :<br>• Un second garage de 21 m² (idéal pour un atelier).<br>• Une chaufferie indépendante de 15 m².<br>• Des abris de jardin fonctionnels.",
         
-        "<strong>Performances Énergétiques Exceptionnelles :</strong> Rare pour une maison de cette époque, ce bien affiche un <strong>DPE Classé B</strong>, gage de confort et d'économies réelles grâce à une Pompe à chaleur Air/Eau et un ballon thermodynamique."
+        "<strong>Performances Énergétiques Exceptionnelles</strong><br>Rare pour une maison de cette époque, ce bien affiche un <strong>DPE Classé B</strong>, gage de confort et d'économies réelles :<br>• Chauffage : Pompe à chaleur Air/Eau performante.<br>• Eau Chaude : Ballon thermodynamique.<br>• Menuiseries : Double vitrage.",
+        
+        "<strong>FICHE TECHNIQUE :</strong><br>• DPE : B / GES : A<br>• Taxe Foncière 2025 : 1 326 €<br>• Assainissement : Individuel conforme.<br>• Budget énergie estimé : entre 1 070 € et 1 500 € / an (index 2021-2023)."
     ],
 
     // Le Verdict de Sylvain
-    verdict: "C'est simple : pour trouver ce niveau de calme à 3 minutes de Nontron, il faut se lever tôt. Le rapport emplacement/prix est excellent.",
+    verdict: "Un bien rare avec un DPE classé B ! La configuration en deux logements indépendants offre une flexibilité incroyable pour un investissement ou une grande famille.",
 
     // Diagnostics (DPE/GES)
-    dpeLetter: "D",
-    dpeValue: "180",
-    gesLetter: "B",
-    gesValue: "8",
-    energyCost: "1 200 € et 1 650 €",
-
-    // Liste des caractéristiques
-    features: [
-        { icon: "rect", text: "5 pièces" },
-        { icon: "bed", text: "3 chambres" },
-        { icon: "pool", text: "Piscine au sel chauffée" }
-    ],
+    dpeLetter: "B",
+    dpeValue: "95",
+    gesLetter: "A",
+    gesValue: "3",
+    energyCost: "1 070 € et 1 500 €",
 
     // Chapitres de la vidéo YouTube
- chapters: [
-        { time: 0, title: "Pièce de Vie", subtitle: "Cuisine & Salon" },
-        { time: 67, title: "Chambre Parentale", subtitle: "Espace Suite" },
-        { time: 110, title: "Chambre d'ami 1", subtitle: "Confort & Calme" },
-        { time: 128, title: "Chambre d'ami 2", subtitle: "Second Couchage" },
-        { time: 166, title: "Cellier", subtitle: "Rangements & Technique" }
+    chapters: [
+        { time: 0, title: "Vue d'ensemble", subtitle: "Extérieurs & Façade" },
+        { time: 45, title: "Rez-de-chaussée", subtitle: "Premier logement" },
+        { time: 90, title: "L'Étage", subtitle: "Second logement" },
+        { time: 135, title: "Dépendances", subtitle: "Garages & Atelier" }
     ],
     
-    // Vos coordonnées
-    agentCity: "Saint Martial De Valette",
+    // Coordonnées
+    agentCity: "Abjat-sur-Bandiat",
     agentPhone: "06.48.89.34.80",
     agentEmail: "s.matignon@proprietes-privees.com"
 };
