@@ -25,7 +25,7 @@ body {
    2. HERO SPLIT
    ========================================= */
 .hero-split {
-    height: 90vh;
+    height: 85vh;
     width: 100%;
     position: relative;
     background-color: #000;
@@ -39,7 +39,7 @@ body {
 .video-zone video {
     width: 100%; height: 100%;
     object-fit: cover; 
-    opacity: 1;
+    opacity: 0.9;
 }
 
 .brand-header-horizontal {
@@ -48,8 +48,7 @@ body {
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
 }
 .brand-icon { height: 50px; width: auto; }
-.brand-text-horizontal { font-weight: 800; font-size: 1.5rem; line-height: 1; }
-.txt-white { color: #ffffff; }
+.brand-text-horizontal { font-weight: 800; font-size: 1.5rem; line-height: 1; color: #fff; }
 .txt-red { color: var(--pp-red); }
 
 .hero-overlay-content {
@@ -59,7 +58,7 @@ body {
 }
 .hero-title {
     font-family: var(--font-title);
-    font-size: 3rem; 
+    font-size: 3.5rem; 
     margin-bottom: 10px; font-weight: 400;
 }
 .hero-subtitle {
@@ -69,7 +68,7 @@ body {
 .info-band-slim {
     background-color: var(--pp-red);
     color: white; text-align: center;
-    padding: 8px 0; font-size: 0.8rem;
+    padding: 10px 0; font-size: 0.85rem;
     font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
 }
 
@@ -85,14 +84,11 @@ body {
     font-size: 0.85rem; margin-bottom: 15px; font-weight: 600;
 }
 .prestige-title {
-    font-family: var(--font-title);
-    font-size: 2.5rem; 
+    font-family: var(--font-title); font-size: 2.8rem; 
     margin-bottom: 20px; color: #111;
 }
-.price-tag { 
-    font-size: 2rem; font-weight: 700; color: var(--pp-red); margin-right: 10px;
-}
-.hai { font-style: italic; color: #666; font-family: var(--font-title); }
+.price-tag { font-size: 2.2rem; font-weight: 800; color: var(--pp-red); }
+.hai { font-style: italic; color: #666; font-size: 0.9rem; margin-left: 10px; }
 
 .key-metrics-grid {
     display: flex; justify-content: space-between; gap: 20px;
@@ -100,12 +96,8 @@ body {
     margin-bottom: 50px;
 }
 .metric-box { text-align: center; flex: 1; }
-.metric-box .value { 
-    display: block; font-size: 2rem; font-weight: 700; color: #111; line-height: 1;
-}
-.metric-box .label {
-    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-top: 5px;
-}
+.metric-box .value { display: block; font-size: 2rem; font-weight: 700; color: #111; }
+.metric-box .label { font-size: 0.7rem; text-transform: uppercase; color: #888; }
 
 .divider-elegant { border: 0; height: 1px; background: #eee; width: 100px; margin: 50px auto; }
 
@@ -115,195 +107,121 @@ body {
 .sidebar-col { flex: 1; position: sticky; top: 30px; }
 
 .description-text h3, .features-list-container h3, .diagnostics-container h3 {
-    font-family: var(--font-title); font-size: 1.6rem; color: #111;
+    font-family: var(--font-title); font-size: 1.8rem; color: #111;
     margin-bottom: 25px; border-bottom: 2px solid var(--pp-red);
     display: inline-block; padding-bottom: 5px;
 }
-.description-text p { margin-bottom: 20px; text-align: justify; color: #555; font-size: 0.95rem; }
+.description-text p { margin-bottom: 20px; font-size: 1rem; color: #444; }
 
-.features-grid-simple { 
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 50px;
-}
-.feature-item { 
-    display: flex; align-items: center; gap: 10px; font-weight: 500; 
-}
+.features-grid-simple { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 50px; }
+.feature-item { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.95rem; }
 
 /* =========================================
-   4. DPE & GES (CORRIGÉ)
+   4. DPE & GES (SECTION CORRIGÉE)
    ========================================= */
 .dpe-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
-    margin: 40px 0;
+    display: flex; justify-content: space-between; gap: 40px; margin-top: 30px;
 }
-.dpe-column {
-    flex: 1;
-    min-width: 280px;
-}
-.dpe-column h4 {
-    text-align: left;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    margin-bottom: 20px;
-    color: #666;
-    letter-spacing: 1px;
-}
-.dpe-ladder {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-.dpe-row {
-    display: flex;
-    align-items: center;
-    height: 30px;
-    width: 100%;
-}
+.dpe-column { flex: 1; }
+.dpe-column h4 { text-align: left; font-size: 0.8rem; color: #888; margin-bottom: 15px; text-transform: uppercase; }
+
+.dpe-ladder { display: flex; flex-direction: column; gap: 6px; width: 100%; }
+.dpe-row { display: flex; align-items: center; height: 32px; width: 100%; }
+
+/* Style des barres */
 .dpe-bar {
-    height: 100%;
-    color: white;
-    font-weight: 800;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    padding-left: 12px;
-    border-radius: 0 15px 15px 0;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    height: 100%; color: white; font-weight: 800; font-size: 0.9rem;
+    display: flex; align-items: center; padding-left: 12px;
+    border-radius: 0 20px 20px 0;
+    flex-shrink: 0; /* Empêche la barre de s'écraser */
 }
 
-/* Largeurs Dynamiques */
-.w-1 { width: 25%; }
-.w-2 { width: 35%; }
-.w-3 { width: 45%; }
-.w-4 { width: 55%; }
-.w-5 { width: 65%; }
-.w-6 { width: 75%; }
-.w-7 { width: 85%; }
+/* Classes de largeur w-X (IMPORTANT) */
+.w-1 { width: 25%; } .w-2 { width: 35%; } .w-3 { width: 45%; } .w-4 { width: 55%; }
+.w-5 { width: 65%; } .w-6 { width: 75%; } .w-7 { width: 85%; }
 
 /* Couleurs Consommation */
-.class-a { background-color: #009c6d; }
-.class-b { background-color: #52b153; }
-.class-c { background-color: #78bd76; }
-.class-d { background-color: #f4e70f; color: #333; }
-.class-e { background-color: #f4b400; }
-.class-f { background-color: #eb8235; }
+.class-a { background-color: #009c6d; } .class-b { background-color: #52b153; }
+.class-c { background-color: #78bd76; } .class-d { background-color: #f4e70f; color: #333; }
+.class-e { background-color: #f4b400; } .class-f { background-color: #eb8235; }
 .class-g { background-color: #d7221f; }
 
 /* Couleurs GES */
-.ges-a { background-color: #f0f7fb; color: #333; }
-.ges-b { background-color: #bdcde3; color: #333; }
-.ges-c { background-color: #9cb3d3; color: #333; }
-.ges-d { background-color: #778496; }
-.ges-e { background-color: #585d75; }
-.ges-f { background-color: #45475a; }
+.ges-a { background-color: #f0f7fb; color: #333; } .ges-b { background-color: #bdcde3; color: #333; }
+.ges-c { background-color: #9cb3d3; color: #333; } .ges-d { background-color: #778496; }
+.ges-e { background-color: #585d75; } .ges-f { background-color: #45475a; }
 .ges-g { background-color: #2d263b; }
 
-/* Mise en avant de la note actuelle */
+/* Note Active */
 .active-row .dpe-bar {
-    transform: scaleY(1.15);
-    box-shadow: 0 0 15px rgba(0,0,0,0.15);
-    border: 2px solid #333;
-    z-index: 2;
+    transform: scaleY(1.1); box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border: 2px solid #333; z-index: 5;
 }
 .active-row .dpe-value {
-    margin-left: 15px;
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: #111;
-    display: flex;
-    align-items: baseline;
-    gap: 4px;
+    margin-left: 15px; font-size: 1.4rem; font-weight: 900; color: #111; white-space: nowrap;
 }
-.active-row .dpe-value span {
-    font-size: 0.65rem;
-    color: #888;
-    text-transform: none;
-    font-weight: 500;
-}
-
-.legal-mention-energy { 
-    font-size: 0.8rem; 
-    color: #999; 
-    font-style: italic; 
-    margin-top: 20px;
-}
+.active-row .dpe-value span { font-size: 0.65rem; color: #666; font-weight: 400; margin-left: 4px; }
 
 /* =========================================
-   5. AGENT
+   5. AGENT CARD
    ========================================= */
 .agent-card {
-    background: #fff; padding: 30px;
-    border: 1px solid #eee; 
-    border-top: 4px solid var(--pp-red);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    background: #fff; padding: 30px; border: 1px solid #eee; 
+    border-top: 5px solid var(--pp-red); border-radius: 4px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
 }
 .agent-header-clean { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
-.agent-photo { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; }
-.agent-info { display: flex; flex-direction: column; }
-.agent-role { font-size: 0.7rem; text-transform: uppercase; color: #999; letter-spacing: 1px; }
-.agent-name { font-size: 1rem; margin: 0; color: #111; font-weight: 800; }
-.agent-location { font-size: 0.75rem; color: var(--pp-red); font-weight: 600; }
+.agent-photo { width: 75px; height: 75px; border-radius: 50%; object-fit: cover; border: 2px solid #eee; }
+.agent-name { font-size: 1.1rem; font-weight: 800; color: #111; margin: 0; }
+.agent-location { font-size: 0.8rem; color: var(--pp-red); font-weight: 600; }
 
 .btn-call-agent, .btn-submit-form {
     display: block; width: 100%; text-align: center;
-    background-color: var(--pp-red); color: white;
-    padding: 14px; text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;
-    border: none; cursor: pointer; transition: background 0.3s;
+    background-color: var(--pp-red); color: white; padding: 15px;
+    text-decoration: none; font-weight: 700; text-transform: uppercase;
+    font-size: 0.85rem; border-radius: 4px; border: none; cursor: pointer; transition: 0.3s;
 }
-.btn-call-agent:hover, .btn-submit-form:hover { background-color: #be1542; }
+.btn-call-agent:hover, .btn-submit-form:hover { background-color: #be1542; transform: translateY(-2px); }
 
-.or-divider { text-align: center; margin: 15px 0; font-size: 0.7rem; color: #ccc; }
 .agent-form input, .agent-form textarea {
-    width: 100%; padding: 12px; margin-bottom: 10px;
-    border: 1px solid #ddd; background: #fafafa;
-    font-family: var(--font-body); font-size: 0.9rem;
+    width: 100%; padding: 12px; margin-bottom: 12px;
+    border: 1px solid #eee; background: #fafafa; border-radius: 4px; font-family: inherit;
 }
 
 /* =========================================
    6. VIDÉO EXPERIENCE
    ========================================= */
-.video-experience { background-color: #111; color: white; padding: 80px 20px; }
-.section-title h2 { color: white; font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 10px; }
+.video-experience { background-color: #111; color: white; padding: 80px 20px; text-align: center; }
+.section-title h2 { font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 10px; }
 .section-title p { color: #888; margin-bottom: 40px; }
 
 .main-player-wrapper {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; 
-    height: 0;
-    background: #000;
-    margin-bottom: 30px;
+    position: relative; width: 100%; padding-bottom: 56.25%; 
+    height: 0; background: #000; margin-bottom: 40px;
 }
-.main-player-wrapper iframe { 
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; 
-}
+.main-player-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-.chapter-scroller { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.chapter-scroller { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
 .chapter-card {
-    background: #222; width: 220px; padding: 15px; cursor: pointer;
-    border-left: 4px solid var(--pp-red); transition: all 0.3s ease; opacity: 0.7; 
+    background: #222; width: 200px; padding: 20px; cursor: pointer;
+    border-left: 4px solid var(--pp-red); transition: 0.3s; opacity: 0.8; text-align: left;
 }
-.chapter-card:hover { background: #333; opacity: 1; }
-.chapter-card.active { background: #2a2a2a; opacity: 1; }
-.chapter-num { font-size: 2rem; font-weight: 700; color: #444; display: block; margin-bottom: 5px; }
-.chapter-card h3 { font-size: 0.9rem; color: #ccc; margin: 0; font-weight: 600; }
+.chapter-card:hover, .chapter-card.active { background: #333; opacity: 1; transform: translateY(-3px); }
+.chapter-num { font-size: 1.8rem; font-weight: 800; color: #444; margin-bottom: 5px; display: block; }
+.chapter-card h3 { font-size: 0.9rem; color: #fff; margin: 0; }
 
 /* =========================================
-   7. FOOTER & BLOCS
+   7. FOOTER & EXPERT
    ========================================= */
 .expert-analysis-box {
-    background-color: #fff4f7;
-    border-left: 5px solid var(--pp-red);
-    padding: 25px;
-    margin-bottom: 40px;
-    border-radius: 4px;
+    background-color: #fff4f7; border-left: 5px solid var(--pp-red);
+    padding: 30px; margin-bottom: 40px; border-radius: 4px;
 }
 .legal-text-dense {
-    font-size: 0.8rem; color: #555; text-align: justify; line-height: 1.4;
-    background-color: #f9f9f9; padding: 15px; border-left: 3px solid #ddd; border-radius: 4px;
+    font-size: 0.8rem; color: #666; line-height: 1.6; text-align: justify;
+    background: #f9f9f9; padding: 20px; border-radius: 4px;
 }
-.legal-footer { padding: 40px 0; border-top: 1px solid #eee; text-align: center; font-size: 0.75rem; color: #999; }
+.legal-footer { padding: 40px; text-align: center; font-size: 0.75rem; color: #aaa; border-top: 1px solid #eee; }
 
 /* =========================================
    8. RESPONSIVE
@@ -312,7 +230,7 @@ body {
     .listing-body-grid { flex-direction: column; }
     .sidebar-col { position: static; width: 100%; margin-top: 40px; }
     .key-metrics-grid { flex-wrap: wrap; }
-    .metric-box { flex: 1 1 45%; }
-    .dpe-container { flex-direction: column; gap: 40px; }
+    .metric-box { flex: 1 1 45%; margin-bottom: 10px; }
     .hero-title { font-size: 2.2rem; }
+    .dpe-container { flex-direction: column; }
 }
