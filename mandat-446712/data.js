@@ -1,5 +1,5 @@
 /* ==========================================================================
-   DONNÉES DU BIEN - MANDAT 7890 (ABJAT-SUR-BANDIAT)
+   DONNÉES DU BIEN - MANDAT 7890 (ABJAT-SUR-BANDIAT) - VERSION FINALE
    ========================================================================== */
 const HouseData = {
     // En-tête et Titres
@@ -11,7 +11,7 @@ const HouseData = {
     // Prix et Mandat
     price: 153400,
     feesPercent: 6.00,
-    feesSide: "vendeur",
+    feesSide: "vendeur", // Important : Honoraires charge vendeur
     mandatRef: "446712",
 
     // Chiffres Clés
@@ -40,7 +40,9 @@ const HouseData = {
         
         "<strong>Performances Énergétiques Exceptionnelles</strong><br>Rare pour une maison de cette époque, ce bien affiche un <strong>DPE Classé B</strong>, gage de confort et d'économies réelles :<br>• Chauffage : Pompe à chaleur Air/Eau performante.<br>• Eau Chaude : Ballon thermodynamique.<br>• Menuiseries : Double vitrage.",
         
-        "<strong>FICHE TECHNIQUE :</strong><br>• DPE : B / GES : A<br>• Taxe Foncière 2025 : 1 326 €<br>• Assainissement : Individuel conforme.<br>• Budget énergie estimé : entre 1 070 € et 1 500 € / an (index 2021-2023)."
+        "<strong>FICHE TECHNIQUE :</strong><br>• DPE : B / GES : A<br>• Taxe Foncière 2025 : 1 326 €<br>• Assainissement : Individuel conforme.<br>• Budget énergie estimé : entre 1 070 € et 1 500 € / an (index 2021-2023).",
+
+        "<strong>Prix : 153 400 euros, honoraires à la charge du vendeur.</strong>"
     ],
 
     // Le Verdict de Sylvain
