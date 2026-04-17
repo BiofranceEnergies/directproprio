@@ -386,21 +386,32 @@ body {
         align-items: center; 
     }
     
-    .legal-compliance-block,
-    .legal-text, 
-    .legal-text-dense,
-    .legal-text-small {
-        text-align: center;
+/* --- RÉGLAGES ÉCRANS MOBILES --- */
+@media (max-width: 768px) {
+    
+    /* 1. On force TOUT le bloc légal (titre + texte) au centre */
+    .legal-compliance-block, 
+    .legal-compliance-block h4, 
+    #full-legal-text,
+    .legal-text-content {
+        text-align: center !important;
     }
 
+    /* 2. On garde ton réglage pour l'agent (Photo au dessus du nom) */
     .agent-header-clean {
         flex-direction: column; 
         text-align: center;
         justify-content: center;
     }
-    
+
+    /* 3. On garde ton réglage pour les icônes/caractéristiques */
     .feature-item {
         justify-content: center;
+    }
+
+    /* Petit bonus : on ajoute de l'espace sur les côtés pour le texte */
+    .legal-text-content {
+        padding: 0 15px;
     }
 }
 
