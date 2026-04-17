@@ -1,11 +1,7 @@
-/* ==========================================================================
-   MOTEUR D'AFFICHAGE DYNAMIQUE - SYLVAIN MATIGNON
-   ========================================================================== */
-
-let player; // Variable pour YouTube
+let player; 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Injection des textes de base
+    // Remplissage des textes
     document.getElementById('data-main-title').textContent = HouseData.title;
     document.getElementById('data-subtitle').textContent = HouseData.subtitle;
     document.getElementById('data-location').textContent = HouseData.location;
@@ -14,83 +10,67 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('data-agent-city').textContent = HouseData.agentCity;
     document.getElementById('data-agent-tel').href = `tel:${HouseData.agentPhone}`;
 
-    // 2. Gestion du Prix et m²
-    const formatter = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
-    document.getElementById('data-price').textContent = formatter.format(HouseData.price);
-    
-    const priceM2 = Math.round(HouseData.price / parseInt(HouseData.surface));
-    document.getElementById('data-price-m2').textContent = `(${priceM2} € / m²)`;
+    // Vidéo Hero locale
+    const heroVid = document.getElementById('data-hero-video');
+    if(heroVid) heroVid.src = HouseData.heroVideoUrl;
 
-    // 3. Chiffres Clés
+    // Prix et m2
+    const fmt = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    document.getElementById('data-price').textContent = fmt.format(HouseData.price);
+    document.getElementById('data-price-m2').textContent = `(${Math.round(HouseData.price / HouseData.surface)} € / m²)`;
+
+    // Metrics
     document.getElementById('data-surface').textContent = HouseData.surface;
     document.getElementById('data-rooms').textContent = HouseData.rooms;
     document.getElementById('data-bedrooms').textContent = HouseData.bedrooms;
     document.getElementById('data-land').textContent = HouseData.land;
 
-    // 4. Vidéo Hero (Locale)
-    const videoHero = document.getElementById('data-hero-video');
-    if(videoHero) videoHero.src = HouseData.heroVideoUrl;
+    // Description
+    document.getElementById('data-description').innerHTML = HouseData.description.map(p => `<p style="margin-bottom:15px">${p}</p>`).join('');
 
-    // 5. Description (génération auto des paragraphes)
-    const descBox = document.getElementById('data-description');
-    descBox.innerHTML = HouseData.description.map(text => `<p style="margin-bottom:15px;">${text}</p>`).join('');
-
-    // 6. Caractéristiques
-    const featuresBox = document.getElementById('data-features-list');
-    featuresBox.innerHTML = HouseData.features.map(f => `
-        <div class="feature-item">
-            <svg class="immo-icon" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" fill="none" stroke-width="2"/></svg>
-            <span>${f.text}</span>
+    // Caractéristiques
+    document.getElementById('data-features-list').innerHTML = HouseData.features.map(f => `
+        <div class="feature-item" style="display:flex; align-items:center; gap:10px; margin-bottom:10px">
+            <span style="color:#EA1D54">✔</span> <span>${f.text}</span>
         </div>
     `).join('');
 
-    // 7. Mentions Légales Automatisées
+    // Mentions Légales
     const prixHorsHono = Math.round(HouseData.price / (1 + HouseData.feesPercent / 100));
-    document.getElementById('full-legal-text').textContent = 
-        `Prix : ${formatter.format(HouseData.price)} HAI. Honoraires de ${HouseData.feesPercent}% TTC inclus à la charge de l'${HouseData.feesSide}. ` +
-        `Prix hors honoraires : ${formatter.format(prixHorsHono)}. Mandat n°${HouseData.mandatRef}.`;
+    document.getElementById('full-legal-text').innerHTML = `
+        Prix de vente : ${fmt.format(HouseData.price)} HAI. Honoraires de ${HouseData.feesPercent}% TTC inclus à la charge de l'${HouseData.feesSide}. 
+        Prix hors honoraires : ${fmt.format(prixHorsHono)}. Mandat n°${HouseData.mandatRef}. 
+        DPE réalisé après le 1er Juillet 2021. Estimation des coûts annuels : ${HouseData.energyCost}.
+    `;
 
-    // 8. Affichage DPE / GES
-    renderDPE();
-
-    // 9. Chapitres Vidéo
-    const chapterBox = document.getElementById('data-chapters');
-    chapterBox.innerHTML = HouseData.chapters.map((chap, index) => `
-        <div class="chapter-card" onclick="goToChapter(${chap.time})">
-            <span class="chapter-num">0${index + 1}</span>
-            <h3>${chap.title}</h3>
-            <span class="duration">${chap.subtitle}</span>
+    // DPE / GES
+    renderLadder('conso', HouseData.dpeLetter, HouseData.dpeValue, 'kWh/m²/an');
+    renderLadder('ges', HouseData.gesLetter, HouseData.gesValue, 'kg CO2/m²/an');
+    
+    // Chapitres Vidéo
+    document.getElementById('data-chapters').innerHTML = HouseData.chapters.map((c, index) => `
+        <div class="chapter-card" onclick="seekTo(${c.time})" style="cursor:pointer;">
+            <span style="display:block; font-weight:bold; color:#EA1D54">0${index + 1}</span>
+            <h3 style="font-size:0.9rem; margin:5px 0;">${c.title}</h3>
+            <span style="font-size:0.75rem; color:#888;">${c.subtitle}</span>
         </div>
     `).join('');
 });
 
-// --- FONCTIONS DIAGNOSTICS ---
-function renderDPE() {
+function renderLadder(type, activeLetter, value, unit) {
     const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
-    
-    // Conso
-    const consoLadder = document.getElementById('dpe-ladder-conso');
-    consoLadder.innerHTML = letters.map(l => `
-        <div class="dpe-row ${l === HouseData.dpeLetter ? 'active-row' : ''}">
-            <div class="dpe-bar class-${l.toLowerCase()} w-${letters.indexOf(l)+1}">${l}</div>
-            ${l === HouseData.dpeLetter ? `<span class="dpe-value">${HouseData.dpeValue} <span>kWh/m²/an</span></span>` : ''}
+    const container = document.getElementById(`dpe-ladder-${type}`);
+    if(!container) return;
+    container.innerHTML = letters.map(l => `
+        <div class="dpe-row ${l === activeLetter ? 'active-row' : ''}">
+            <div class="dpe-bar ${type === 'conso' ? 'class-' : 'ges-'}${l.toLowerCase()}">${l}</div>
+            ${l === activeLetter ? `<span class="dpe-value">${value} <small style="font-size:0.6rem">${unit}</small></span>` : ''}
         </div>
     `).join('');
-
-    // GES
-    const gesLadder = document.getElementById('dpe-ladder-ges');
-    gesLadder.innerHTML = letters.map(l => `
-        <div class="dpe-row ${l === HouseData.gesLetter ? 'active-row' : ''}">
-            <div class="dpe-bar ges-${l.toLowerCase()} w-${letters.indexOf(l)+1}">${l}</div>
-            ${l === HouseData.gesLetter ? `<span class="dpe-value">${HouseData.gesValue} <span>kg CO2/m²/an</span></span>` : ''}
-        </div>
-    `).join('');
-
-    document.getElementById('data-energy-cost').textContent = `Estimation des coûts annuels : entre ${HouseData.energyCost}.`;
 }
 
-// --- FONCTIONS YOUTUBE ---
 function onYouTubeIframeAPIReady() {
+    // Note : on utilise l'ID "youtube-injector" présent dans ton HTML
     player = new YT.Player('youtube-injector', {
         height: '100%',
         width: '100%',
@@ -99,8 +79,8 @@ function onYouTubeIframeAPIReady() {
     });
 }
 
-function goToChapter(seconds) {
-    if (player && player.seekTo) {
+function seekTo(seconds) {
+    if(player && player.seekTo) {
         player.seekTo(seconds, true);
         player.playVideo();
         document.getElementById('experience').scrollIntoView({ behavior: 'smooth' });
