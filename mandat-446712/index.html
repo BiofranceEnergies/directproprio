@@ -88,12 +88,15 @@
                         </div>
                         <a href="#" class="btn-call-agent" id="data-agent-tel">Appeler le conseiller</a>
                         <div class="or-divider"><span>OU</span></div>
-                        <form class="agent-form">
-                            <input type="text" placeholder="Votre Nom" required>
-                            <input type="tel" placeholder="Votre Téléphone" required>
-                            <textarea placeholder="Bonjour, je souhaiterais visiter ce bien..." rows="3"></textarea>
-                            <button type="submit" class="btn-submit-form">Demander une visite</button>
-                        </form>
+                        <form class="agent-form" action="https://formspree.io/f/xbdqklqb" method="POST" id="contact-form">
+    <input type="hidden" name="Bien_Concerne" id="hidden-mandat">
+    
+    <input type="text" name="nom" placeholder="Votre Nom" required>
+    <input type="tel" name="telephone" placeholder="Votre Téléphone" required>
+    <textarea name="message" placeholder="Bonjour, je souhaiterais visiter ce bien..." rows="3"></textarea>
+    
+    <button type="submit" class="btn-submit-form" id="submit-button">Demander une visite</button>
+</form>
                     </div>
                 </div>
             </div>
