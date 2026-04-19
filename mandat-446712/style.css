@@ -1,5 +1,5 @@
 /* =========================================
-   1. VARIABLES & RESET
+   1. RESET & VARIABLES GLOBALES
    ========================================= */
 :root {
     --bg-color: #ffffff;
@@ -22,7 +22,7 @@ body {
 }
 
 /* =========================================
-   2. HERO SPLIT (VIDÉO D'ACCUEIL)
+   2. HERO SPLIT
    ========================================= */
 .hero-split {
     height: 90vh;
@@ -74,7 +74,7 @@ body {
 }
 
 /* =========================================
-   3. DÉTAILS DU BIEN
+   3. DÉTAILS IMMO
    ========================================= */
 .property-details { padding: 80px 20px; background-color: #fff; }
 .container-immo { max-width: 1000px; margin: 0 auto; }
@@ -107,69 +107,129 @@ body {
     font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-top: 5px;
 }
 
-/* GRID LAYOUT */
+.divider-elegant { border: 0; height: 1px; background: #eee; width: 100px; margin: 50px auto; }
+
+/* LAYOUT GRID */
 .listing-body-grid { display: flex; gap: 60px; align-items: flex-start; }
 .main-content-col { flex: 2; }
 .sidebar-col { flex: 1; position: sticky; top: 30px; }
 
-.description-text h3, .diagnostics-container h3 {
+.description-text h3, .features-list-container h3, .diagnostics-container h3 {
     font-family: var(--font-title); font-size: 1.6rem; color: #111;
     margin-bottom: 25px; border-bottom: 2px solid var(--pp-red);
     display: inline-block; padding-bottom: 5px;
 }
+.description-text p { margin-bottom: 20px; text-align: justify; color: #555; font-size: 0.95rem; }
 
-/* =========================================
-   4. DPE & AGENT
-   ========================================= */
-.dpe-container { display: flex; justify-content: center; gap: 40px; margin: 30px 0; }
-.dpe-column { flex: 1; }
+/* DPE */
+.dpe-container {
+    display: flex; justify-content: center; gap: 60px; 
+    margin-top: 30px; margin-bottom: 30px;
+}
+.dpe-column { flex: 1; max-width: 400px; }
+.dpe-column h4 {
+    text-align: center; text-transform: uppercase; font-size: 0.9rem;
+    margin-bottom: 15px; color: #333; font-weight: 700;
+}
 .dpe-ladder { display: flex; flex-direction: column; gap: 4px; }
 .dpe-row { display: flex; align-items: center; height: 28px; }
-.dpe-bar { height: 100%; color: white; font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; padding-left: 10px; border-radius: 0 4px 4px 0; }
-
-.agent-card {
-    background: #fff; padding: 30px; border: 1px solid #eee; 
-    border-top: 4px solid var(--pp-red); box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+.dpe-bar {
+    height: 100%; color: white; font-weight: 700; font-size: 0.8rem;
+    display: flex; align-items: center; padding-left: 10px;
+    border-radius: 0 4px 4px 0;
 }
-.btn-submit-form {
-    display: block; width: 100%; background: var(--pp-red); color: #fff;
-    padding: 15px; border: none; font-weight: 700; cursor: pointer; text-transform: uppercase;
+.w-1 { width: 30%; } .w-2 { width: 40%; } .w-3 { width: 50%; } .w-4 { width: 60%; }
+.w-5 { width: 70%; } .w-6 { width: 80%; } .w-7 { width: 90%; }
+.active-row .dpe-value {
+    margin-left: 15px; font-size: 1.4rem; font-weight: 800;
+    color: #111; line-height: 1; white-space: nowrap;
+}
+.active-row .dpe-value span { font-size: 0.7rem; color: #666; font-weight: 500; }
+.active-row .dpe-bar {
+    transform: scale(1.05); box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    position: relative; z-index: 2; border: 2px solid #333;
+}
+.class-a { background-color: #009c6d; }
+.class-b { background-color: #52b153; }
+.class-c { background-color: #78bd76; }
+.class-d { background-color: #f4e70f; color: #111; }
+.class-e { background-color: #f4b400; }
+.class-f { background-color: #eb8235; }
+.class-g { background-color: #d7221f; }
+
+.ges-a { background-color: #f0f7fb; color: #333; }
+.ges-b { background-color: #bdcde3; color: #333; }
+.ges-c { background-color: #9cb3d3; color: #333; }
+.ges-d { background-color: #778496; }
+.ges-e { background-color: #585d75; }
+.ges-f { background-color: #45475a; }
+.ges-g { background-color: #2d263b; }
+
+/* AGENT CARD */
+.agent-card {
+    background: #fff; padding: 30px;
+    border: 1px solid #eee; 
+    border-top: 4px solid var(--pp-red);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.agent-header-clean { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+.agent-photo { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; }
+.agent-name { font-size: 1rem; margin: 0; color: #111; font-weight: 800; }
+.agent-location { font-size: 0.75rem; color: var(--pp-red); font-weight: 600; }
+
+.btn-call-agent, .btn-submit-form {
+    display: block; width: 100%; text-align: center;
+    background-color: var(--pp-red); color: white;
+    padding: 14px; text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.85rem;
+    border: none; cursor: pointer; transition: background 0.3s;
+}
+.btn-call-agent:hover, .btn-submit-form:hover { background-color: #be1542; }
+
+.agent-form input, .agent-form textarea {
+    width: 100%; padding: 12px; margin-bottom: 10px;
+    border: 1px solid #ddd; background: #fafafa; font-family: var(--font-body);
 }
 
 /* =========================================
-   5. MODALE & MENTIONS LÉGALES (FIX)
+   4. VIDÉO EXPERIENCE
    ========================================= */
+.video-experience { background-color: #111; color: white; padding: 80px 20px; }
+.section-title h2 { color: white; font-family: var(--font-title); font-size: 2.5rem; text-align: center; margin-bottom: 40px;}
+.container-player { max-width: 1000px; margin: 0 auto; }
+
+.main-player-wrapper {
+    position: relative; width: 100%; padding-bottom: 56.25%; background: #000; margin-bottom: 30px;
+}
+.main-player-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+.chapter-scroller { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.chapter-card {
+    background: #222; width: 220px; padding: 15px; cursor: pointer;
+    border-left: 4px solid var(--pp-red) !important; opacity: 0.7; transition: 0.3s;
+}
+.chapter-card.active { background: #2a2a2a; opacity: 1; }
+.chapter-card h3 { font-size: 0.9rem; color: #ccc; margin: 0; }
+
+/* =========================================
+   5. FOOTER & MODALE (FIXÉE)
+   ========================================= */
+.legal-footer { 
+    background-color: #fff; padding: 30px 20px; font-size: 0.7rem; color: #aaa; text-align: center; border-top: 1px solid #f0f0f0; 
+}
+
 .modal-overlay {
-    display: none; 
-    position: fixed;
-    z-index: 10000; /* Priorité absolue devant tout le site */
-    left: 0; top: 0;
+    display: none; position: fixed;
+    z-index: 10000; left: 0; top: 0;
     width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.85); /* Fond plus sombre pour focus */
+    background-color: rgba(0,0,0,0.8); 
 }
 
 .modal-content {
-    background-color: #fff;
-    margin: 10vh auto;
-    padding: 40px;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 650px;
-    position: relative;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    color: #333;
+    background-color: #fff; margin: 10% auto; padding: 30px; border-radius: 8px;
+    width: 80%; max-width: 600px; position: relative; color: #333;
 }
 
-.close-modal {
-    position: absolute;
-    right: 20px; top: 15px;
-    font-size: 32px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #999;
-    transition: color 0.3s;
-}
-.close-modal:hover { color: var(--pp-red); }
+.close-modal { position: absolute; right: 20px; top: 10px; font-size: 28px; font-weight: bold; cursor: pointer; color: #aaa; }
 
 /* =========================================
    6. RESPONSIVE
@@ -177,11 +237,13 @@ body {
 @media (max-width: 900px) {
     .listing-body-grid { flex-direction: column; }
     .sidebar-col { position: static; width: 100%; margin-top: 40px; }
+    .key-metrics-grid { flex-wrap: wrap; }
+    .metric-box { flex: 1 1 45%; margin-bottom: 20px; }
     .hero-title { font-size: 2.2rem; }
 }
 
 @media (max-width: 768px) {
-    .dpe-container { flex-direction: column; }
     .legal-text-content, .legal-compliance-block { text-align: center !important; }
     .agent-header-clean { flex-direction: column; text-align: center; }
+    .dpe-container { flex-direction: column; align-items: center; }
 }
