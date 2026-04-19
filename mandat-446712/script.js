@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-// --- 3. BLOC LÉGAL IMMOBILIER (VERSION COMPATIBLE CSS) ---
+// --- 3. BLOC LÉGAL IMMOBILIER ---
     const legalContainer = document.getElementById('full-legal-text');
     if(legalContainer) {
         const phoneDisplay = HouseData.agentPhone.replace(/\./g, ' ');
@@ -94,23 +94,20 @@ document.addEventListener("DOMContentLoaded", function() {
             textHonoraires = `(${HouseData.feesPercent}% honoraires TTC à la charge de l'acquéreur.) Prix hors honoraires : ${netVendeurFmt} €.`;
         }
 
-        // On utilise ici la classe "legal-text-content" pour que le CSS prenne le relais
         legalContainer.innerHTML = `
             <div class="legal-text-content">
                 <p style="margin-bottom:15px;">Pour visiter et vous accompagner dans votre projet, contactez <strong>Sylvain MATIGNON</strong>, au <strong>${phoneDisplay}</strong> ou, par courriel à <a href="mailto:${HouseData.agentEmail}" style="color:#EA1D54; text-decoration:none; font-weight:bold;">${HouseData.agentEmail}</a>.</p>
-                
                 <p style="margin-bottom:15px;">Selon l'article L.561.5 du Code Monétaire et Financier, pour l'organisation de la visite, la présentation d'une pièce d'identité vous sera demandée.</p>
-                
                 <p style="margin-bottom:15px; font-size:0.85rem; opacity:0.8; line-height: 1.6;">
-                    Cette présente annonce a été rédigée sous la responsabilité éditoriale de <strong>Sylvain MATIGNON</strong> agissant sous le statut d'agent commercial immatriculé au <strong>RSAC 422 231 928 EVREUX</strong> auprès de SAS PROPRIETES PRIVEES, au capital de 44 920€, ZAC LE CHÊNE FERRÉ - 44 ALLÉE DES CINQ CONTINENTS 44120 VERTOU; SIRET 487 624 777 00040, RCS Nantes. Carte Professionnelle Transactions sur immeubles et fonds de commerce (T) et Gestion immobilière (G) n°CPI 4401 2016 000 010 388 délivrée par la CCI Nantes - Saint Nazaire. Compte séquestre n°30932508467 BPA SAINT-SEBASTIEN-SUR-LOIRE (44230). Garantie GALIAN-SMABTP - 89 rue de la Boétie, 75008 Paris - n°28137 J pour 2 000 000€ pour T et 120 000€ pour G. Assurance responsabilité civile professionnelle par GALIAN-SMABTP n° de police 28137.J.
+                    Cette présente annonce a été rédigée sous la responsabilité éditoriale de <strong>Sylvain MATIGNON</strong> agissant sous le statut d'agent commercial immatriculé au <strong>RSAC 422 231 928 EVREUX</strong> auprès de SAS PROPRIETES PRIVEES...
                 </p>
-                
                 <p style="padding-top:15px; border-top:1px solid #eee; font-weight: 500;">
                     <strong>Mandat réf : ${HouseData.mandatRef}</strong> - Le professionnel garantit et sécurise votre projet immobilier. <br><strong>${textHonoraires}</strong>
                 </p>
             </div>
         `;
     }
+
     // --- 4. DPE & GES ---
     const letters = ['A','B','C','D','E','F','G'];
     function generateLadder(targetId, activeLetter, val, unit, prefixClass) {
@@ -154,4 +151,40 @@ document.addEventListener("DOMContentLoaded", function() {
         const banner = document.getElementById('cookie-banner');
         if(banner) banner.style.display = 'flex';
     }
-});
+
+    // ==========================================
+    // AJOUT ICI : GESTION DU FORMULAIRE FORMSPREE
+    // ==========================================
+    const hiddenInput = document.getElementById('hidden-mandat');
+    if(hiddenInput && HouseData.mandatRef) {
+        hiddenInput.value = "Visite pour Mandat : " + HouseData.mandatRef + " (" + HouseData.title + ")";
+    }
+
+    const contactForm = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-button');
+
+    if (contactForm) {
+        contactForm.addEventListener("submit", async function(event) {
+            event.preventDefault(); 
+            submitBtn.innerText = "Envoi en cours...";
+            submitBtn.disabled = true;
+
+            const data = new FormData(event.target);
+            try {
+                const response = await fetch(event.target.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    submitBtn.innerText = "✓ Demande envoyée !";
+                    submitBtn.style.backgroundColor = "#28a745";
+                    contactForm.reset();
+                } else { throw new Error(); }
+            } catch (error) {
+                submitBtn.innerText = "Erreur. Réessayez.";
+                submitBtn.disabled = false;
+            }
+        });
+    }
+}); // <--- C'est ici que s'arrête le DOMContentLoaded
