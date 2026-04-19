@@ -152,39 +152,46 @@ document.addEventListener("DOMContentLoaded", function() {
         if(banner) banner.style.display = 'flex';
     }
 
-    // ==========================================
-    // AJOUT ICI : GESTION DU FORMULAIRE FORMSPREE
-    // ==========================================
-    const hiddenInput = document.getElementById('hidden-mandat');
-    if(hiddenInput && HouseData.mandatRef) {
-        hiddenInput.value = "Visite pour Mandat : " + HouseData.mandatRef + " (" + HouseData.title + ")";
-    }
+ // --- GESTION DU FORMULAIRE DE CONTACT (FORMSPREE) ---
 
-    const contactForm = document.getElementById('contact-form');
-    const submitBtn = document.getElementById('submit-button');
+// 1. Injection automatique du mandat dans le formulaire
+const hiddenInput = document.getElementById('hidden-mandat');
+if(hiddenInput && HouseData.mandatRef) {
+    hiddenInput.value = "Mandat " + HouseData.mandatRef + " - " + HouseData.title;
+}
 
-    if (contactForm) {
-        contactForm.addEventListener("submit", async function(event) {
-            event.preventDefault(); 
-            submitBtn.innerText = "Envoi en cours...";
-            submitBtn.disabled = true;
+// 2. Envoi du formulaire sans recharger la page
+const contactForm = document.getElementById('contact-form');
+const submitBtn = document.getElementById('submit-button');
 
-            const data = new FormData(event.target);
-            try {
-                const response = await fetch(event.target.action, {
-                    method: 'POST',
-                    body: data,
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (response.ok) {
-                    submitBtn.innerText = "✓ Demande envoyée !";
-                    submitBtn.style.backgroundColor = "#28a745";
-                    contactForm.reset();
-                } else { throw new Error(); }
-            } catch (error) {
-                submitBtn.innerText = "Erreur. Réessayez.";
-                submitBtn.disabled = false;
+if (contactForm) {
+    contactForm.addEventListener("submit", async function(event) {
+        event.preventDefault(); // Empêche le saut de page
+        
+        submitBtn.innerText = "Envoi en cours...";
+        submitBtn.disabled = true;
+
+        const data = new FormData(event.target);
+        
+        try {
+            const response = await fetch(event.target.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                submitBtn.innerText = "✓ Demande envoyée !";
+                submitBtn.style.backgroundColor = "#28a745"; // Vert succès
+                contactForm.reset(); // Vide les champs
+            } else {
+                throw new Error();
             }
-        });
-    }
+        } catch (error) {
+            submitBtn.innerText = "Erreur. Réessayez.";
+            submitBtn.disabled = false;
+            submitBtn.style.backgroundColor = "#EA1D54";
+        }
+    });
+}
 }); // <--- C'est ici que s'arrête le DOMContentLoaded
